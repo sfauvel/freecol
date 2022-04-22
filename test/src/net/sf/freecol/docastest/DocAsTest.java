@@ -95,6 +95,7 @@ public class DocAsTest {
 
         testClass = testMethod.getDeclaringClass();
         final String content = docWriter.formatOutput(testMethod);
+        docWriter.reset();
         approved(new DocPath(testMethod), content);
     }
 

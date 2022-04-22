@@ -1,0 +1,15 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
+
+[#net_sf_freecol_common_model_colonydoctest_testbuildqueueacceptsunitdoubles]
+= TestBuildQueueAcceptsUnitDoubles
+
+Build queue is incremented when building an other item.
+
+Initial currently building: *model.building.warehouse* +
+
+|====
+| Building asked | Queue size
+
+| model.unit.wagonTrain | 2
+| model.unit.wagonTrain | 3
+|====

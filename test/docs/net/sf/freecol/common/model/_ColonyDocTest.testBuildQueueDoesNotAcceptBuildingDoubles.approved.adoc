@@ -1,0 +1,16 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
+
+[#net_sf_freecol_common_model_colonydoctest_testbuildqueuedoesnotacceptbuildingdoubles]
+= TestBuildQueueDoesNotAcceptBuildingDoubles
+
+Build queue does not accept building doubles.
+The queue size is incremented only with a new building.
+
+|====
+| Building asked | Queue size
+
+| model.building.warehouse | 1
+| model.building.warehouse | 1
+| model.building.church | 2
+| model.building.warehouse | 2
+|====

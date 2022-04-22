@@ -1,0 +1,8 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
+
+[#net_sf_freecol_common_model_colonydoctest_testcurrentlybuilding]
+= TestCurrentlyBuilding
+
+Initial currently building: *model.building.warehouse* +
+When setting building with *model.building.church* +
+The new currently building is: *model.building.church*

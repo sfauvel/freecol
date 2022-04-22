@@ -1,0 +1,9 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
+
+= Colony doc test
+
+include::_ColonyDocTest.testCurrentlyBuilding.approved.adoc[leveloffset=+1]
+
+include::_ColonyDocTest.testBuildQueueDoesNotAcceptBuildingDoubles.approved.adoc[leveloffset=+1]
+
+include::_ColonyDocTest.testBuildQueueAcceptsUnitDoubles.approved.adoc[leveloffset=+1]
