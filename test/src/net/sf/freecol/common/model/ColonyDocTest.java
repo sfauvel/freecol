@@ -38,16 +38,16 @@ public class ColonyDocTest extends DocAsTest {
         return FreeColTestCase.spec();
     }
 
-    public static Game getGame() {
+    public Game getGame() {
         return FreeColTestCase.getGame();
     }
 
-    public static Map getTestMap(boolean x) {
+    public Map getTestMap(boolean x) {
         return FreeColTestCase.getTestMap(x);
     }
 
-    public static Colony getStandardColony() {
-        return FreeColTestCase.getStandardColony(1, 5, 8);
+    public Colony getStandardColony() {
+        return testCase.getStandardColony();
     }
 
     private static final BuildingType carpenterHouseType
