@@ -22,12 +22,18 @@ package net.sf.freecol.common.model;
 import net.sf.freecol.docastest.DocAsTest;
 import net.sf.freecol.util.test.FreeColTestCase;
 import org.junit.Test;
+import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
+import org.sfvl.doctesting.utils.DocPath;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.format;
 
 
 public class ColonyDocTest extends DocAsTest {
@@ -103,6 +109,17 @@ public class ColonyDocTest extends DocAsTest {
     private static final UnitType braveType
             = spec().getUnitType("model.unit.brave");
 
+    private AsciidocFormatter formatter = new AsciidocFormatter();
+    public String includeImage(BuildableType building) {
+        final DocPath docPath = new DocPath(this.getClass());
+        final Path fromProjectRoot = docPath.approved().folder().relativize(Paths.get("."));
+        final Path relativizedPath = fromProjectRoot
+                .resolve("data/rules/classic/resources/images/buildings")
+                .resolve(building.getSuffix() + ".png");
+
+        return formatter.image(relativizedPath.toString());
+    }
+    
     @Test
     public void testCurrentlyBuilding() {
         Game game = getGame();
@@ -115,6 +132,7 @@ public class ColonyDocTest extends DocAsTest {
         colony.setCurrentlyBuilding(newBuilding);
         write("When setting building with *" + newBuilding + "* +",
                 "The new currently building is: *" + colony.getCurrentlyBuilding() + "*");
+
     }
 
     @Test
@@ -151,14 +169,27 @@ public class ColonyDocTest extends DocAsTest {
         write("Build queue does not accept building doubles.",
                 "The queue size is incremented only with a new building.",
                 "",
-                queueSizeAfterBuilding(colony, buildingToSet));
+                queueSizeAfterBuildingImage(colony, buildingToSet));
     }
 
-    private String queueSizeAfterBuilding(Colony colony, List<BuildableType> buildingToSet) {
+    private String queueSizeAfterBuildingImage(Colony colony, List<BuildableType> buildingToSet) {
+        Function<Colony, String> displayQueue = c -> c.getBuildQueue().stream()
+                .map(type -> includeImage(type))
+                .collect(Collectors.joining(" "));
         final String table = buildingToSet.stream()
                 .map(type -> {
                     colony.setCurrentlyBuilding(type);
-                    return String.format("| %s | %d", type, colony.getBuildQueue().size());
+//                    return String.format("a| %s | %d", includeImage(type), colony.getBuildQueue().size());
+                    return String.format("a| %s a| %s", includeImage(type), displayQueue.apply(colony));
+                }).collect(Collectors.joining("\n", "|====\n| Building asked | Queue size\n\n", "\n|===="));
+        return table;
+    }
+
+    private String queueSizeAfterBuildingName(Colony colony, List<BuildableType> buildingToSet) {
+        final String table = buildingToSet.stream()
+                .map(type -> {
+                    colony.setCurrentlyBuilding(type);
+                    return String.format("| %s | %d", type.getSuffix(), colony.getBuildQueue().size());
                 }).collect(Collectors.joining("\n", "|====\n| Building asked | Queue size\n\n", "\n|===="));
         return table;
     }
@@ -179,7 +210,7 @@ public class ColonyDocTest extends DocAsTest {
                 "",
                 "Initial currently building: *" + colony.getCurrentlyBuilding() + "* +",
                 "",
-                queueSizeAfterBuilding(colony, buildingToSet));
+                queueSizeAfterBuildingName(colony, buildingToSet));
 
 //        colony.setCurrentlyBuilding(wagonTrainType);
 //        // default item will be added to new colony's build queue
