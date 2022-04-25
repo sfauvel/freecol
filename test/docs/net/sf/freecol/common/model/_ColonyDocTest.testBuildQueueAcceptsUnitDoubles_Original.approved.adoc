@@ -1,0 +1,23 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
+
+[#net_sf_freecol_common_model_colonydoctest_testbuildqueueacceptsunitdoubles_original]
+= TestBuildQueueAcceptsUnitDoubles Original
+
+
+[source,java,indent=0]
+----
+
+        Game game = getGame();
+        game.changeMap(getTestMap(true));
+
+        Colony colony = getStandardColony();
+        colony.setCurrentlyBuilding(wagonTrainType);
+        // default item will be added to new colony's build queue
+        assertEquals("Building queue should have 2 entry",
+                     2, colony.getBuildQueue().size());
+
+        colony.setCurrentlyBuilding(wagonTrainType);
+        assertEquals("Building queue should have 3 entries",
+                     3, colony.getBuildQueue().size());
+    
+----

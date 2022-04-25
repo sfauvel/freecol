@@ -10,9 +10,12 @@ Initial currently building: *model.building.warehouse* +
 |====
 | Building asked | Queue size
 
-a| model.unit.wagonTrain
-a| 2
+a| image:../../../../../../../data/rules/classic/resources/images/units/wagon/wagonTrain.png[title="model.unit.wagonTrain"]
+a| image:../../../../../../../data/rules/classic/resources/images/units/wagon/wagonTrain.png[title="model.unit.wagonTrain"]
+image:../../../../../../../data/rules/classic/resources/images/buildings/warehouse.png[title="model.building.warehouse"]
 
-a| model.unit.wagonTrain
-a| 3
+a| image:../../../../../../../data/rules/classic/resources/images/units/wagon/wagonTrain.png[title="model.unit.wagonTrain"]
+a| image:../../../../../../../data/rules/classic/resources/images/units/wagon/wagonTrain.png[title="model.unit.wagonTrain"]
+image:../../../../../../../data/rules/classic/resources/images/units/wagon/wagonTrain.png[title="model.unit.wagonTrain"]
+image:../../../../../../../data/rules/classic/resources/images/buildings/warehouse.png[title="model.building.warehouse"]
 |====

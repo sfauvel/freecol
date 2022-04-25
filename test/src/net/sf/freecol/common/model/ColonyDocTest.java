@@ -19,16 +19,22 @@
 
 package net.sf.freecol.common.model;
 
+import net.sf.freecol.common.io.FreeColTcFile;
 import net.sf.freecol.docastest.DocAsTest;
 import net.sf.freecol.docastest.FreeColFormatter;
 import net.sf.freecol.util.test.FreeColTestCase;
 import org.junit.Test;
+import org.sfvl.codeextraction.CodeExtractor;
+import org.sfvl.codeextraction.MethodReference;
 import org.sfvl.doctesting.utils.DocPath;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Properties;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -108,18 +114,68 @@ public class ColonyDocTest extends DocAsTest {
 
     private FreeColFormatter formatter = new FreeColFormatter();
 
+    FreeColTcFile tcData = FreeColTcFile.getFreeColTcFile("classic");
+    Properties prop = null;
+
+    public String getImage(BuildableType buildable) {
+        String folder = buildable instanceof BuildingType ? "buildingicon" : "unit";
+        return tcData.getPath() + "/" + getProperty("image." + folder + "." + buildable.getId());
+    }
+
+    private String getProperty(String key) {
+        if (prop == null) {
+            prop = new Properties();
+            try {
+                prop.load(new FileInputStream(tcData.getPath() + "/resources.properties"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return prop.getProperty(key);
+    }
+
     public String includeImage(BuildableType building) {
         final DocPath docPath = new DocPath(this.getClass());
         final Path fromProjectRoot = docPath.approved().folder().relativize(Paths.get("."));
         final Path relativizedPath = fromProjectRoot
-                .resolve("data/rules/classic/resources/images/buildings")
-                .resolve(building.getSuffix() + ".png");
+                .resolve(getImage(building));
 
         return formatter.image(relativizedPath.toString(), building.getId());
     }
 
+
+    private String formatAfterSettingBuildingTypeImage(Colony colony, List<BuildableType> buildingToSet) {
+        return formatAfterSettingBuildingType(colony, buildingToSet,
+                this::includeImage,
+                this::displayQueue);
+    }
+
+    private String formatAfterSettingBuildingTypeText(Colony colony, List<BuildableType> buildingToSet) {
+        return formatAfterSettingBuildingType(colony, buildingToSet,
+                type -> type.getId(),
+                c -> Integer.toString(c.getBuildQueue().size()));
+    }
+
+    private String formatAfterSettingBuildingType(Colony colony, List<BuildableType> buildingToSet,
+                                                  Function<BuildableType, String> key, Function<Colony, String> queue) {
+        final String table = buildingToSet.stream()
+                .map(type -> {
+                    colony.setCurrentlyBuilding(type);
+                    return String.format("a| %s\na| %s", key.apply(type), queue.apply(colony));
+                }).collect(Collectors.joining("\n\n", "|====\n| Building asked | Queue size\n\n", "\n|===="));
+        return table;
+    }
+
+    private String displayQueue(Colony colony) {
+        return colony.getBuildQueue().stream()
+                .map(type -> includeImage(type))
+                .collect(Collectors.joining("\n"));
+    }
+
+    // //////////////////////////////////////
+
     @Test
-    public void testCurrentlyBuilding() {
+    public void testCurrentlyBuilding() throws IOException {
         Game game = getGame();
         game.changeMap(getTestMap(true));
 
@@ -131,6 +187,35 @@ public class ColonyDocTest extends DocAsTest {
         write("When setting building with *" + newBuilding + "* +",
                 "The new currently building is: *" + colony.getCurrentlyBuilding() + "*");
 
+    }
+
+
+    @Test
+    public void testBuildQueueDoesNotAcceptBuildingDoubles_Original() {
+        final String code = CodeExtractor.extractMethodBody(MethodReference.getMethod(ColonyTest::testBuildQueueDoesNotAcceptBuildingDoubles));
+
+        write(formatter.sourceCode(code));
+    }
+
+    @Test
+    public void testBuildQueueDoesNotAcceptBuildingDoubles_Basic() {
+        Game game = getGame();
+        game.changeMap(getTestMap(true));
+
+        Colony colony = getStandardColony();
+
+        // We don't need to assert after each action.
+        // We can have the same treatment for each value.
+        final List<BuildableType> buildingToSet = Arrays.asList(
+                warehouseType,
+                warehouseType,
+                churchType,
+                warehouseType);
+
+        write("Build queue does not accept building doubles.",
+                "The queue size is incremented only with a new building.",
+                "",
+                formatAfterSettingBuildingTypeText(colony, buildingToSet));
     }
 
     @Test
@@ -173,51 +258,28 @@ public class ColonyDocTest extends DocAsTest {
     }
 
 
-    private String formatAfterSettingBuildingTypeImage(Colony colony, List<BuildableType> buildingToSet) {
-        return formatAfterSettingBuildingType(colony, buildingToSet,
-                this::includeImage,
-                this::displayQueue);
-    }
+    @Test
+    public void testBuildQueueAcceptsUnitDoubles_Original() {
+        final String code = CodeExtractor.extractMethodBody(MethodReference.getMethod(ColonyTest::testBuildQueueAcceptsUnitDoubles));
 
-    private String formatAfterSettingBuildingTypeText(Colony colony, List<BuildableType> buildingToSet) {
-        return formatAfterSettingBuildingType(colony, buildingToSet,
-                type -> type.getId(),
-                c -> Integer.toString(c.getBuildQueue().size()));
-    }
-
-    private String formatAfterSettingBuildingType(Colony colony, List<BuildableType> buildingToSet,
-                                                  Function<BuildableType, String> key, Function<Colony, String> queue) {
-        final String table = buildingToSet.stream()
-                .map(type -> {
-                    colony.setCurrentlyBuilding(type);
-                    return String.format("a| %s\na| %s", key.apply(type), queue.apply(colony));
-                }).collect(Collectors.joining("\n\n", "|====\n| Building asked | Queue size\n\n", "\n|===="));
-        return table;
-    }
-
-    private String displayQueue(Colony colony) {
-        return colony.getBuildQueue().stream()
-                .map(type -> includeImage(type))
-                .collect(Collectors.joining("\n"));
+        write(formatter.sourceCode(code));
     }
 
     @Test
-    public void testBuildQueueDoesNotAcceptBuildingDoubles_Basic() {
+    public void testBuildQueueAcceptsUnitDoubles_Basic() {
         Game game = getGame();
         game.changeMap(getTestMap(true));
 
         Colony colony = getStandardColony();
 
-        // We don't need to assert after each action.
-        // We can have the same treatment for each value.
         final List<BuildableType> buildingToSet = Arrays.asList(
-                warehouseType,
-                warehouseType,
-                churchType,
-                warehouseType);
+                wagonTrainType,
+                wagonTrainType);
 
-        write("Build queue does not accept building doubles.",
-                "The queue size is incremented only with a new building.",
+        // We can reuse table printer.
+        write("Build queue is incremented when building an other item.",
+                "",
+                "Initial currently building: *" + colony.getCurrentlyBuilding() + "* +",
                 "",
                 formatAfterSettingBuildingTypeText(colony, buildingToSet));
     }
@@ -238,7 +300,7 @@ public class ColonyDocTest extends DocAsTest {
                 "",
                 "Initial currently building: *" + colony.getCurrentlyBuilding() + "* +",
                 "",
-                formatAfterSettingBuildingTypeText(colony, buildingToSet));
+                formatAfterSettingBuildingTypeImage(colony, buildingToSet));
     }
 //
 //    public void testOccupationWithFood() {
