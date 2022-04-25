@@ -39,7 +39,7 @@ public class DocAsTest {
                 getFormatter(),
                 o -> Paths.get(o.filename()),
                 m -> m.isAnnotationPresent(org.junit.Test.class),
-                m -> true
+                m -> false // Do not include inner class
         );
 
         public String formatOutput(Class<?> clazz) {

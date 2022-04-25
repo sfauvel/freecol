@@ -10,6 +10,9 @@ Initial currently building: *model.building.warehouse* +
 |====
 | Building asked | Queue size
 
-| wagonTrain | 2
-| wagonTrain | 3
+a| model.unit.wagonTrain
+a| 2
+
+a| model.unit.wagonTrain
+a| 3
 |====

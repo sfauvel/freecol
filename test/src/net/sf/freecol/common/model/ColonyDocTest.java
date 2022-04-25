@@ -20,9 +20,9 @@
 package net.sf.freecol.common.model;
 
 import net.sf.freecol.docastest.DocAsTest;
+import net.sf.freecol.docastest.FreeColFormatter;
 import net.sf.freecol.util.test.FreeColTestCase;
 import org.junit.Test;
-import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.utils.DocPath;
 
 import java.nio.file.Path;
@@ -31,9 +31,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-
-import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.format;
 
 
 public class ColonyDocTest extends DocAsTest {
@@ -109,7 +106,8 @@ public class ColonyDocTest extends DocAsTest {
     private static final UnitType braveType
             = spec().getUnitType("model.unit.brave");
 
-    private AsciidocFormatter formatter = new AsciidocFormatter();
+    private FreeColFormatter formatter = new FreeColFormatter();
+
     public String includeImage(BuildableType building) {
         final DocPath docPath = new DocPath(this.getClass());
         final Path fromProjectRoot = docPath.approved().folder().relativize(Paths.get("."));
@@ -117,9 +115,9 @@ public class ColonyDocTest extends DocAsTest {
                 .resolve("data/rules/classic/resources/images/buildings")
                 .resolve(building.getSuffix() + ".png");
 
-        return formatter.image(relativizedPath.toString());
+        return formatter.image(relativizedPath.toString(), building.getId());
     }
-    
+
     @Test
     public void testCurrentlyBuilding() {
         Game game = getGame();
@@ -169,29 +167,59 @@ public class ColonyDocTest extends DocAsTest {
         write("Build queue does not accept building doubles.",
                 "The queue size is incremented only with a new building.",
                 "",
-                queueSizeAfterBuildingImage(colony, buildingToSet));
+                formatAfterSettingBuildingType(colony, buildingToSet,
+                        type -> includeImage(type),
+                        this::displayQueue));
     }
 
-    private String queueSizeAfterBuildingImage(Colony colony, List<BuildableType> buildingToSet) {
-        Function<Colony, String> displayQueue = c -> c.getBuildQueue().stream()
+
+    private String formatAfterSettingBuildingTypeImage(Colony colony, List<BuildableType> buildingToSet) {
+        return formatAfterSettingBuildingType(colony, buildingToSet,
+                this::includeImage,
+                this::displayQueue);
+    }
+
+    private String formatAfterSettingBuildingTypeText(Colony colony, List<BuildableType> buildingToSet) {
+        return formatAfterSettingBuildingType(colony, buildingToSet,
+                type -> type.getId(),
+                c -> Integer.toString(c.getBuildQueue().size()));
+    }
+
+    private String formatAfterSettingBuildingType(Colony colony, List<BuildableType> buildingToSet,
+                                                  Function<BuildableType, String> key, Function<Colony, String> queue) {
+        final String table = buildingToSet.stream()
+                .map(type -> {
+                    colony.setCurrentlyBuilding(type);
+                    return String.format("a| %s\na| %s", key.apply(type), queue.apply(colony));
+                }).collect(Collectors.joining("\n\n", "|====\n| Building asked | Queue size\n\n", "\n|===="));
+        return table;
+    }
+
+    private String displayQueue(Colony colony) {
+        return colony.getBuildQueue().stream()
                 .map(type -> includeImage(type))
-                .collect(Collectors.joining(" "));
-        final String table = buildingToSet.stream()
-                .map(type -> {
-                    colony.setCurrentlyBuilding(type);
-//                    return String.format("a| %s | %d", includeImage(type), colony.getBuildQueue().size());
-                    return String.format("a| %s a| %s", includeImage(type), displayQueue.apply(colony));
-                }).collect(Collectors.joining("\n", "|====\n| Building asked | Queue size\n\n", "\n|===="));
-        return table;
+                .collect(Collectors.joining("\n"));
     }
 
-    private String queueSizeAfterBuildingName(Colony colony, List<BuildableType> buildingToSet) {
-        final String table = buildingToSet.stream()
-                .map(type -> {
-                    colony.setCurrentlyBuilding(type);
-                    return String.format("| %s | %d", type.getSuffix(), colony.getBuildQueue().size());
-                }).collect(Collectors.joining("\n", "|====\n| Building asked | Queue size\n\n", "\n|===="));
-        return table;
+    @Test
+    public void testBuildQueueDoesNotAcceptBuildingDoubles_Basic() {
+        Game game = getGame();
+        game.changeMap(getTestMap(true));
+
+        Colony colony = getStandardColony();
+
+        // We don't need to assert after each action.
+        // We can have the same treatment for each value.
+        final List<BuildableType> buildingToSet = Arrays.asList(
+                warehouseType,
+                warehouseType,
+                churchType,
+                warehouseType);
+
+        write("Build queue does not accept building doubles.",
+                "The queue size is incremented only with a new building.",
+                "",
+                formatAfterSettingBuildingTypeText(colony, buildingToSet));
     }
 
     @Test
@@ -210,16 +238,7 @@ public class ColonyDocTest extends DocAsTest {
                 "",
                 "Initial currently building: *" + colony.getCurrentlyBuilding() + "* +",
                 "",
-                queueSizeAfterBuildingName(colony, buildingToSet));
-
-//        colony.setCurrentlyBuilding(wagonTrainType);
-//        // default item will be added to new colony's build queue
-//        assertEquals("Building queue should have 2 entry",
-//                2, colony.getBuildQueue().size());
-//
-//        colony.setCurrentlyBuilding(wagonTrainType);
-//        assertEquals("Building queue should have 3 entries",
-//                3, colony.getBuildQueue().size());
+                formatAfterSettingBuildingTypeText(colony, buildingToSet));
     }
 //
 //    public void testOccupationWithFood() {

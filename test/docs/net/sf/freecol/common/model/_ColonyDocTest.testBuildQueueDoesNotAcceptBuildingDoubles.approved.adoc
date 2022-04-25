@@ -9,28 +9,17 @@ The queue size is incremented only with a new building.
 |====
 | Building asked | Queue size
 
-a| 
-image::../../../../../../../data/rules/classic/resources/images/buildings/warehouse.png[]
- a| 
-image::../../../../../../../data/rules/classic/resources/images/buildings/warehouse.png[]
+a| image:../../../../../../../data/rules/classic/resources/images/buildings/warehouse.png[title="model.building.warehouse"]
+a| image:../../../../../../../data/rules/classic/resources/images/buildings/warehouse.png[title="model.building.warehouse"]
 
-a| 
-image::../../../../../../../data/rules/classic/resources/images/buildings/warehouse.png[]
- a| 
-image::../../../../../../../data/rules/classic/resources/images/buildings/warehouse.png[]
+a| image:../../../../../../../data/rules/classic/resources/images/buildings/warehouse.png[title="model.building.warehouse"]
+a| image:../../../../../../../data/rules/classic/resources/images/buildings/warehouse.png[title="model.building.warehouse"]
 
-a| 
-image::../../../../../../../data/rules/classic/resources/images/buildings/church.png[]
- a| 
-image::../../../../../../../data/rules/classic/resources/images/buildings/church.png[]
- 
-image::../../../../../../../data/rules/classic/resources/images/buildings/warehouse.png[]
+a| image:../../../../../../../data/rules/classic/resources/images/buildings/church.png[title="model.building.church"]
+a| image:../../../../../../../data/rules/classic/resources/images/buildings/church.png[title="model.building.church"]
+image:../../../../../../../data/rules/classic/resources/images/buildings/warehouse.png[title="model.building.warehouse"]
 
-a| 
-image::../../../../../../../data/rules/classic/resources/images/buildings/warehouse.png[]
- a| 
-image::../../../../../../../data/rules/classic/resources/images/buildings/warehouse.png[]
- 
-image::../../../../../../../data/rules/classic/resources/images/buildings/church.png[]
-
+a| image:../../../../../../../data/rules/classic/resources/images/buildings/warehouse.png[title="model.building.warehouse"]
+a| image:../../../../../../../data/rules/classic/resources/images/buildings/warehouse.png[title="model.building.warehouse"]
+image:../../../../../../../data/rules/classic/resources/images/buildings/church.png[title="model.building.church"]
 |====
