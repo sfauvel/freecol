@@ -6,6 +6,14 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
 Build queue does not accept building doubles.
 The queue size is incremented only with a new building.
 
+.Standard colony
+[%collapsible]
+====
+Name : New Amsterdam
+
+Current building : image:../../../../../../../data/rules/classic/resources/images/buildings/warehouse.png[title="model.building.warehouse"]
+====
+
 |====
 | Building asked | Queue size
 

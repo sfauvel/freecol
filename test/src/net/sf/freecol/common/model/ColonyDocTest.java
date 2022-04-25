@@ -189,7 +189,6 @@ public class ColonyDocTest extends DocAsTest {
 
     }
 
-
     @Test
     public void testBuildQueueDoesNotAcceptBuildingDoubles_Original() {
         final String code = CodeExtractor.extractMethodBody(MethodReference.getMethod(ColonyTest::testBuildQueueDoesNotAcceptBuildingDoubles));
@@ -225,22 +224,6 @@ public class ColonyDocTest extends DocAsTest {
 
         Colony colony = getStandardColony();
 
-//        colony.setCurrentlyBuilding(warehouseType);
-//        assertEquals("Building queue should have 1 entry",
-//                     1, colony.getBuildQueue().size());
-//
-//        colony.setCurrentlyBuilding(warehouseType);
-//        assertEquals("Building queue should still have 1 entry",
-//                     1, colony.getBuildQueue().size());
-//
-//        colony.setCurrentlyBuilding(churchType);
-//        assertEquals("Building queue should have 2 entries",
-//                     2, colony.getBuildQueue().size());
-//
-//        colony.setCurrentlyBuilding(warehouseType);
-//        assertEquals("Building queue should still have 2 entries",
-//                     2, colony.getBuildQueue().size());
-
         // We don't need to assert after each action.
         // We can have the same treatment for each value.
         final List<BuildableType> buildingToSet = Arrays.asList(
@@ -249,12 +232,24 @@ public class ColonyDocTest extends DocAsTest {
                 churchType,
                 warehouseType);
 
+        final String initialColony = String.join("\n",
+                ".Standard colony",
+                "[%collapsible]",
+                "====",
+                "Name : " + colony.getName(),
+                "",
+                "Current building : " + includeImage(colony.getCurrentlyBuilding()),
+                "====");
+
         write("Build queue does not accept building doubles.",
                 "The queue size is incremented only with a new building.",
+                "",
+                initialColony,
                 "",
                 formatAfterSettingBuildingType(colony, buildingToSet,
                         type -> includeImage(type),
                         this::displayQueue));
+
     }
 
 
