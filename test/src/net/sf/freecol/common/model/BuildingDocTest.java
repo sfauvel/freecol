@@ -21,6 +21,7 @@ package net.sf.freecol.common.model;
 
 import net.sf.freecol.docastest.FreeColDocAsTest;
 import net.sf.freecol.server.model.ServerBuilding;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
@@ -241,10 +242,16 @@ public class BuildingDocTest extends FreeColDocAsTest {
         }
     }
 
+    Game game;
+
+    @Before
+    public void init() {
+        game = getGame();
+        game.changeMap(getTestMap(true));
+    }
+
     @Test
     public void testCanBuildNext() {
-        Game game = getGame();
-        game.changeMap(getTestMap(true));
         // First check with a building that can be fully built with a
         // normal colony
         Colony colony = getStandardColony();
