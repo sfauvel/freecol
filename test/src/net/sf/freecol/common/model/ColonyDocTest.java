@@ -172,6 +172,19 @@ public class ColonyDocTest extends DocAsTest {
                 .collect(Collectors.joining("\n"));
     }
 
+    private String displayColony(Colony colony) {
+        return String.join("\n",
+                ".Standard colony",
+                "[%collapsible]",
+                "====",
+                "Name : " + colony.getName(),
+                "",
+                "Current building : " + includeImage(colony.getCurrentlyBuilding()),
+                "====");
+    }
+
+
+
     // //////////////////////////////////////
 
     @Test
@@ -232,26 +245,16 @@ public class ColonyDocTest extends DocAsTest {
                 churchType,
                 warehouseType);
 
-        final String initialColony = String.join("\n",
-                ".Standard colony",
-                "[%collapsible]",
-                "====",
-                "Name : " + colony.getName(),
-                "",
-                "Current building : " + includeImage(colony.getCurrentlyBuilding()),
-                "====");
-
         write("Build queue does not accept building doubles.",
                 "The queue size is incremented only with a new building.",
                 "",
-                initialColony,
+                displayColony(colony),
                 "",
                 formatAfterSettingBuildingType(colony, buildingToSet,
                         type -> includeImage(type),
                         this::displayQueue));
 
     }
-
 
     @Test
     public void testBuildQueueAcceptsUnitDoubles_Original() {
@@ -293,7 +296,7 @@ public class ColonyDocTest extends DocAsTest {
         // We can reuse table printer.
         write("Build queue is incremented when building an other item.",
                 "",
-                "Initial currently building: *" + colony.getCurrentlyBuilding() + "* +",
+                displayColony(colony),
                 "",
                 formatAfterSettingBuildingTypeImage(colony, buildingToSet));
     }

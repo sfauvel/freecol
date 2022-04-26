@@ -5,12 +5,12 @@ ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
 
 Build queue is incremented when building an other item.
 
-Initial currently building: *model.building.warehouse* +
-
 .Standard colony
 [%collapsible]
 ====
-image:../../../../../../../data/rules/classic/resources/images/buildings/warehouse.png[title="model.building.warehouse"]
+Name : New Amsterdam
+
+Current building : image:../../../../../../../data/rules/classic/resources/images/buildings/warehouse.png[title="model.building.warehouse"]
 ====
 
 |====
@@ -25,4 +25,3 @@ a| image:../../../../../../../data/rules/classic/resources/images/units/wagon/wa
 image:../../../../../../../data/rules/classic/resources/images/units/wagon/wagonTrain.png[title="model.unit.wagonTrain"]
 image:../../../../../../../data/rules/classic/resources/images/buildings/warehouse.png[title="model.building.warehouse"]
 |====
-
