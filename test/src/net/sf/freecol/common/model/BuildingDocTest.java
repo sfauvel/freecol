@@ -21,9 +21,14 @@ package net.sf.freecol.common.model;
 
 import net.sf.freecol.docastest.FreeColDocAsTest;
 import net.sf.freecol.server.model.ServerBuilding;
+import net.sf.freecol.server.model.ServerUnit;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
+import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 
@@ -281,21 +286,23 @@ public class BuildingDocTest extends FreeColDocAsTest {
 
     }
 
-//
-//    public void testStockadeRequiresMinimumPopulation() {
-//        Game game = getGame();
-//        game.changeMap(getTestMap(true));
-//
-//        Colony colony = getStandardColony(2);
-//        assertEquals(Colony.NoBuildReason.POPULATION_TOO_SMALL,
-//                     colony.getNoBuildReason(stockadeType, null));
-//
-//        Unit colonist = new ServerUnit(game, colony.getTile(), colony.getOwner(), freeColonistType);
-//        colonist.setLocation(colony);
-//
-//        assertEquals(Colony.NoBuildReason.NONE,
-//                     colony.getNoBuildReason(stockadeType, null));
-//    }
+
+    @Test
+    public void testStockadeRequiresMinimumPopulation() {
+
+        final int population = 2;
+        Colony colony = getStandardColony(population);
+
+        final List<List<?>> result = new ArrayList<>();
+        result.add(Arrays.asList("Population","No build reason"));
+
+        result.add(Arrays.asList(colony.getUnitCount(),colony.getNoBuildReason(stockadeType, null)));
+
+        new ServerUnit(game, colony.getTile(), colony.getOwner(), freeColonistType).setLocation(colony);
+        result.add(Arrays.asList(colony.getUnitCount(),colony.getNoBuildReason(stockadeType, null)));
+
+        write(new AsciidocFormatter().tableWithHeader(result));
+    }
 //
 //    public void testFortRequiresMinimumPopulation() {
 //        Game game = getGame();

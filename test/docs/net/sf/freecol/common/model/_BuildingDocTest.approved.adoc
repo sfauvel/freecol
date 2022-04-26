@@ -4,3 +4,5 @@ ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
 = Building doc test
 
 include::_BuildingDocTest.testCanBuildNext.approved.adoc[leveloffset=+1]
+
+include::_BuildingDocTest.testStockadeRequiresMinimumPopulation.approved.adoc[leveloffset=+1]

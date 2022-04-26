@@ -1,0 +1,13 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+
+[#net_sf_freecol_common_model_buildingdoctest_teststockaderequiresminimumpopulation]
+= TestStockadeRequiresMinimumPopulation
+
+
+|====
+|Population|No build reason
+
+|2|POPULATION_TOO_SMALL
+|3|NONE
+|====
