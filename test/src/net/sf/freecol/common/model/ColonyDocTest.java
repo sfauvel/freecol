@@ -39,23 +39,7 @@ import java.util.stream.Collectors;
 
 public class ColonyDocTest extends FreeColDocAsTest {
 
-    FreeColTestCase testCase = new FreeColTestCase();
 
-    public static Specification spec() {
-        return FreeColTestCase.spec();
-    }
-
-    public Game getGame() {
-        return FreeColTestCase.getGame();
-    }
-
-    public Map getTestMap(boolean x) {
-        return FreeColTestCase.getTestMap(x);
-    }
-
-    public Colony getStandardColony() {
-        return testCase.getStandardColony();
-    }
 
     private static final BuildingType carpenterHouseType
             = spec().getBuildingType("model.building.carpenterHouse");

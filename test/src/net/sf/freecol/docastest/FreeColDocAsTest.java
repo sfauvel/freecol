@@ -1,6 +1,11 @@
 package net.sf.freecol.docastest;
 
 import net.sf.freecol.common.io.FreeColTcFile;
+import net.sf.freecol.common.model.Colony;
+import net.sf.freecol.common.model.Game;
+import net.sf.freecol.common.model.Map;
+import net.sf.freecol.common.model.Specification;
+import net.sf.freecol.util.test.FreeColTestCase;
 import org.junit.Test;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.utils.Config;
@@ -12,6 +17,24 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class FreeColDocAsTest extends DocAsTest {
+
+    FreeColTestCase testCase = new FreeColTestCase();
+
+    public static Specification spec() {
+        return FreeColTestCase.spec();
+    }
+
+    public Game getGame() {
+        return FreeColTestCase.getGame();
+    }
+
+    public Map getTestMap(boolean x) {
+        return FreeColTestCase.getTestMap(x);
+    }
+
+    public Colony getStandardColony() {
+        return testCase.getStandardColony();
+    }
 
     private static class FreeColDocWriter extends DocWriter<AsciidocFormatter> {
 
@@ -37,7 +60,6 @@ public class FreeColDocAsTest extends DocAsTest {
         public String formatOutput(Class<?> clazz) {
             return String.join("\n",
                     defineDocPath(clazz),
-                    getResourcesPath(),
                     "",
                     classDocumentation.getClassDocumentation(clazz)
             );
