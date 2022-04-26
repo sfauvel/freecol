@@ -1,4 +1,5 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
 
 [#net_sf_freecol_common_model_colonydoctest_testbuildqueuedoesnotacceptbuildingdoubles_original]
 = TestBuildQueueDoesNotAcceptBuildingDoubles Original

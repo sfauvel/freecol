@@ -1,4 +1,5 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
 
 [#net_sf_freecol_common_model_colonydoctest_testbuildqueueacceptsunitdoubles]
 = TestBuildQueueAcceptsUnitDoubles
@@ -10,18 +11,18 @@ Build queue is incremented when building an other item.
 ====
 Name : New Amsterdam
 
-Current building : image:../../../../../../../data/rules/classic/resources/images/buildings/warehouse.png[title="model.building.warehouse"]
+Current building : image:{RESOURCES_PATH}/resources/images/buildings/warehouse.png[title="model.building.warehouse"]
 ====
 
 |====
 | Building asked | Queue size
 
-a| image:../../../../../../../data/rules/classic/resources/images/units/wagon/wagonTrain.png[title="model.unit.wagonTrain"]
-a| image:../../../../../../../data/rules/classic/resources/images/units/wagon/wagonTrain.png[title="model.unit.wagonTrain"]
-image:../../../../../../../data/rules/classic/resources/images/buildings/warehouse.png[title="model.building.warehouse"]
+a| image:{RESOURCES_PATH}/resources/images/units/wagon/wagonTrain.png[title="model.unit.wagonTrain"]
+a| image:{RESOURCES_PATH}/resources/images/units/wagon/wagonTrain.png[title="model.unit.wagonTrain"]
+image:{RESOURCES_PATH}/resources/images/buildings/warehouse.png[title="model.building.warehouse"]
 
-a| image:../../../../../../../data/rules/classic/resources/images/units/wagon/wagonTrain.png[title="model.unit.wagonTrain"]
-a| image:../../../../../../../data/rules/classic/resources/images/units/wagon/wagonTrain.png[title="model.unit.wagonTrain"]
-image:../../../../../../../data/rules/classic/resources/images/units/wagon/wagonTrain.png[title="model.unit.wagonTrain"]
-image:../../../../../../../data/rules/classic/resources/images/buildings/warehouse.png[title="model.building.warehouse"]
+a| image:{RESOURCES_PATH}/resources/images/units/wagon/wagonTrain.png[title="model.unit.wagonTrain"]
+a| image:{RESOURCES_PATH}/resources/images/units/wagon/wagonTrain.png[title="model.unit.wagonTrain"]
+image:{RESOURCES_PATH}/resources/images/units/wagon/wagonTrain.png[title="model.unit.wagonTrain"]
+image:{RESOURCES_PATH}/resources/images/buildings/warehouse.png[title="model.building.warehouse"]
 |====

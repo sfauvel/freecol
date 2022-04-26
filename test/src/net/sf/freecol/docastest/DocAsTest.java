@@ -7,6 +7,7 @@ import org.approvaltests.writers.ApprovalTextWriter;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Rule;
+import org.junit.Test;
 import org.junit.rules.TestName;
 import org.sfvl.codeextraction.CodeExtractor;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
@@ -34,22 +35,30 @@ public class DocAsTest {
 
     private static Class<?> testClass;
 
-    final static DocWriter<AsciidocFormatter> docWriter = new DocWriter<AsciidocFormatter>(new AsciidocFormatter()) {
-        private final ClassDocumentation classDocumentation = new ClassDocumentation(
-                getFormatter(),
-                o -> Paths.get(o.filename()),
-                m -> m.isAnnotationPresent(org.junit.Test.class),
-                m -> false // Do not include inner class
-        );
+    static DocWriter<AsciidocFormatter> docWriter;
 
-        public String formatOutput(Class<?> clazz) {
-            return String.join("\n",
-                    defineDocPath(clazz),
-                    "",
-                    classDocumentation.getClassDocumentation(clazz)
+    public DocAsTest() {
+        this(new DocWriter<>(new AsciidocFormatter()) {
+            private final ClassDocumentation classDocumentation = new ClassDocumentation(
+                    getFormatter(),
+                    o -> Paths.get(o.filename()),
+                    m -> m.isAnnotationPresent(Test.class),
+                    m -> false // Do not include inner class
             );
-        }
-    };
+
+            public String formatOutput(Class<?> clazz) {
+                return String.join("\n",
+                        defineDocPath(clazz),
+                        "",
+                        classDocumentation.getClassDocumentation(clazz)
+                );
+            }
+        });
+    }
+
+    public DocAsTest(DocWriter<AsciidocFormatter> docWriter) {
+        DocAsTest.docWriter = docWriter;
+    }
 
     protected void write(String... lines) {
         docWriter.write(lines);

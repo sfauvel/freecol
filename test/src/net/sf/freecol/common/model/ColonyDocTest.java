@@ -20,17 +20,15 @@
 package net.sf.freecol.common.model;
 
 import net.sf.freecol.common.io.FreeColTcFile;
-import net.sf.freecol.docastest.DocAsTest;
+import net.sf.freecol.docastest.FreeColDocAsTest;
 import net.sf.freecol.docastest.FreeColFormatter;
 import net.sf.freecol.util.test.FreeColTestCase;
 import org.junit.Test;
 import org.sfvl.codeextraction.CodeExtractor;
 import org.sfvl.codeextraction.MethodReference;
-import org.sfvl.doctesting.utils.DocPath;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
@@ -39,7 +37,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 
-public class ColonyDocTest extends DocAsTest {
+public class ColonyDocTest extends FreeColDocAsTest {
 
     FreeColTestCase testCase = new FreeColTestCase();
 
@@ -117,11 +115,6 @@ public class ColonyDocTest extends DocAsTest {
     FreeColTcFile tcData = FreeColTcFile.getFreeColTcFile("classic");
     Properties prop = null;
 
-    public String getImage(BuildableType buildable) {
-        String folder = buildable instanceof BuildingType ? "buildingicon" : "unit";
-        return tcData.getPath() + "/" + getProperty("image." + folder + "." + buildable.getId());
-    }
-
     private String getProperty(String key) {
         if (prop == null) {
             prop = new Properties();
@@ -134,13 +127,14 @@ public class ColonyDocTest extends DocAsTest {
         return prop.getProperty(key);
     }
 
-    public String includeImage(BuildableType building) {
-        final DocPath docPath = new DocPath(this.getClass());
-        final Path fromProjectRoot = docPath.approved().folder().relativize(Paths.get("."));
-        final Path relativizedPath = fromProjectRoot
-                .resolve(getImage(building));
 
-        return formatter.image(relativizedPath.toString(), building.getId());
+    public String getImage(BuildableType buildable) {
+        String folder = buildable instanceof BuildingType ? "buildingicon" : "unit";
+        return Paths.get("{RESOURCES_PATH}").resolve(getProperty("image." + folder + "." + buildable.getId())).toString();
+    }
+
+    public String includeImage(BuildableType building) {
+        return formatter.image(getImage(building), building.getId());
     }
 
 
@@ -182,7 +176,6 @@ public class ColonyDocTest extends DocAsTest {
                 "Current building : " + includeImage(colony.getCurrentlyBuilding()),
                 "====");
     }
-
 
 
     // //////////////////////////////////////
