@@ -1,0 +1,18 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+
+[#net_sf_freecol_common_model_buildingdoctest_testcanbuildnext]
+= TestCanBuildNext
+
+First check with a building that can be fully built with a normal colony
+
+model.building.warehouse
+
+canBuildNext: yes +
+|====
+| Unit list | can build next ?
+
+| not null | yes
+| not null | no
+| NULL | no
+|====

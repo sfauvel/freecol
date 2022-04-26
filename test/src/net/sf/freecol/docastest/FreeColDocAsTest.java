@@ -36,6 +36,10 @@ public class FreeColDocAsTest extends DocAsTest {
         return testCase.getStandardColony();
     }
 
+    public Colony getStandardColony(int numberOfSetllers) {
+        return testCase.getStandardColony(numberOfSetllers);
+    }
+
     private static class FreeColDocWriter extends DocWriter<AsciidocFormatter> {
 
         FreeColTcFile tcData = FreeColTcFile.getFreeColTcFile("classic");
