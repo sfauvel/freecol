@@ -1,10 +1,7 @@
 package net.sf.freecol.docastest;
 
 import net.sf.freecol.common.io.FreeColTcFile;
-import net.sf.freecol.common.model.Colony;
-import net.sf.freecol.common.model.Game;
-import net.sf.freecol.common.model.Map;
-import net.sf.freecol.common.model.Specification;
+import net.sf.freecol.common.model.*;
 import net.sf.freecol.util.test.FreeColTestCase;
 import org.junit.Test;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
@@ -28,16 +25,22 @@ public class FreeColDocAsTest extends DocAsTest {
         return FreeColTestCase.getGame();
     }
 
-    public Map getTestMap(boolean x) {
-        return FreeColTestCase.getTestMap(x);
+    public Game getStandardGame() {
+        return testCase.getStandardGame();
     }
-
     public Colony getStandardColony() {
         return testCase.getStandardColony();
     }
 
     public Colony getStandardColony(int numberOfSetllers) {
         return testCase.getStandardColony(numberOfSetllers);
+    }
+
+    public Map getTestMap(boolean explored) {
+        return testCase.getTestMap(explored);
+    }
+    public Map getTestMap(TileType plains) {
+        return testCase.getTestMap(plains);
     }
 
     private static class FreeColDocWriter extends DocWriter<AsciidocFormatter> {

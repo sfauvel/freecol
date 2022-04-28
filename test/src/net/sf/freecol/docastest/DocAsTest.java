@@ -64,6 +64,10 @@ public class DocAsTest {
         docWriter.write(lines);
     }
 
+    protected AsciidocFormatter getFormatter() {
+        return docWriter.getFormatter();
+    }
+
     protected static void approved(DocPath docPath, String content) {
         ApprovalNamer approvalNamer = new ApprovalNamer() {
             @Override

@@ -1,0 +1,90 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+
+[#net_sf_freecol_common_model_combatdoctest_colonist_attacked_by_veteran]
+= Colonist attacked by veteran
+
+++++
+<style>
+.unit {
+    padding: 1em;
+    margin: 1em;
+    background-color:#EEE;
+    box-shadow: 10px 5px 5px #AAA;
+    border: 1px solid #444;
+}
+</style>
+++++
+
+[.unit]
+--
+dutch colonist on explored hills
+
+[%autowidth]
+
+|====
+|Location|Type|Role|UnitState
+
+|hills|freeColonist||FORTIFIED
+|====
+
+Abilities:
+bornInColony, canBeCaptured, canBeEquipped, canRecruitUnit, electFoundingFather, foundColony, foundInLostCity, foundsColonies, person
+
+[%autowidth]
+
+|====
+|Work left|Move left
+
+|-1|0
+|====
+
+--
+[.unit]
+--
+french colonist on explored plains
+
+[%autowidth]
+
+|====
+|Location|Type|Role|UnitState
+
+|plains|veteranSoldier|dragoon|ACTIVE
+|====
+
+Abilities:
+armed, canBeCaptured, canBeCaptured: false, canBeEquipped, canRecruitUnit, captureUnits, demandTribue, electFoundingFather, expertSoldier, foundColony, foundsColonies, mercenaryUnit, mounted, person, supportUnit
+
+[%autowidth]
+
+|====
+|Work left|Move left
+
+|-1|1
+|====
+
+--
+
+
+.Offence modifiers:
+
+|====
+|Modifier|Source|Index|Type|Value
+
+|attackBonus|attackBonus|50|PERCENTAGE|50.0
+|bigMovementPenalty|movementPenalty|50|PERCENTAGE|-66.0
+|offence|dragoon|30|ADDITIVE|3.0
+|offence|baseOffence|10|ADDITIVE|0.0
+|offence|veteranSoldier|40|PERCENTAGE|50.0
+|====
+
+
+.Defence modifiers:
+
+|====
+|Modifier|Source|Index|Type|Value
+
+|defence|hills|50|PERCENTAGE|100.0
+|fortified|fortified|50|PERCENTAGE|50.0
+|defence|baseDefence|10|ADDITIVE|1.0
+|====

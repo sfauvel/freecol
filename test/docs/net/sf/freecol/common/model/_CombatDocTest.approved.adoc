@@ -1,0 +1,8 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+
+= Combat doc test
+
+include::_CombatDocTest.testColonistAttackedByVeteran.approved.adoc[leveloffset=+1]
+
+include::_CombatDocTest.colonist_attacked_by_veteran.approved.adoc[leveloffset=+1]
