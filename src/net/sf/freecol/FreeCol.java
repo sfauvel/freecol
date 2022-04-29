@@ -54,6 +54,7 @@ import java.util.zip.ZipEntry;
 import javax.swing.SwingUtilities;
 import javax.xml.stream.XMLStreamException;
 
+import net.sf.freecol.client.FreeColClientImpl;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
@@ -1609,7 +1610,7 @@ public final class FreeCol {
                     // savegame was specified on command line
                 }
                 
-                new FreeColClient(splashScreen, fontName, windowSize,
+                new FreeColClientImpl(splashScreen, fontName, windowSize,
                                       (String)null, sound, introVideo, savegame, spec);
             });
         });
@@ -1639,7 +1640,7 @@ public final class FreeCol {
      */
     public static FreeColClient startTestClient(Specification spec) {
         FreeCol.setHeadless(true);
-        return new FreeColClient(null, (String)null, (Dimension)null,
+        return new FreeColClientImpl(null, (String)null, (Dimension)null,
                                  (String)null, false, false, (File)null, spec);
     }
 
