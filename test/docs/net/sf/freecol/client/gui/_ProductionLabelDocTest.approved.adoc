@@ -1,0 +1,6 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+
+= Production label doc test
+
+include::_ProductionLabelDocTest.test_production_label_with_default_parameters.approved.adoc[leveloffset=+1]

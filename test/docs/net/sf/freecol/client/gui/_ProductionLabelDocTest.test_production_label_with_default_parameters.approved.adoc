@@ -1,0 +1,42 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+
+[#net_sf_freecol_client_gui_productionlabeldoctest_test_production_label_with_default_parameters]
+= Test production label with default parameters
+
+
+Min value to display value: 3
+
+Max items displayed: 6
+
+image:{ROOT_PATH}/images/ProductionLabelWithDefaultParameters_zero.jpg[]
+// Checksum ProductionLabelWithDefaultParameters_zero.jpg=3119934693
+With amount 0
+
+image:{ROOT_PATH}/images/ProductionLabelWithDefaultParameters_one.jpg[]
+// Checksum ProductionLabelWithDefaultParameters_one.jpg=3119934693
+With amount 1
+
+image:{ROOT_PATH}/images/ProductionLabelWithDefaultParameters_two.jpg[]
+// Checksum ProductionLabelWithDefaultParameters_two.jpg=3963483672
+With amount 2
+
+image:{ROOT_PATH}/images/ProductionLabelWithDefaultParameters_five.jpg[]
+// Checksum ProductionLabelWithDefaultParameters_five.jpg=60766037
+With amount 5
+
+image:{ROOT_PATH}/images/ProductionLabelWithDefaultParameters_nine.jpg[]
+// Checksum ProductionLabelWithDefaultParameters_nine.jpg=3846557024
+With amount 9
+
+image:{ROOT_PATH}/images/ProductionLabelWithDefaultParameters_minus_two.jpg[]
+// Checksum ProductionLabelWithDefaultParameters_minus_two.jpg=4269710208
+With amount -2
+
+image:{ROOT_PATH}/images/ProductionLabelWithDefaultParameters_minus_five.jpg[]
+// Checksum ProductionLabelWithDefaultParameters_minus_five.jpg=1507047872
+With amount -5
+
+image:{ROOT_PATH}/images/ProductionLabelWithDefaultParameters_minus_nine.jpg[]
+// Checksum ProductionLabelWithDefaultParameters_minus_nine.jpg=476943711
+With amount -9
