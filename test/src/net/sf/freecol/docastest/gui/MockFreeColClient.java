@@ -55,6 +55,11 @@ class MockFreeColClient implements FreeColClient {
         integerOption.setId(ClientOptions.MIN_NUMBER_FOR_DISPLAYING_GOODS);
         options.add(integerOption);
     }
+    {
+        final IntegerOption integerOption = new IntegerOption(new Specification());
+        integerOption.setId(ClientOptions.DISPLAY_COLONY_LABELS);
+        options.add(integerOption);
+    }
     @Override
     public Player getMyPlayer() {
         return myPlayer;

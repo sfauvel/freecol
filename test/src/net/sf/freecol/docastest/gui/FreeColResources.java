@@ -9,9 +9,12 @@ import java.lang.reflect.Method;
 public class FreeColResources {
     public TileType mountains;
     public TileType prairie;
+    public TileType plains;
     public TileType highSeas;
+
     public UnitType freeColonist;
     public UnitType veteranSoldier;
+
     public GoodsType sugar;
 
     public Role soldier;

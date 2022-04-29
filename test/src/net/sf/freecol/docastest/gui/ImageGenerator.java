@@ -1,5 +1,6 @@
 package net.sf.freecol.docastest.gui;
 
+import net.sf.freecol.client.FreeColClient;
 import net.sf.freecol.client.gui.ImageLibrary;
 import net.sf.freecol.client.gui.mapviewer.TileViewer;
 import net.sf.freecol.common.model.Map;
@@ -10,6 +11,7 @@ import net.sf.freecol.common.resources.ImageCache;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.awt.image.RescaleOp;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -33,11 +35,12 @@ public class ImageGenerator {
 
     Dimension tileSize = this.lib.getTileSize();
 
-    final TileViewer tileViewer = new TileViewer(null, lib);
+    final TileViewer tileViewer;
 
-    public ImageGenerator(Path imagePath, GuiWindows windows) {
+    public ImageGenerator(Path imagePath, GuiWindows windows, FreeColClient client) {
         this.imagePath = imagePath;
         this.windows = windows;
+        this.tileViewer = new TileViewer(client, lib);
     }
 
     private java.util.List<Tile> pathToTiles(PathNode firstNode) {
@@ -64,17 +67,27 @@ public class ImageGenerator {
         return paths;
     }
 
-    final BiConsumer<Graphics2D, Tile> drawer = (g2d, tile) -> {
+
+    final void drawer(Graphics2D g2d, Tile tile) {
         tileViewer.displayTileWithBeach(g2d, tile);
         BufferedImage overlayImage = lib.getScaledOverlayImage(tile);
         tileViewer.displayTileItems(g2d, tile, null, overlayImage);
+        final RescaleOp standardRescale
+                = new RescaleOp(new float[] { 0.8f, 0.8f, 0.8f, 1f },
+                new float[] { 0, 0, 0, 0 },
+                null);
+        RescaleOp rop = standardRescale;
+//        displayTileItems(g2d, tile, rop, overlayImage);
+//        displaySettlementWithChipsOrPopulationNumber(g2d, tile, false, rop);
 
-//        System.out.println(String.format("%d / %d: %s", tile.getX(), tile.getY(), tile.getTile().getType().getId()));
+        tileViewer.displaySettlementWithChipsOrPopulationNumber(g2d, tile,  false, rop);
+
+        System.out.println(String.format("%d / %d: %s - %s", tile.getX(), tile.getY(), tile.getTile().getType().getId(), ((tile.getColony()==null)?"":tile.getColony().getName())));
         final String text = String.format("%d / %d", tile.getX(), tile.getY());
         g2d.drawString(text, tileSize.width / 2 - g2d.getFontMetrics().stringWidth(text) / 2, tileSize.height / 2);
     };
 
-    final BiConsumer<Graphics2D, Tile> drawerPath = (g2d, tile) -> {
+    final void drawerPath(Graphics2D g2d, Tile tile) {
         g2d.fillOval(tileSize.width / 2, tileSize.height / 2, 10, 10);
     };
 
@@ -90,8 +103,8 @@ public class ImageGenerator {
 
     public DocGenerator.ImageFile generateImageWith(Map map, PathNode path, String imageName) throws InterruptedException {
         final java.util.List<DrawTiles> drawers = Arrays.asList(
-                new DrawTiles(drawer, map.getTileList(ALL_TILE)),
-                new DrawTiles(drawerPath, pathToTiles(path))
+                new DrawTiles(this::drawer, map.getTileList(ALL_TILE)),
+                new DrawTiles(this::drawerPath, pathToTiles(path))
         );
         return generateImageWith(drawers, imageName);
     }

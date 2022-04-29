@@ -19,7 +19,7 @@ public class FreeColGuiDocAsTest extends FreeColDocAsTest {
 
     public FreeColClient client = new MockFreeColClient();
     public GuiWindows windows = new GuiWindows();
-    public ImageGenerator imageGenerator = new ImageGenerator(IMAGE_PATH, windows);
+    public ImageGenerator imageGenerator = new ImageGenerator(IMAGE_PATH, windows, client);
 
     @Before
     public void setUp() throws Exception {

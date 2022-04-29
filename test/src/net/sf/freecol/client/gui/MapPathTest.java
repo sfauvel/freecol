@@ -1,13 +1,16 @@
 package net.sf.freecol.client.gui;
 
-import net.sf.freecol.common.model.Map;
-import net.sf.freecol.common.model.PathNode;
-import net.sf.freecol.common.model.Role;
-import net.sf.freecol.common.model.Unit;
+import net.sf.freecol.client.ClientOptions;
+import net.sf.freecol.common.model.*;
+import net.sf.freecol.common.model.pathfinding.GoalDecider;
+import net.sf.freecol.common.model.pathfinding.GoalDeciders;
 import net.sf.freecol.common.util.LogBuilder;
 import net.sf.freecol.docastest.gui.DocGenerator;
 import net.sf.freecol.docastest.gui.FreeColGuiDocAsTest;
+import net.sf.freecol.server.model.ServerUnit;
+import net.sf.freecol.util.test.FreeColTestCase;
 import net.sf.freecol.util.test.FreeColTestCase.MapBuilder;
+import net.sf.freecol.util.test.FreeColTestUtils;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -107,6 +110,162 @@ public class MapPathTest extends FreeColGuiDocAsTest {
                 "", pathToTable(path));
 
     }
+
+    @Test
+    public void testComposedGoalDeciders() throws InterruptedException {
+        final ClientOptions options = client.getClientOptions();
+        options.setInteger(ClientOptions.DISPLAY_COLONY_LABELS, ClientOptions.COLONY_LABELS_MODERN);
+
+        final Game game = getStandardGame();
+        final Map map = FreeColTestCase.getCoastTestMap(RESOURCES.plains, true);
+        game.changeMap(map);
+
+        final Player dutch = game.getPlayerByNationId("model.nation.dutch");
+        PathNode path;
+        GoalDecider gd;
+
+        Tile colonyTile = map.getTile(9, 2);
+        Colony colony = FreeColTestUtils.getColonyBuilder().player(dutch)
+                .colonyTile(colonyTile).build();
+//        assertTrue(colonyTile.isShore());
+
+        Tile unitTile = map.getTile(9, 3);
+        Unit unit = new ServerUnit(game, unitTile, dutch, RESOURCES.freeColonist);
+
+        Tile nativeTile = map.getTile(9, 4);
+        IndianSettlement is = new FreeColTestCase.IndianSettlementBuilder(game)
+                .settlementTile(nativeTile).build();
+//        assertTrue(nativeTile.isShore());
+
+        GoalDecider settlementGD = new GoalDecider() {
+            private PathNode goal = null;
+
+            public PathNode getGoal() {
+                return goal;
+            }
+
+            public boolean hasSubGoals() {
+                return true;
+            }
+
+            public boolean check(Unit u, PathNode path) {
+                Tile tile = path.getTile();
+                if (tile.hasSettlement()) {
+                    goal = path;
+                    return true;
+                }
+                return false;
+            }
+        };
+
+        GoalDecider colonyGD = new GoalDecider() {
+            private PathNode goal = null;
+
+            public PathNode getGoal() {
+                return goal;
+            }
+
+            public boolean hasSubGoals() {
+                return true;
+            }
+
+            public boolean check(Unit u, PathNode path) {
+                Tile tile = path.getTile();
+                if (tile.getColony() != null) {
+                    goal = path;
+                    return true;
+                }
+                return false;
+            }
+        };
+
+        GoalDecider nativeGD = new GoalDecider() {
+            private PathNode goal = null;
+
+            public PathNode getGoal() {
+                return goal;
+            }
+
+            public boolean hasSubGoals() {
+                return true;
+            }
+
+            public boolean check(Unit u, PathNode path) {
+                Tile tile = path.getTile();
+                if (tile.getIndianSettlement() != null) {
+                    goal = path;
+                    return true;
+                }
+                return false;
+            }
+        };
+
+        GoalDecider ownedGD = new GoalDecider() {
+            private PathNode goal = null;
+
+            public PathNode getGoal() {
+                return goal;
+            }
+
+            public boolean hasSubGoals() {
+                return true;
+            }
+
+            public boolean check(Unit u, PathNode path) {
+                Tile tile = path.getTile();
+                if (tile.getOwner() == dutch) {
+                    goal = path;
+                    return true;
+                }
+                return false;
+            }
+        };
+        {
+            gd = GoalDeciders.getComposedGoalDecider(true, ownedGD, settlementGD);
+            path = unit.search(unitTile, gd, null, 1, null);
+            final DocGenerator.ImageFile imageFile = imageGenerator.generateImageWith(getGame().getMap(), path, "goalDeciderShouldFindColony.jpg");
+
+            write("", imageFile.imageWithChecksum(),
+                    "", pathToTable(path));
+//        assertNotNull(path);
+//        assertEquals("Composed-AND GoalDecider should find colony", colonyTile,
+//                path.getLastNode().getTile());
+        }
+        {
+            gd = GoalDeciders.getComposedGoalDecider(true, settlementGD, ownedGD);
+            path = unit.search(unitTile, gd, null, 1, null);
+            final DocGenerator.ImageFile imageFile = imageGenerator.generateImageWith(getGame().getMap(), path, "goalDeciderShouldStillFindColony.jpg");
+
+            write("", imageFile.imageWithChecksum(),
+                    "", pathToTable(path));
+//        assertNotNull(path);
+//        assertEquals("Composed-AND GoalDecider should still find colony", colonyTile,
+//                path.getLastNode().getTile());
+        }
+        {
+            gd = GoalDeciders.getComposedGoalDecider(false, nativeGD, colonyGD);
+            path = unit.search(unitTile, gd, null, 1, null);
+            final DocGenerator.ImageFile imageFile = imageGenerator.generateImageWith(getGame().getMap(), path, "goalDeciderShouldFindNatives.jpg");
+
+            write("", imageFile.imageWithChecksum(),
+                    "", pathToTable(path));
+//        assertNotNull(path);
+//        assertEquals("Composed-OR GoalDecider should find natives", nativeTile,
+//                path.getLastNode().getTile());
+        }
+        {
+            gd = GoalDeciders.getComposedGoalDecider(false, nativeGD, colonyGD);
+            path = unit.search(unitTile, gd, null, 1, null);
+            final DocGenerator.ImageFile imageFile = imageGenerator.generateImageWith(getGame().getMap(), path, "goalDeciderShouldFindColony.jpg");
+
+            write("", imageFile.imageWithChecksum(),
+                    "", pathToTable(path));
+//        assertNotNull(path);
+//        assertEquals("Composed-OR GoalDecider should find colony", colonyTile,
+//                path.getLastNode().getTile());
+        }
+    }
+
 
     private String pathToTable(PathNode path) {
         return toTable(imageGenerator.pathToList(path.getFirstNode()),
