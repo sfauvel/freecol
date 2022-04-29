@@ -15,7 +15,6 @@ import java.nio.file.Paths;
 
 public class FreeColDocAsTest extends DocAsTest {
 
-
     public static final Path IMAGE_PATH = Config.DOC_PATH.resolve("images");
     FreeColTestCase testCase = new FreeColTestCase();
 

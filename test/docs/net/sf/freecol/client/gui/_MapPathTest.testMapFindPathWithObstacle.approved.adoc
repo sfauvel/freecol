@@ -1,0 +1,22 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+
+[#net_sf_freecol_client_gui_mappathtest_testmapfindpathwithobstacle]
+= TestMapFindPathWithObstacle
+
+
+image:{ROOT_PATH}/images/findPathWithObstacle.jpg[]
+// Checksum findPathWithObstacle.jpg=2496984519
+
+[%autowidth, options=header]
+|====
+| Position | Cost | Turns | Direction
+| 0 / 1 | 100 | 0 | 
+| 1 / 1 | 200 | 1 | E
+| 2 / 1 | 300 | 2 | E
+| 2 / 3 | 400 | 3 | S
+| 2 / 5 | 500 | 4 | S
+| 3 / 6 | 600 | 5 | SE
+| 3 / 7 | 700 | 6 | SE
+| 4 / 8 | 800 | 7 | SE
+|====

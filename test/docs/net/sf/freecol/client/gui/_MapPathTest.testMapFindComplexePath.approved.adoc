@@ -1,0 +1,30 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+
+[#net_sf_freecol_client_gui_mappathtest_testmapfindcomplexepath]
+= TestMapFindComplexePath
+
+
+image:{ROOT_PATH}/images/findComplexePath.jpg[]
+// Checksum findComplexePath.jpg=2148693345
+
+[%autowidth, options=header]
+|====
+| Position | Cost | Turns | Direction
+| 0 / 0 | 100 | 0 | 
+| 1 / 0 | 200 | 1 | E
+| 1 / 2 | 300 | 2 | S
+| 0 / 3 | 400 | 3 | SW
+| 0 / 4 | 500 | 4 | SW
+| 0 / 6 | 600 | 5 | S
+| 1 / 6 | 700 | 6 | E
+| 2 / 6 | 800 | 7 | E
+| 2 / 5 | 900 | 8 | NE
+| 2 / 3 | 1000 | 9 | N
+| 3 / 2 | 1100 | 10 | NE
+| 4 / 2 | 1200 | 11 | E
+| 4 / 3 | 1300 | 12 | SE
+| 4 / 5 | 1400 | 13 | S
+| 4 / 7 | 1500 | 14 | S
+| 4 / 8 | 1600 | 15 | SW
+|====
