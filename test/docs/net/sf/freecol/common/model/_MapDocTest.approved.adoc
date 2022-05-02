@@ -1,0 +1,10 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+
+= Map doc test
+
+include::_MapDocTest.testMapGameInt.approved.adoc[leveloffset=+1]
+
+include::_MapDocTest.testGetSurroundingTiles.approved.adoc[leveloffset=+1]
+
+include::_MapDocTest.testGetReverseDirection.approved.adoc[leveloffset=+1]

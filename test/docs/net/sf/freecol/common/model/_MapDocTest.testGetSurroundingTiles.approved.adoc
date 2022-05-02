@@ -1,0 +1,20 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+
+[#net_sf_freecol_common_model_mapdoctest_testgetsurroundingtiles]
+= TestGetSurroundingTiles
+
+Get surrounding tile of the tile 4x8 with a range 1
+are
+4x7, 5x8, 4x9, 4x10, 3x9, 3x8, 3x7, 4x6.
+
+Get surrounding tile of the tile 0x0 with a range 1
+are
+1x0, 0x1, 0x2.
+
+Get surrounding tile of the tile 4x8 with a range 2
+there is 24 tiles.
+
+Get surrounding tile of the tile 4x8 with a range 10
+there is 149 tiles.
+
