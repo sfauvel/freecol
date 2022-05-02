@@ -82,7 +82,7 @@ public class ImageGenerator {
 
         tileViewer.displaySettlementWithChipsOrPopulationNumber(g2d, tile,  false, rop);
 
-        System.out.println(String.format("%d / %d: %s - %s", tile.getX(), tile.getY(), tile.getTile().getType().getId(), ((tile.getColony()==null)?"":tile.getColony().getName())));
+//        System.out.println(String.format("%d / %d: %s - %s", tile.getX(), tile.getY(), tile.getTile().getType().getId(), ((tile.getColony()==null)?"":tile.getColony().getName())));
         final String text = String.format("%d / %d", tile.getX(), tile.getY());
         g2d.drawString(text, tileSize.width / 2 - g2d.getFontMetrics().stringWidth(text) / 2, tileSize.height / 2);
     };

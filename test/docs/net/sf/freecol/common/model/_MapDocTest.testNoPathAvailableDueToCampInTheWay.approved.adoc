@@ -1,0 +1,17 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+
+[#net_sf_freecol_common_model_mapdoctest_testnopathavailableduetocampintheway]
+= TestNoPathAvailableDueToCampInTheWay
+
+Tests path discoverability in a map with only one path available
+That path is obstructed by a settlement, so is invalid
+
+
+The path from 1x11 to 3x7 is 
+
+
+image:{ROOT_PATH}/images/testNoPathAvailableDueToCampInTheWay.jpg[]
+// Checksum testNoPathAvailableDueToCampInTheWay.jpg=1645136207
+
+No path

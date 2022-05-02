@@ -20,7 +20,11 @@
 package net.sf.freecol.common.model;
 
 import net.sf.freecol.common.FreeColException;
+import net.sf.freecol.docastest.gui.DocGenerator;
 import net.sf.freecol.docastest.gui.FreeColGuiDocAsTest;
+import net.sf.freecol.server.model.ServerUnit;
+import net.sf.freecol.util.test.FreeColTestCase;
+import net.sf.freecol.util.test.FreeColTestCase.IndianSettlementBuilder;
 import net.sf.freecol.util.test.FreeColTestCase.MapBuilder;
 import org.junit.Test;
 import org.sfvl.codeextraction.CodeExtractor;
@@ -54,6 +58,11 @@ public class MapDocTest extends FreeColGuiDocAsTest {
     private final UnitType pioneerType
             = spec().getUnitType("model.unit.hardyPioneer");
 
+    private static Function<Tile, String> tilePosition = MapDocTest::getTileStringPosition;
+
+    private static String getTileStringPosition(Tile tile) {
+        return String.format("%dx%d", tile.getX(), tile.getY());
+    }
 
     private Map getSingleLandPathMap(Game game) {
         MapBuilder builder = new MapBuilder(game);
@@ -122,8 +131,6 @@ public class MapDocTest extends FreeColGuiDocAsTest {
 
     @Test
     public void testGetSurroundingTiles() {
-
-        Function<Tile, String> tilePosition = t -> String.format("%dx%d", t.getX(), t.getY());
 
 
         Game game = getStandardGame();
@@ -270,32 +277,73 @@ public class MapDocTest extends FreeColGuiDocAsTest {
 //        assertNotNull(dirs);
 //    }
 //
-//    /**
-//     * Tests path discoverability in a map with only one path available
-//     * That path is obstructed by a settlement, so is invalid
-//     */
-//    public void testNoPathAvailableDueToCampInTheWay() {
-//        Game game = getStandardGame();
-//        Map map = getSingleLandPathMap(game);
-//        game.changeMap(map);
-//
-//        // set obstructing indian camp
-//        Tile settlementTile = map.getTile(2,10);
-//        IndianSettlementBuilder builder
-//            = new IndianSettlementBuilder(game);
-//        builder.settlementTile(settlementTile).build();
-//
-//        // set unit
-//        Player dutchPlayer = game.getPlayerByNationId("model.nation.dutch");
-//        Tile unitTile = map.getTile(1, 11);
-//        Tile destinationTile = map.getTile(3,7);
-//        Unit colonist = new ServerUnit(game, unitTile, dutchPlayer,
-//                                       colonistType);
-//        colonist.setDestination(destinationTile);
-//
-//        PathNode path = colonist.findPath(destinationTile);
+    /**
+     * Tests path discoverability in a map with only one path available
+     * That path is obstructed by a settlement, so is invalid
+     */
+    @Test
+    public void testNoPathAvailableDueToCampInTheWay() throws InterruptedException {
+        Game game = getStandardGame();
+        Map map = getSingleLandPathMap(game);
+        game.changeMap(map);
+
+        // set obstructing indian camp
+        Tile settlementTile = map.getTile(2,10);
+        IndianSettlementBuilder builder
+            = new IndianSettlementBuilder(game);
+        builder.settlementTile(settlementTile).build();
+
+        // set unit
+        Player dutchPlayer = game.getPlayerByNationId("model.nation.dutch");
+        Tile unitTile = map.getTile(1, 11);
+        Tile destinationTile = map.getTile(3,7);
+        Unit colonist = new ServerUnit(game, unitTile, dutchPlayer,
+                                       colonistType);
+        colonist.setDestination(destinationTile);
+
+
+        PathNode path = colonist.findPath(destinationTile);
+
+        String c = "The path from "
+                + getTileStringPosition(colonist.getLocation().getTile())
+                + " to "
+                + getTileStringPosition(destinationTile)
+                + " is "
+        ;
+
+        final DocGenerator.ImageFile imageFile = imageGenerator.generateImageWith(getGame().getMap(), path, "testNoPathAvailableDueToCampInTheWay.jpg");
+        write("",
+                c,
+                "", "",
+                imageFile.imageWithChecksum(),
+                "", pathToTable(path));
+
 //        assertNull("No path should be available", path);
-//    }
+    }
+
+
+    private String pathToTable(PathNode path) {
+        if (path == null) {
+            return "No path";
+        }
+        return toTable(imageGenerator.pathToList(path.getFirstNode()),
+                toTableLine("Position", "Cost", "Turns", "Direction"),
+                p -> toTableLine(
+                        p.getTile().getX() + " / " + p.getTile().getY(),
+                        Integer.toString(p.getCost()),
+                        Integer.toString(p.getTurns()),
+                        (p.getDirection() == null) ? "" : p.getDirection().toString()));
+    }
+
+    private <T> String toTable(java.util.List<T> objectList, String headerLine, Function<T, String> lineMapper) {
+        return objectList.stream()
+                .map(lineMapper)
+                .collect(Collectors.joining("\n", "[%autowidth, options=header]\n|====\n" + headerLine + "\n", "\n|===="));
+    }
+
+    public String toTableLine(String... texts) {
+        return Arrays.stream(texts).collect(Collectors.joining(" | ", "| ", ""));
+    }
 //
 //    /**
 //     * Tests path discoverability in a map with only one path available
@@ -380,29 +428,44 @@ public class MapDocTest extends FreeColGuiDocAsTest {
 //            CostDeciders.avoidSettlementsAndBlockingUnits(), null);
 //        assertNull("No path should be available", path);
 //    }
-//
-//    public void testShortestPathObstructed() {
-//        Game game = getStandardGame();
-//        Map map = getShortLongPathMap(getGame());
-//        game.changeMap(map);
-//
-//        // set obstructing indian camp
-//        Tile settlementTile = map.getTile(2, 10);
-//        IndianSettlementBuilder builder
-//            = new IndianSettlementBuilder(game);
-//        builder.settlementTile(settlementTile).build();
-//
-//        // set unit
-//        Player dutchPlayer = game.getPlayerByNationId("model.nation.dutch");
-//        Tile unitTile = map.getTile(1, 11);
-//        Unit colonist = new ServerUnit(game, unitTile, dutchPlayer,
-//                                       colonistType);
-//        Tile destinationTile = map.getTile(3,7);
-//        colonist.setDestination(destinationTile);
-//
-//        PathNode path = colonist.findPath(destinationTile);
+
+    @Test
+    public void testShortestPathObstructed() throws InterruptedException {
+        Game game = getStandardGame();
+        Map map = getShortLongPathMap(getGame());
+        game.changeMap(map);
+
+        // set obstructing indian camp
+        Tile settlementTile = map.getTile(2, 10);
+        IndianSettlementBuilder builder
+            = new IndianSettlementBuilder(game);
+        builder.settlementTile(settlementTile).build();
+
+        // set unit
+        Player dutchPlayer = game.getPlayerByNationId("model.nation.dutch");
+        Tile unitTile = map.getTile(1, 11);
+        Unit colonist = new ServerUnit(game, unitTile, dutchPlayer,
+                                       colonistType);
+        Tile destinationTile = map.getTile(3,7);
+        colonist.setDestination(destinationTile);
+
+        PathNode path = colonist.findPath(destinationTile);
 //        assertNotNull("A path should be available", path);
-//    }
+
+        String c = "The path from "
+                + getTileStringPosition(colonist.getLocation().getTile())
+                + " to "
+                + getTileStringPosition(destinationTile)
+                + " is "
+                ;
+
+        final DocGenerator.ImageFile imageFile = imageGenerator.generateImageWith(getGame().getMap(), path, "testShortestPathObstructed.jpg");
+        write("",
+                c,
+                "", "",
+                imageFile.imageWithChecksum(),
+                "", pathToTable(path));
+    }
 //
 //    public void testSearchForColony() {
 //        Game game = getStandardGame();

@@ -1,0 +1,22 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+
+[#net_sf_freecol_common_model_mapdoctest_testshortestpathobstructed]
+= TestShortestPathObstructed
+
+
+The path from 1x11 to 3x7 is 
+
+
+image:{ROOT_PATH}/images/testShortestPathObstructed.jpg[]
+// Checksum testShortestPathObstructed.jpg=3636103535
+
+[%autowidth, options=header]
+|====
+| Position | Cost | Turns | Direction
+| 1 / 11 | 97 | 0 | 
+| 1 / 9 | 100 | 0 | N
+| 2 / 9 | 200 | 1 | E
+| 2 / 7 | 300 | 2 | N
+| 3 / 7 | 400 | 3 | E
+|====
