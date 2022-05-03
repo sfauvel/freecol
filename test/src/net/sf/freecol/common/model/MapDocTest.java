@@ -20,14 +20,19 @@
 package net.sf.freecol.common.model;
 
 import net.sf.freecol.common.FreeColException;
+import net.sf.freecol.common.model.pathfinding.CostDeciders;
+import net.sf.freecol.common.model.pathfinding.GoalDecider;
 import net.sf.freecol.docastest.gui.DocGenerator;
 import net.sf.freecol.docastest.gui.FreeColGuiDocAsTest;
 import net.sf.freecol.server.model.ServerUnit;
-import net.sf.freecol.util.test.FreeColTestCase;
 import net.sf.freecol.util.test.FreeColTestCase.IndianSettlementBuilder;
 import net.sf.freecol.util.test.FreeColTestCase.MapBuilder;
+import net.sf.freecol.util.test.FreeColTestUtils;
 import org.junit.Test;
 import org.sfvl.codeextraction.CodeExtractor;
+import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
+import org.sfvl.printer.CodeAndResult;
+import org.sfvl.printer.Printer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,6 +41,9 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
+
+import static net.sf.freecol.common.model.Constants.INFINITY;
+import static net.sf.freecol.util.test.FreeColTestCase.getCoastTestMap;
 
 
 public class MapDocTest extends FreeColGuiDocAsTest {
@@ -64,8 +72,13 @@ public class MapDocTest extends FreeColGuiDocAsTest {
         return String.format("%dx%d", tile.getX(), tile.getY());
     }
 
+
     private Map getSingleLandPathMap(Game game) {
-        MapBuilder builder = new MapBuilder(game);
+        return getSingleLandPathMap(game, 5, 15);
+    }
+
+    private Map getSingleLandPathMap(Game game, int width, int height) {
+        MapBuilder builder = new MapBuilder(game, width, height);
         builder.setBaseTileType(oceanType);
         // Land Stripe
         builder.setTileType(1, 11, plainsType);
@@ -88,7 +101,11 @@ public class MapDocTest extends FreeColGuiDocAsTest {
     //      *S(1,11)
     //
     private Map getShortLongPathMap(Game game) {
-        MapBuilder builder = new MapBuilder(game);
+        return getShortLongPathMap(game, 20, 15);
+    }
+
+    private Map getShortLongPathMap(Game game, int width, int height) {
+        MapBuilder builder = new MapBuilder(game, width, height);
         builder.setBaseTileType(oceanType);
         //Start
         builder.setTileType(1, 11, plainsType);
@@ -277,6 +294,7 @@ public class MapDocTest extends FreeColGuiDocAsTest {
 //        assertNotNull(dirs);
 //    }
 //
+
     /**
      * Tests path discoverability in a map with only one path available
      * That path is obstructed by a settlement, so is invalid
@@ -288,17 +306,17 @@ public class MapDocTest extends FreeColGuiDocAsTest {
         game.changeMap(map);
 
         // set obstructing indian camp
-        Tile settlementTile = map.getTile(2,10);
+        Tile settlementTile = map.getTile(2, 10);
         IndianSettlementBuilder builder
-            = new IndianSettlementBuilder(game);
+                = new IndianSettlementBuilder(game);
         builder.settlementTile(settlementTile).build();
 
         // set unit
         Player dutchPlayer = game.getPlayerByNationId("model.nation.dutch");
         Tile unitTile = map.getTile(1, 11);
-        Tile destinationTile = map.getTile(3,7);
+        Tile destinationTile = map.getTile(3, 7);
         Unit colonist = new ServerUnit(game, unitTile, dutchPlayer,
-                                       colonistType);
+                colonistType);
         colonist.setDestination(destinationTile);
 
 
@@ -308,8 +326,7 @@ public class MapDocTest extends FreeColGuiDocAsTest {
                 + getTileStringPosition(colonist.getLocation().getTile())
                 + " to "
                 + getTileStringPosition(destinationTile)
-                + " is "
-        ;
+                + " is ";
 
         final DocGenerator.ImageFile imageFile = imageGenerator.generateImageWith(getGame().getMap(), path, "testNoPathAvailableDueToCampInTheWay.jpg");
         write("",
@@ -321,7 +338,13 @@ public class MapDocTest extends FreeColGuiDocAsTest {
 //        assertNull("No path should be available", path);
     }
 
-
+    /**
+     * The table generated from path include some data that are not useful for test but are verified.
+     * It may make a lot of fails when something change.
+     *
+     * @param path
+     * @return
+     */
     private String pathToTable(PathNode path) {
         if (path == null) {
             return "No path";
@@ -429,24 +452,25 @@ public class MapDocTest extends FreeColGuiDocAsTest {
 //        assertNull("No path should be available", path);
 //    }
 
+
     @Test
     public void testShortestPathObstructed() throws InterruptedException {
         Game game = getStandardGame();
-        Map map = getShortLongPathMap(getGame());
+        Map map = getShortLongPathMap(getGame(), 5, 15);
         game.changeMap(map);
 
         // set obstructing indian camp
         Tile settlementTile = map.getTile(2, 10);
         IndianSettlementBuilder builder
-            = new IndianSettlementBuilder(game);
+                = new IndianSettlementBuilder(game);
         builder.settlementTile(settlementTile).build();
 
         // set unit
         Player dutchPlayer = game.getPlayerByNationId("model.nation.dutch");
         Tile unitTile = map.getTile(1, 11);
         Unit colonist = new ServerUnit(game, unitTile, dutchPlayer,
-                                       colonistType);
-        Tile destinationTile = map.getTile(3,7);
+                colonistType);
+        Tile destinationTile = map.getTile(3, 7);
         colonist.setDestination(destinationTile);
 
         PathNode path = colonist.findPath(destinationTile);
@@ -456,8 +480,7 @@ public class MapDocTest extends FreeColGuiDocAsTest {
                 + getTileStringPosition(colonist.getLocation().getTile())
                 + " to "
                 + getTileStringPosition(destinationTile)
-                + " is "
-                ;
+                + " is ";
 
         final DocGenerator.ImageFile imageFile = imageGenerator.generateImageWith(getGame().getMap(), path, "testShortestPathObstructed.jpg");
         write("",
@@ -466,83 +489,134 @@ public class MapDocTest extends FreeColGuiDocAsTest {
                 imageFile.imageWithChecksum(),
                 "", pathToTable(path));
     }
-//
-//    public void testSearchForColony() {
-//        Game game = getStandardGame();
-//        Map map = getCoastTestMap(plainsType, true);
-//        game.changeMap(map);
-//
-//        Player dutchPlayer = game.getPlayerByNationId("model.nation.dutch");
-//        Player frenchPlayer = game.getPlayerByNationId("model.nation.french");
-//        Tile unitTile = map.getTile(15, 5);
-//        Tile colonyTile = map.getTile(9, 9); // should be on coast
-//        Unit galleon = new ServerUnit(game, unitTile, dutchPlayer, galleonType);
-//        Unit artillery = new ServerUnit(game, galleon, dutchPlayer, artilleryType);
-//        FreeColTestUtils.getColonyBuilder().player(frenchPlayer)
-//            .colonyTile(colonyTile).build();
+
+    @Test
+    public void testSearchForColony() throws InterruptedException {
+        Game game = getStandardGame();
+        Map map = getCoastTestMap(plainsType, true);
+        game.changeMap(map);
+
+        Player dutchPlayer = game.getPlayerByNationId("model.nation.dutch");
+        Player frenchPlayer = game.getPlayerByNationId("model.nation.french");
+        Tile unitTile = map.getTile(15, 5);
+        Tile colonyTile = map.getTile(9, 9); // should be on coast
+        Unit galleon = new ServerUnit(game, unitTile, dutchPlayer, galleonType);
+        Unit artillery = new ServerUnit(game, galleon, dutchPlayer, artilleryType);
+        FreeColTestUtils.getColonyBuilder().player(frenchPlayer)
+                .colonyTile(colonyTile).build();
+        write(colonyTile.getOwner().getNation().getSuffix() + " colony " + ((colonyTile.hasSettlement()) ? "has" : "hasn't") + " settlement");
 //        assertTrue("French colony not on the map", colonyTile.hasSettlement());
-//        dutchPlayer.setStance(frenchPlayer, Stance.WAR);
-//        frenchPlayer.setStance(dutchPlayer, Stance.WAR);
-//
-//        // Test a GoalDecider with subgoals.
-//        // The scoring function is deliberately simple.
-//        GoalDecider gd = new GoalDecider() {
-//                private PathNode found = null;
-//                private int score = -1;
-//
-//                private int scoreTile(Tile tile) {
-//                    return tile.getX() + tile.getY();
-//                }
-//
-//                public PathNode getGoal() {
-//                    return found;
-//                }
-//
-//                public boolean hasSubGoals() {
-//                    return true;
-//                }
-//
-//                public boolean check(Unit u, PathNode pathNode) {
-//                    Settlement settlement = pathNode.getLocation().getSettlement();
-//                    if (settlement != null) {
-//                        int value = scoreTile(pathNode.getTile());
-//                        if (value > score) {
-//                            score = value;
-//                            found = pathNode;
-//                            return true;
-//                        }
-//                    }
-//                    return false;
-//                }
-//            };
-//
-//        PathNode path = map.search(artillery, unitTile, gd,
-//                                   CostDeciders.avoidIllegal(),
-//                                   INFINITY, galleon, null);
+        dutchPlayer.setStance(frenchPlayer, Stance.WAR);
+        frenchPlayer.setStance(dutchPlayer, Stance.WAR);
+
+        // Test a GoalDecider with subgoals.
+        // The scoring function is deliberately simple.
+        GoalDecider gd = new GoalDecider() {
+            private PathNode found = null;
+            private int score = -1;
+
+            private int scoreTile(Tile tile) {
+                return tile.getX() + tile.getY();
+            }
+
+            public PathNode getGoal() {
+                return found;
+            }
+
+            public boolean hasSubGoals() {
+                return true;
+            }
+
+            public boolean check(Unit u, PathNode pathNode) {
+                Settlement settlement = pathNode.getLocation().getSettlement();
+                if (settlement != null) {
+                    int value = scoreTile(pathNode.getTile());
+                    if (value > score) {
+                        score = value;
+                        found = pathNode;
+                        return true;
+                    }
+                }
+                return false;
+            }
+        };
+
+        PathNode path = map.search(artillery, unitTile, gd,
+                CostDeciders.avoidIllegal(),
+                INFINITY, galleon, null);
 //        assertTrue("Should find the French colony via a drop off",
 //                   path != null && path.getTransportDropNode() != null
 //                   && path.getLastNode().getTile() == colonyTile);
-//
-//        // Add another colony
-//        Tile colonyTile2 = map.getTile(5, 5); // should score less
-//        FreeColTestUtils.getColonyBuilder().player(frenchPlayer)
-//            .colonyTile(colonyTile2).build();
+
+        // Add another colony
+        Tile colonyTile2 = map.getTile(5, 5); // should score less
+        FreeColTestUtils.getColonyBuilder().player(frenchPlayer)
+                .colonyTile(colonyTile2).build();
 //        assertTrue("French colony not on the map",
 //                   colonyTile2.hasSettlement());
-//        path = map.search(artillery, unitTile, gd,
-//                          CostDeciders.avoidIllegal(),
-//                          INFINITY, galleon, null);
+        path = map.search(artillery, unitTile, gd,
+                CostDeciders.avoidIllegal(),
+                INFINITY, galleon, null);
 //        assertTrue("Should still find the first French colony via a drop off",
 //                   path != null && path.getTransportDropNode() != null
 //                   && path.getLastNode().getTile() == colonyTile);
-//    }
-//
-//    public void testLatitude() {
-//        Game game = getStandardGame();
-//
-//        MapBuilder builder = new MapBuilder(game);
-//        Map map = builder.setDimensions(1, 181).build();
-//
+
+
+        String c = "The path from "
+                + getTileStringPosition(artillery.getLocation().getTile())
+                + " to "
+                + getTileStringPosition(unitTile)
+                + " is ";
+
+
+//        ImageGenerator localImageGenerator = new ImageGenerator(IMAGE_PATH, windows, client);
+//        localImageGenerator.setTranslate(4, 0);
+        final DocGenerator.ImageFile imageFile = imageGenerator.generateImageWith(getGame().getMap(), 4, 0, path, "testSearchForColony.jpg");
+        write("",
+                c,
+                "", "",
+                imageFile.imageWithChecksum(),
+                "", pathToTable(path));
+    }
+
+    public String displayLatitude(AsciidocFormatter formatter) {
+        return formatter.table(null);
+
+
+    }
+
+    @Test
+    public void testLatitude() {
+        Game game = getStandardGame();
+
+        {
+            MapBuilder builder = new MapBuilder(game);
+            final int width = 1;
+            final int heigth = 181;
+            Map map = builder.setDimensions(width, heigth).build();
+
+            final List<CodeAndResult<Object>> codeAndResult = new Printer().getCodeAndResult(
+                    map.getHeight(),
+                    map.getLatitudePerRow(),
+                    map.getLatitude(0),
+                    map.getRow(-90),
+                    map.getLatitude(90),
+                    map.getRow(0),
+                    map.getLatitude(180),
+                    map.getRow(90)
+            );
+
+            write(
+                    String.format("With a map %dx%d", width, heigth),
+                    "",
+                    "[%autowidth]",
+                    getFormatter().table(
+                            codeAndResult.stream()
+                                    .map(cr -> Arrays.asList(cr.getCode(), cr.getValue()))
+                                    .collect(Collectors.toList())
+                    ));
+        }
+
 //        assertEquals(181, map.getHeight());
 //        assertEquals(1f, map.getLatitudePerRow());
 //        assertEquals(-90, map.getLatitude(0));
@@ -552,6 +626,35 @@ public class MapDocTest extends FreeColGuiDocAsTest {
 //        assertEquals(90, map.getLatitude(180));
 //        assertEquals(180, map.getRow(90));
 //
+
+        {
+            MapBuilder builder = new MapBuilder(game);
+            final int width = 1;
+            final int heigth = 91;
+            Map map = builder.setDimensions(width, heigth).build();
+
+            final List<CodeAndResult<Object>> codeAndResult = new Printer().getCodeAndResult(
+                    map.getHeight(),
+                    map.getLatitudePerRow(),
+                    map.getLatitude(0),
+                    map.getRow(-90),
+                    map.getLatitude(45),
+                    map.getRow(0),
+                    map.getLatitude(90),
+                    map.getRow(90)
+            );
+
+            write(
+                    String.format("With a map %dx%d", width, heigth),
+                    "",
+                    "[%autowidth]",
+                    getFormatter().table(
+                            codeAndResult.stream()
+                                    .map(cr -> Arrays.asList(cr.getCode(), cr.getValue()))
+                                    .collect(Collectors.toList())
+                    ));
+        }
+
 //        builder = new MapBuilder(game);
 //        map = builder.setDimensions(1, 91).build();
 //
@@ -564,6 +667,38 @@ public class MapDocTest extends FreeColGuiDocAsTest {
 //        assertEquals(90, map.getLatitude(90));
 //        assertEquals(90, map.getRow(90));
 //
+
+        {
+            MapBuilder builder = new MapBuilder(game);
+            final int width = 1;
+            final int heigth = 91;
+            Map map = builder.setDimensions(width, heigth).build();
+            final int newMinimumLatitude = 0;
+            map.setMinimumLatitude(newMinimumLatitude);
+
+            final List<CodeAndResult<Object>> codeAndResult = new Printer().getCodeAndResult(
+
+                    map.getHeight(),
+                    map.getLatitudePerRow(),
+                    map.getLatitude(0),
+                    map.getRow(0),
+                    map.getLatitude(45),
+                    map.getRow(45),
+                    map.getLatitude(90),
+                    map.getRow(90)
+            );
+
+            write(
+                    String.format("With a map %dx%d and minimum latitude %d", width, heigth, newMinimumLatitude),
+                    "",
+                    "[%autowidth]",
+                    getFormatter().table(
+                            codeAndResult.stream()
+                                    .map(cr -> Arrays.asList(cr.getCode(), cr.getValue()))
+                                    .collect(Collectors.toList())
+                    ));
+        }
+
 //        builder = new MapBuilder(game);
 //        map = builder.setDimensions(1, 91).build();
 //        map.setMinimumLatitude(0);
@@ -576,7 +711,7 @@ public class MapDocTest extends FreeColGuiDocAsTest {
 //        assertEquals(45, map.getRow(45));
 //        assertEquals(90, map.getLatitude(90));
 //        assertEquals(90, map.getRow(90));
-//    }
+    }
 //
 //    public void testFindPath() {
 //        Game game = getStandardGame();

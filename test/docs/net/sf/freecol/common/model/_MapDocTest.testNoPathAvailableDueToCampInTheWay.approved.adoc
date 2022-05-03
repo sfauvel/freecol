@@ -12,6 +12,6 @@ The path from 1x11 to 3x7 is
 
 
 image:{ROOT_PATH}/images/testNoPathAvailableDueToCampInTheWay.jpg[]
-// Checksum testNoPathAvailableDueToCampInTheWay.jpg=1645136207
+// Checksum testNoPathAvailableDueToCampInTheWay.jpg=3605557174
 
 No path

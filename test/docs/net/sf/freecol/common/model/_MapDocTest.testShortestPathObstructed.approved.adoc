@@ -9,7 +9,7 @@ The path from 1x11 to 3x7 is
 
 
 image:{ROOT_PATH}/images/testShortestPathObstructed.jpg[]
-// Checksum testShortestPathObstructed.jpg=3636103535
+// Checksum testShortestPathObstructed.jpg=3199590319
 
 [%autowidth, options=header]
 |====

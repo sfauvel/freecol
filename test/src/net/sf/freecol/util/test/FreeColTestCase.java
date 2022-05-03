@@ -271,10 +271,12 @@ public class FreeColTestCase extends TestCase {
      * @return The map created as described above.
      */
     public static Map getCoastTestMap(TileType landTileType, boolean explored) {
-        int totalWidth = 20;
-        int totalHeight = 15;
+        return getCoastTestMap(landTileType, explored, 20, 15);
+    }
+
+    public static Map getCoastTestMap(TileType landTileType, boolean explored, int totalWidth, int totalHeight) {
         final TileType oceanType = spec().getTileType("model.tile.ocean");
-        
+
         MapBuilder builder = new MapBuilder(getGame());
         builder.setDimensions(totalWidth, totalHeight).setBaseTileType(oceanType);
         if (explored) {
@@ -377,18 +379,27 @@ public class FreeColTestCase extends TestCase {
             setStartingParams();
         }
 
+        public MapBuilder(Game game, int width, int height){
+            this.game = game;
+            setStartingParams(width, height);
+        }
+
         private void setStartingParams(){
-            width = 20;
-            height = 15;
+            setStartingParams(20, 15);
+        }
+
+        private void setStartingParams(int width, int height) {
+            this.width = width;
+            this.height = height;
             baseTile = spec().getTileType("model.tile.plains");
             exploredByAll = false;
             initiated = false;
             // set empty grid
             if(tileTypes == null){
-                tileTypes = new TileType[width][height];
+                tileTypes = new TileType[this.width][this.height];
             }
-            for (int x = 0; x < width; x++) {
-                for (int y = 0; y < height; y++) {
+            for (int x = 0; x < this.width; x++) {
+                for (int y = 0; y < this.height; y++) {
                     tileTypes[x][y] = null;
                 }
             }

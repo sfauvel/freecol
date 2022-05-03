@@ -1,0 +1,26 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+
+[#net_sf_freecol_common_model_mapdoctest_testsearchforcolony]
+= TestSearchForColony
+
+french colony has settlement
+The path from 15x5 to 15x5 is 
+
+
+image:{ROOT_PATH}/images/testSearchForColony.jpg[]
+// Checksum testSearchForColony.jpg=490647197
+
+[%autowidth, options=header]
+|====
+| Position | Cost | Turns | Direction
+| 15 / 5 | 82 | 0 | 
+| 14 / 5 | 85 | 0 | W
+| 13 / 5 | 88 | 0 | W
+| 13 / 7 | 91 | 0 | S
+| 13 / 8 | 94 | 0 | SW
+| 12 / 8 | 97 | 0 | W
+| 11 / 9 | 100 | 0 | SW
+| 10 / 9 | 185 | 1 | W
+| 9 / 9 | 2147483647 | 1073741823 | W
+|====

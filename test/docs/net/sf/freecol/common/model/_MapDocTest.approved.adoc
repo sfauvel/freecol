@@ -12,3 +12,7 @@ include::_MapDocTest.testGetReverseDirection.approved.adoc[leveloffset=+1]
 include::_MapDocTest.testNoPathAvailableDueToCampInTheWay.approved.adoc[leveloffset=+1]
 
 include::_MapDocTest.testShortestPathObstructed.approved.adoc[leveloffset=+1]
+
+include::_MapDocTest.testSearchForColony.approved.adoc[leveloffset=+1]
+
+include::_MapDocTest.testLatitude.approved.adoc[leveloffset=+1]

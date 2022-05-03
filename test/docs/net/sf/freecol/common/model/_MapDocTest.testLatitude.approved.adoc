@@ -1,0 +1,48 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+
+[#net_sf_freecol_common_model_mapdoctest_testlatitude]
+= TestLatitude
+
+With a map 1x181
+
+[%autowidth]
+
+|====
+|map.getHeight()|181
+|map.getLatitudePerRow()|1.0
+|map.getLatitude(0)|-90
+|map.getRow(-90)|0
+|map.getLatitude(90)|0
+|map.getRow(0)|90
+|map.getLatitude(180)|90
+|map.getRow(90)|180
+|====
+With a map 1x91
+
+[%autowidth]
+
+|====
+|map.getHeight()|91
+|map.getLatitudePerRow()|2.0
+|map.getLatitude(0)|-90
+|map.getRow(-90)|0
+|map.getLatitude(45)|0
+|map.getRow(0)|45
+|map.getLatitude(90)|90
+|map.getRow(90)|90
+|====
+With a map 1x91 and minimum latitude 0
+
+[%autowidth]
+
+|====
+|map.getHeight()|91
+|map.getLatitudePerRow()|1.0
+|map.getLatitude(0)|0
+|map.getRow(0)|0
+|map.getLatitude(45)|45
+|map.getRow(45)|45
+|map.getLatitude(90)|90
+|map.getRow(90)|90
+|====

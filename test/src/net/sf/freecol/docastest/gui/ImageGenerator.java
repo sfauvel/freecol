@@ -84,6 +84,8 @@ public class ImageGenerator {
 
 //        System.out.println(String.format("%d / %d: %s - %s", tile.getX(), tile.getY(), tile.getTile().getType().getId(), ((tile.getColony()==null)?"":tile.getColony().getName())));
         final String text = String.format("%d / %d", tile.getX(), tile.getY());
+
+        g2d.setFont(new Font(g2d.getFont().getFontName(), Font.BOLD, g2d.getFont().getSize()));
         g2d.drawString(text, tileSize.width / 2 - g2d.getFontMetrics().stringWidth(text) / 2, tileSize.height / 2);
     };
 
@@ -102,11 +104,15 @@ public class ImageGenerator {
     }
 
     public DocGenerator.ImageFile generateImageWith(Map map, PathNode path, String imageName) throws InterruptedException {
+        return generateImageWith(map, 0, 0, path, imageName);
+    }
+
+    public DocGenerator.ImageFile generateImageWith(Map map, int nbTileToTranslateX, int nbTileToTranslateY, PathNode path, String imageName) throws InterruptedException {
         final java.util.List<DrawTiles> drawers = Arrays.asList(
                 new DrawTiles(this::drawer, map.getTileList(ALL_TILE)),
                 new DrawTiles(this::drawerPath, pathToTiles(path))
         );
-        return generateImageWith(drawers, imageName);
+        return generateImageWith(drawers, imageName, nbTileToTranslateX, nbTileToTranslateY);
     }
 
     private DocGenerator.ImageFile generateImageWith(Map map, BiConsumer<Graphics2D, Tile> drawer, java.util.List<Map.Position> positionStream, String imageName) throws InterruptedException {
@@ -118,14 +124,19 @@ public class ImageGenerator {
     }
 
     private DocGenerator.ImageFile generateImageWith(java.util.List<DrawTiles> drawTilesList, String imageName) throws InterruptedException {
+        return generateImageWith(drawTilesList, imageName, 0, 0);
+    }
 
+    private DocGenerator.ImageFile generateImageWith(java.util.List<DrawTiles> drawTilesList, String imageName, int nbTileToTranslateX, int nbTileToTranslateY) throws InterruptedException {
         final Integer maxX = drawTilesList.stream().flatMap(d -> d.tiles.stream()).map(Tile::getX).max(Integer::compareTo).get();
         final Integer maxY = drawTilesList.stream().flatMap(d -> d.tiles.stream()).map(Tile::getY).max(Integer::compareTo).get();
 
         final Container panel = show(g2d -> {
+            g2d.translate(-nbTileToTranslateX *tileSize.width, -nbTileToTranslateY *tileSize.height+20);
             for (DrawTiles drawTiles : drawTilesList) {
                 drawTiles.tiles.forEach(tile -> display(g2d, tile, drawTiles.drawer));
             }
+            g2d.translate(nbTileToTranslateX *tileSize.width, nbTileToTranslateY *tileSize.height+20);
         }, maxX + 1, (maxY + 2) / 2);
 
         final DocGenerator.ImageFile imageFile = DocGenerator.takeScreenshot(panel, imagePath.resolve(imageName));
@@ -181,7 +192,6 @@ public class ImageGenerator {
         final JPanel jPanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
-                g.translate(0, 20);
                 displayMethod.accept((Graphics2D) g);
 
             }
