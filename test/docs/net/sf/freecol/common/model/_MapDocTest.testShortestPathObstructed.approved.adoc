@@ -5,9 +5,7 @@ ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
 = TestShortestPathObstructed
 
 
-The path from 1x11 to 3x7 is 
-
-
+.Path from 1x11 to 3x7
 image:{ROOT_PATH}/images/testShortestPathObstructed.jpg[]
 // Checksum testShortestPathObstructed.jpg=3199590319
 
@@ -20,3 +18,71 @@ image:{ROOT_PATH}/images/testShortestPathObstructed.jpg[]
 | 2 / 7 | 300 | 2 | N
 | 3 / 7 | 400 | 3 | E
 |====
+
+.Test code with DocAsTest
+[%collapsible]
+====
+
+[source,java,indent=0]
+----
+        Game game = getStandardGame();
+        Map map = getShortLongPathMap(getGame(), 5, 15);
+        game.changeMap(map);
+
+        // set obstructing indian camp
+        Tile settlementTile = map.getTile(2, 10);
+        IndianSettlementBuilder builder = new IndianSettlementBuilder(game);
+        builder.settlementTile(settlementTile).build();
+
+        // set unit
+        Player dutchPlayer = game.getPlayerByNationId("model.nation.dutch");
+        Tile unitTile = map.getTile(1, 11);
+        Unit colonist = new ServerUnit(game, unitTile, dutchPlayer, colonistType);
+        Tile destinationTile = map.getTile(3, 7);
+        colonist.setDestination(destinationTile);
+
+        PathNode path = colonist.findPath(destinationTile);
+
+        final DocGenerator.ImageFile imageFile = imageGenerator.generateImageWith(getGame().getMap(), path, "testShortestPathObstructed.jpg");
+        write("",
+                String.format(".Path from %s to %s",
+                        getTileStringPosition(colonist.getLocation().getTile()),
+                        getTileStringPosition(destinationTile)),
+                imageFile.imageWithChecksum(),
+                "", pathToTable(path));
+
+----
+
+====
+
+.Standard test code
+[%collapsible]
+====
+
+[source,java,indent=0]
+----
+    public void testShortestPathObstructed() {
+        Game game = getStandardGame();
+        Map map = getShortLongPathMap(getGame());
+        game.changeMap(map);
+
+        // set obstructing indian camp
+        Tile settlementTile = map.getTile(2, 10);
+        FreeColTestCase.IndianSettlementBuilder builder
+            = new FreeColTestCase.IndianSettlementBuilder(game);
+        builder.settlementTile(settlementTile).build();
+
+        // set unit
+        Player dutchPlayer = game.getPlayerByNationId("model.nation.dutch");
+        Tile unitTile = map.getTile(1, 11);
+        Unit colonist = new ServerUnit(game, unitTile, dutchPlayer,
+                                       colonistType);
+        Tile destinationTile = map.getTile(3,7);
+        colonist.setDestination(destinationTile);
+
+        PathNode path = colonist.findPath(destinationTile);
+        assertNotNull("A path should be available", path);
+    }
+----
+
+====

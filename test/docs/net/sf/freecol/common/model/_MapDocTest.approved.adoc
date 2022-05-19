@@ -16,3 +16,5 @@ include::_MapDocTest.testShortestPathObstructed.approved.adoc[leveloffset=+1]
 include::_MapDocTest.testSearchForColony.approved.adoc[leveloffset=+1]
 
 include::_MapDocTest.testLatitude.approved.adoc[leveloffset=+1]
+
+include::_MapDocTest.testFindPath.approved.adoc[leveloffset=+1]

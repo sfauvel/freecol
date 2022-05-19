@@ -1,0 +1,164 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+
+[#net_sf_freecol_common_model_mapdoctest_testfindpath]
+= TestFindPath
+
+Last node is Europe
+
+settlementTile has settlement
+
+dutch colony is on the shore.
+
+== Nearest port should now be the colony.
+
+
+
+image:{ROOT_PATH}/images/nearestPortShouldBeTheColony.jpg[]
+// Checksum nearestPortShouldBeTheColony.jpg=2719885201
+
+[%autowidth, options=header]
+|====
+| Position | Cost | Turns | Direction
+| 13 / 2 | 82 | 0 | 
+| 12 / 2 | 85 | 0 | W
+| 11 / 2 | 88 | 0 | W
+| 10 / 2 | 91 | 0 | W
+| 9 / 2 | 94 | 0 | W
+|====
+
+== Check colonist can find the trivial path
+
+
+
+
+
+Path start at [tile:524 plains 9,2 New Amsterdam]
+
+image:{ROOT_PATH}/images/colonistCanFindTheTrivialPAth.jpg[]
+// Checksum colonistCanFindTheTrivialPAth.jpg=2758695109
+
+[%autowidth, options=header]
+|====
+| Position | Cost | Turns | Direction
+| 9 / 2 | 97 | 0 | 
+|====
+
+== Check colonist can not find a path into the sea
+
+
+
+A colonist path from [tile:524 plains 9,2 New Amsterdam] to [tile:528 ocean 13,2] is null
+
+== Check that a naval unit can find that path.
+
+
+
+Path start as [tile:524 plains 9,2 New Amsterdam] and end at [tile:528 ocean 13,2]
+
+image:{ROOT_PATH}/images/colonistCanFindTheTrivialPAth.jpg[]
+// Checksum colonistCanFindTheTrivialPAth.jpg=2719885201
+
+[%autowidth, options=header]
+|====
+| Position | Cost | Turns | Direction
+| 9 / 2 | 82 | 0 | 
+| 10 / 2 | 85 | 0 | E
+| 11 / 2 | 88 | 0 | E
+| 12 / 2 | 91 | 0 | E
+| 13 / 2 | 94 | 0 | E
+|====
+
+== Check giving the colonist access to a carrier makes the sea path work
+
+
+
+Path start as [tile:524 plains 9,2 New Amsterdam] and end at [tile:528 ocean 13,2]
+
+image:{ROOT_PATH}/images/givingColonistAccessACarrierMakeTheSeaPathWork.jpg[]
+// Checksum givingColonistAccessACarrierMakeTheSeaPathWork.jpg=1452941002
+
+[%autowidth, options=header]
+|====
+| Position | Cost | Turns | Direction
+| 9 / 2 | 97 | 0 | 
+| 9 / 3 | 100 | 0 | SE
+| 10 / 3 | 182 | 1 | E
+| 11 / 3 | 185 | 1 | E
+| 12 / 3 | 188 | 1 | E
+| 13 / 2 | 191 | 1 | NE
+|====
+
+== Check the path still works if the colonist has to walk to the carrier
+
+
+
+Path start as [tile:524 plains 9,2 New Amsterdam] and end at [tile:528 ocean 13,2]
+
+image:{ROOT_PATH}/images/pathStillWorksIfTheColonistHaToWalkToTheCarrier.jpg[]
+// Checksum pathStillWorksIfTheColonistHaToWalkToTheCarrier.jpg=2719885201
+
+[%autowidth, options=header]
+|====
+| Position | Cost | Turns | Direction
+| 2 / 2 | 97 | 0 | 
+| 3 / 2 | 100 | 0 | E
+| 4 / 2 | 200 | 1 | E
+| 5 / 2 | 300 | 2 | E
+| 6 / 2 | 400 | 3 | E
+| 7 / 2 | 500 | 4 | E
+| 8 / 2 | 600 | 5 | E
+| 9 / 2 | 682 | 6 | E
+| 10 / 2 | 685 | 6 | E
+| 11 / 2 | 688 | 6 | E
+| 12 / 2 | 691 | 6 | E
+| 13 / 2 | 694 | 6 | E
+|====
+
+== Check the colonist uses the carrier if it is quicker than walking.
+
+
+
+A colonist path from [tile:524 plains 9,2 New Amsterdam] to [tile:528 ocean 13,2] is PathNode loc=9,2-plains movesLeft=3 turns=0 onCarrier=false direction=null cost=97
+
+Path start as [tile:524 plains 9,2 New Amsterdam] and end at [tile:744 plains 9,13]
+
+image:{ROOT_PATH}/images/colonistUsesTheCarrierIfItISQuickerThanWalking.jpg[]
+// Checksum colonistUsesTheCarrierIfItISQuickerThanWalking.jpg=532519414
+
+[%autowidth, options=header]
+|====
+| Position | Cost | Turns | Direction
+| 9 / 2 | 97 | 0 | 
+| 9 / 3 | 100 | 0 | SE
+| 10 / 4 | 182 | 1 | SE
+| 10 / 6 | 185 | 1 | S
+| 10 / 8 | 188 | 1 | S
+| 10 / 10 | 191 | 1 | S
+| 10 / 12 | 194 | 1 | S
+| 9 / 13 | 200 | 1 | SW
+|====
+
+== Check the colonist does not use the carrier if it does not help.
+
+
+
+A colonist path from [tile:577 plains 2,5] to [tile:564 plains 9,4] is PathNode loc=2,5-plains movesLeft=3 turns=0 onCarrier=false direction=null cost=97
+
+Path start as [tile:577 plains 2,5] and end at [tile:564 plains 9,4]
+
+image:{ROOT_PATH}/images/colonistDoesNotUseTheCarrierIfItDoesNotHelp.jpg[]
+// Checksum colonistDoesNotUseTheCarrierIfItDoesNotHelp.jpg=1397392724
+
+[%autowidth, options=header]
+|====
+| Position | Cost | Turns | Direction
+| 2 / 5 | 97 | 0 | 
+| 3 / 5 | 100 | 0 | E
+| 4 / 5 | 200 | 1 | E
+| 5 / 5 | 300 | 2 | E
+| 6 / 5 | 400 | 3 | E
+| 7 / 5 | 500 | 4 | E
+| 8 / 5 | 600 | 5 | E
+| 9 / 4 | 700 | 6 | NE
+|====

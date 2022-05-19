@@ -455,39 +455,47 @@ public class MapDocTest extends FreeColGuiDocAsTest {
 
     @Test
     public void testShortestPathObstructed() throws InterruptedException {
+        // >>>
         Game game = getStandardGame();
         Map map = getShortLongPathMap(getGame(), 5, 15);
         game.changeMap(map);
 
         // set obstructing indian camp
         Tile settlementTile = map.getTile(2, 10);
-        IndianSettlementBuilder builder
-                = new IndianSettlementBuilder(game);
+        IndianSettlementBuilder builder = new IndianSettlementBuilder(game);
         builder.settlementTile(settlementTile).build();
 
         // set unit
         Player dutchPlayer = game.getPlayerByNationId("model.nation.dutch");
         Tile unitTile = map.getTile(1, 11);
-        Unit colonist = new ServerUnit(game, unitTile, dutchPlayer,
-                colonistType);
+        Unit colonist = new ServerUnit(game, unitTile, dutchPlayer, colonistType);
         Tile destinationTile = map.getTile(3, 7);
         colonist.setDestination(destinationTile);
 
         PathNode path = colonist.findPath(destinationTile);
-//        assertNotNull("A path should be available", path);
-
-        String c = "The path from "
-                + getTileStringPosition(colonist.getLocation().getTile())
-                + " to "
-                + getTileStringPosition(destinationTile)
-                + " is ";
 
         final DocGenerator.ImageFile imageFile = imageGenerator.generateImageWith(getGame().getMap(), path, "testShortestPathObstructed.jpg");
         write("",
-                c,
-                "", "",
+                String.format(".Path from %s to %s",
+                        getTileStringPosition(colonist.getLocation().getTile()),
+                        getTileStringPosition(destinationTile)),
                 imageFile.imageWithChecksum(),
                 "", pathToTable(path));
+        // <<<
+
+        write("", "",
+                ".Test code with DocAsTest",
+                "[%collapsible]",
+                "====",
+                getFormatter().sourceCode(CodeExtractor.extractPartOfCurrentMethod()),
+                "====");
+
+        write("", "",
+                ".Standard test code",
+                "[%collapsible]",
+                "====",
+                getFormatter().sourceCode(CodeExtractor.methodSource(MapTest.class, "testShortestPathObstructed")),
+                "====");
     }
 
     @Test
@@ -712,99 +720,192 @@ public class MapDocTest extends FreeColGuiDocAsTest {
 //        assertEquals(90, map.getLatitude(90));
 //        assertEquals(90, map.getRow(90));
     }
-//
-//    public void testFindPath() {
-//        Game game = getStandardGame();
-//        Map map = getCoastTestMap(plainsType, true);
-//        game.changeMap(map);
-//
-//        Player dutch = game.getPlayerByNationId("model.nation.dutch");
-//        Europe europe = dutch.getEurope();
-//        PathNode path;
-//
-//        // Nearest port should be Europe
-//        Tile seaTile = map.getTile(13, 2);
-//        Unit galleon = new ServerUnit(game, seaTile, dutch, galleonType);
-//        path = galleon.findOurNearestPort();
+
+    @Test
+    public void testFindPath() throws InterruptedException {
+        Game game = getStandardGame();
+        Map map = getCoastTestMap(plainsType, true);
+        game.changeMap(map);
+
+        Player dutch = game.getPlayerByNationId("model.nation.dutch");
+        Europe europe = dutch.getEurope();
+        PathNode path;
+
+        // Nearest port should be Europe
+        Tile seaTile = map.getTile(13, 2);
+        Unit galleon = new ServerUnit(game, seaTile, dutch, galleonType);
+        path = galleon.findOurNearestPort();
 //        assertNotNull("Nearest port should exist.", path);
 //        assertEquals("Nearest port should be Europe.", europe,
 //                      path.getLastNode().getLocation());
-//
-//        Tile settlementTile = map.getTile(9, 2);
-//        FreeColTestUtils.getColonyBuilder().player(dutch)
-//            .colonyTile(settlementTile).build();
+        write(String.format("Last node is %s", path.getLastNode().getLocation().toString()), "", "");
+
+        Tile settlementTile = map.getTile(9, 2);
+        FreeColTestUtils.getColonyBuilder().player(dutch)
+                .colonyTile(settlementTile).build();
 //        assertTrue("Dutch colony should be on the map.",
 //            settlementTile.hasSettlement());
 //        assertTrue("Dutch colony should be on the shore.",
 //            settlementTile.isShore());
 //
+        write(String.format("settlementTile %s settlement", settlementTile.hasSettlement() ? "has" : "hasn't"),
+                "",
+                String.format("%s colony %s on the shore.",
+                        settlementTile.getOwner().getNation().getSuffix(),
+                        settlementTile.isShore() ? "is" : "isn't"));
+
+        {
+            write("", getFormatter().title(2, "Nearest port should now be the colony."), "");
+
 //        // Nearest port should now be the colony.
-//        path = galleon.findOurNearestPort();
+            path = galleon.findOurNearestPort();
 //        assertNotNull("Nearest port should exist.", path);
 //        assertEquals("Nearest port should be the colony.", settlementTile,
 //                     path.getLastNode().getTile());
 //
+
+            final DocGenerator.ImageFile imageFile = imageGenerator.generateImageWith(getGame().getMap(), path, "nearestPortShouldBeTheColony.jpg");
+            write("", "",
+                    imageFile.imageWithChecksum(),
+                    "", pathToTable(path));
+        }
+
 //        // Check colonist can find the trivial path
-//        Unit colonist = new ServerUnit(game, settlementTile, dutch,
-//                                       colonistType);
-//        path = colonist.findPath(settlementTile, settlementTile);
+        Unit colonist = new ServerUnit(game, settlementTile, dutch,
+                colonistType);
+        {
+            write("", getFormatter().title(2, "Check colonist can find the trivial path"), "");
+            path = colonist.findPath(settlementTile, settlementTile);
+            write(String.format("", "", "Search path from %s to %s", settlementTile, settlementTile), "", "");
 //        assertNotNull("Trivial path should exist.", path);
 //        assertNull("Trivial path should be trivial.", path.next);
 //        assertEquals("Trivial path should start at settlement.",
 //            settlementTile, path.getTile());
-//
-//        // Check colonist can not find a path into the sea
-//        path = map.findPath(colonist, settlementTile, seaTile,
-//                            null, null, null);
+
+            write("", "",
+                    String.format("Path start at %s", path.getTile()));
+
+            final DocGenerator.ImageFile imageFile = imageGenerator.generateImageWith(getGame().getMap(), path, "colonistCanFindTheTrivialPAth.jpg");
+            write("", "",
+                    imageFile.imageWithChecksum(),
+                    "", pathToTable(path));
+        }
+
+        {
+            write("", getFormatter().title(2, "Check colonist can not find a path into the sea"), "");
+
+            // Check colonist can not find a path into the sea
+            path = map.findPath(colonist, settlementTile, seaTile,
+                    null, null, null);
 //        assertNull("Sea path should be illegal.", path);
-//
-//        // Check that a naval unit can find that path.
-//        path = galleon.findPath(settlementTile, seaTile);
+
+            write("", "",
+                    String.format("A colonist path from %s to %s is %s", settlementTile, seaTile, path));
+        }
+
+        {
+            write("", getFormatter().title(2, "Check that a naval unit can find that path."), "");
+            // Check that a naval unit can find that path.
+            path = galleon.findPath(settlementTile, seaTile);
 //        assertNotNull("Sea path should be legal for naval unit.", path);
 //        assertEquals("Sea path should start at settlement.", settlementTile,
 //            path.getTile());
 //        assertEquals("Sea path should end at sea tile.", seaTile,
 //            path.getLastNode().getTile());
-//
-//        // Check giving the colonist access to a carrier makes the sea
-//        // path work.
-//        path = colonist.findPath(settlementTile, seaTile, galleon);
-//        assertNotNull("Sea path should now be legal.", path);
-//        assertEquals("Sea path should start at settlement.", settlementTile,
-//            path.getTile());
-//        assertEquals("Sea path should end at sea tile.", seaTile,
-//            path.getLastNode().getTile());
-//
-//        // Check the path still works if the colonist has to walk to
-//        // the carrier.
-//        Tile landTile = map.getTile(2, 2);
-//        path = colonist.findPath(landTile, seaTile, galleon);
+            write("", "",
+                    String.format("Path start as %s and end at %s", path.getTile(), path.getLastNode().getTile()));
+
+            final DocGenerator.ImageFile imageFile = imageGenerator.generateImageWith(getGame().getMap(), path, "colonistCanFindTheTrivialPAth.jpg");
+            write("", "",
+                    imageFile.imageWithChecksum(),
+                    "", pathToTable(path));
+        }
+
+        {
+            write("", getFormatter().title(2, "Check giving the colonist access to a carrier makes the sea path work"), "");
+            // Check giving the colonist access to a carrier makes the sea
+            // path work.
+            path = colonist.findPath(settlementTile, seaTile, galleon);
+//            assertNotNull("Sea path should now be legal.", path);
+//            assertEquals("Sea path should start at settlement.", settlementTile,
+//                    path.getTile());
+//            assertEquals("Sea path should end at sea tile.", seaTile,
+//                    path.getLastNode().getTile());
+            write("", "",
+                    String.format("Path start as %s and end at %s", path.getTile(), path.getLastNode().getTile()));
+
+            final DocGenerator.ImageFile imageFile = imageGenerator.generateImageWith(getGame().getMap(), path, "givingColonistAccessACarrierMakeTheSeaPathWork.jpg");
+            write("", "",
+                    imageFile.imageWithChecksum(),
+                    "", pathToTable(path));
+        }
+        {
+            write("", getFormatter().title(2, "Check the path still works if the colonist has to walk to the carrier"), "");
+            // Check the path still works if the colonist has to walk to
+            // the carrier.
+            Tile landTile = map.getTile(2, 2);
+            path = colonist.findPath(landTile, seaTile, galleon);
 //        assertNotNull("Sea path should still be legal.", path);
 //        assertEquals("Sea path should start at land tile.", landTile,
 //            path.getTile());
 //        assertEquals("Sea path should end at sea tile.", seaTile,
 //            path.getLastNode().getTile());
-//        while (!path.isOnCarrier()) path = path.next;
+//            while (!path.isOnCarrier()) path = path.next;
 //        assertEquals("Sea path should include pickup at settlement.",
 //            settlementTile, path.getTile());
-//
-//        // Check the colonist uses the carrier if it is quicker than walking.
-//        Tile shoreTile = map.getTile(9, 13);
+
+            while (!path.isOnCarrier()) path = path.next;
+
+            write("", "",
+                    String.format("Path start as %s and end at %s", path.getTile(), path.getLastNode().getTile()));
+
+            final DocGenerator.ImageFile imageFile = imageGenerator.generateImageWith(getGame().getMap(), path, "pathStillWorksIfTheColonistHaToWalkToTheCarrier.jpg");
+            write("", "",
+                    imageFile.imageWithChecksum(),
+                    "", pathToTable(path));
+        }
+        {
+            write("", getFormatter().title(2, "Check the colonist uses the carrier if it is quicker than walking."), "");
+            // Check the colonist uses the carrier if it is quicker than walking.
+            Tile shoreTile = map.getTile(9, 13);
 //        assertTrue("Shore tile should be on the shore.", shoreTile.isShore());
-//        path = colonist.findPath(settlementTile, shoreTile, galleon);
+            path = colonist.findPath(settlementTile, shoreTile, galleon);
 //        assertNotNull("Shore path should be legal.", path);
 //        assertTrue("Shore path should have carrier moves.",
 //            path.usesCarrier());
 //        assertNotNull("Shore path should have drop node.",
 //            path.getCarrierMove().getTransportDropNode());
-//
-//        // Check the colonist does not use the carrier if it does not help.
-//        Tile midTile = map.getTile(9, 4);
-//        path = colonist.findPath(map.getTile(2, 5), midTile, galleon);
+
+            write("", "",
+                    String.format("A colonist path from %s to %s is %s", settlementTile, seaTile, path));
+            write("", "",
+                    String.format("Path start as %s and end at %s", path.getTile(), path.getLastNode().getTile()));
+
+            final DocGenerator.ImageFile imageFile = imageGenerator.generateImageWith(getGame().getMap(), path, "colonistUsesTheCarrierIfItISQuickerThanWalking.jpg");
+            write("", "",
+                    imageFile.imageWithChecksum(),
+                    "", pathToTable(path));
+        }
+        {
+            write("", getFormatter().title(2, "Check the colonist does not use the carrier if it does not help."), "");
+            // Check the colonist does not use the carrier if it does not help.
+            Tile midTile = map.getTile(9, 4);
+            path = colonist.findPath(map.getTile(2, 5), midTile, galleon);
 //        assertNotNull("Middle path should be legal.", path);
 //        assertFalse("Middle path should not not use carrier.",
 //            path.usesCarrier());
-//
+
+            write("", "",
+                    String.format("A colonist path from %s to %s is %s", map.getTile(2, 5), midTile, path));
+
+            write("", "",
+                    String.format("Path start as %s and end at %s", path.getTile(), path.getLastNode().getTile()));
+
+            final DocGenerator.ImageFile imageFile = imageGenerator.generateImageWith(getGame().getMap(), path, "colonistDoesNotUseTheCarrierIfItDoesNotHelp.jpg");
+            write("", "",
+                    imageFile.imageWithChecksum(),
+                    "", pathToTable(path));
+        }
 //        // Check path to Europe.
 //        path = colonist.findPath(settlementTile, europe, galleon);
 //        assertNotNull("To-Europe path should be valid.", path);
@@ -842,7 +943,7 @@ public class MapDocTest extends FreeColGuiDocAsTest {
 //            path.isOnCarrier());
 //        assertNotNull("From-galleon path should have a drop node.",
 //            path.getTransportDropNode());
-//    }
+    }
 //
 //    public void testCopy() {
 //        Game game = getStandardGame();
