@@ -140,6 +140,7 @@ public class ImageGenerator {
         }, maxX + 1, (maxY + 2) / 2);
 
         final DocGenerator.ImageFile imageFile = DocGenerator.takeScreenshot(panel, imagePath.resolve(imageName));
+        windows.closeWindows();
         return imageFile;
     }
 
