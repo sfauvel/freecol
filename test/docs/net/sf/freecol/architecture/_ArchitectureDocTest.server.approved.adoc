@@ -1,0 +1,59 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+
+[#net_sf_freecol_architecture_architecturedoctest_server]
+= Server
+
+The graph below shows dependencies between packages in the project.
+
+[graphviz]
+----
+digraph g {
+    rankdir=TD;
+    node [margin=0.1 fontcolor=black fontsize=16 width=0.5 shape=rect style=filled fillcolor="#0fd289"]
+    subgraph cluster_ALL {
+        bgcolor="#05fdCC";
+        "net.sf.freecol.server"
+    }
+    subgraph cluster_ai {
+        bgcolor="#05fdCC";
+        "net.sf.freecol.server.ai"
+        "net.sf.freecol.server.ai.mission"
+    }
+    subgraph cluster_generator {
+        bgcolor="#05fdCC";
+        "net.sf.freecol.server.generator"
+    }
+    subgraph cluster_control {
+        bgcolor="#05fdCC";
+        "net.sf.freecol.server.control"
+    }
+    subgraph cluster_model {
+        bgcolor="#05fdCC";
+        "net.sf.freecol.server.model"
+    }
+    subgraph cluster_networking {
+        bgcolor="#05fdCC";
+        "net.sf.freecol.server.networking"
+    }
+    
+    "net.sf.freecol.server" -> "net.sf.freecol.server.ai"
+    "net.sf.freecol.server" -> "net.sf.freecol.server.control"
+    "net.sf.freecol.server" -> "net.sf.freecol.server.generator"
+    "net.sf.freecol.server" -> "net.sf.freecol.server.model"
+    "net.sf.freecol.server" -> "net.sf.freecol.server.networking"
+    "net.sf.freecol.server.ai" -> "net.sf.freecol.server"
+    "net.sf.freecol.server.ai" -> "net.sf.freecol.server.ai.mission"
+    "net.sf.freecol.server.ai" -> "net.sf.freecol.server.control"
+    "net.sf.freecol.server.ai" -> "net.sf.freecol.server.model"
+    "net.sf.freecol.server.ai" -> "net.sf.freecol.server.networking"
+    "net.sf.freecol.server.ai.mission" -> "net.sf.freecol.server.ai"
+    "net.sf.freecol.server.control" -> "net.sf.freecol.server"
+    "net.sf.freecol.server.control" -> "net.sf.freecol.server.ai"
+    "net.sf.freecol.server.control" -> "net.sf.freecol.server.model"
+    "net.sf.freecol.server.control" -> "net.sf.freecol.server.networking"
+    "net.sf.freecol.server.generator" -> "net.sf.freecol.server"
+    "net.sf.freecol.server.generator" -> "net.sf.freecol.server.model"
+    "net.sf.freecol.server.networking" -> "net.sf.freecol.server"
+}
+----

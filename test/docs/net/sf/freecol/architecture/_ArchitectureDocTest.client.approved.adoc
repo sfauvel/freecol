@@ -1,0 +1,124 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+
+[#net_sf_freecol_architecture_architecturedoctest_client]
+= Client
+
+The graph below shows dependencies between packages in the project.
+
+[graphviz]
+----
+digraph g {
+    rankdir=TD;
+    node [margin=0.1 fontcolor=black fontsize=16 width=0.5 shape=rect style=filled fillcolor="#0fd289"]
+    subgraph cluster_ALL {
+        bgcolor="#05fdCC";
+        "net.sf.freecol.client"
+    }
+    subgraph cluster_control {
+        bgcolor="#05fdCC";
+        "net.sf.freecol.client.control"
+    }
+    subgraph cluster_networking {
+        bgcolor="#05fdCC";
+        "net.sf.freecol.client.networking"
+    }
+    subgraph cluster_gui {
+        bgcolor="#05fdCC";
+        "net.sf.freecol.client.gui.panel"
+        "net.sf.freecol.client.gui.video"
+        "net.sf.freecol.client.gui.dialog"
+        "net.sf.freecol.client.gui"
+        "net.sf.freecol.client.gui.option"
+        "net.sf.freecol.client.gui.animation"
+        "net.sf.freecol.client.gui.plaf"
+        "net.sf.freecol.client.gui.mapviewer"
+        "net.sf.freecol.client.gui.menu"
+        "net.sf.freecol.client.gui.images"
+        "net.sf.freecol.client.gui.label"
+        "net.sf.freecol.client.gui.tooltip"
+        "net.sf.freecol.client.gui.panel.report"
+        "net.sf.freecol.client.gui.action"
+        "net.sf.freecol.client.gui.panel.colopedia"
+    }
+    
+    "net.sf.freecol.client" -> "net.sf.freecol.client.control"
+    "net.sf.freecol.client" -> "net.sf.freecol.client.gui"
+    "net.sf.freecol.client" -> "net.sf.freecol.client.gui.action"
+    "net.sf.freecol.client" -> "net.sf.freecol.client.networking"
+    "net.sf.freecol.client.control" -> "net.sf.freecol.client"
+    "net.sf.freecol.client.control" -> "net.sf.freecol.client.gui"
+    "net.sf.freecol.client.control" -> "net.sf.freecol.client.gui.option"
+    "net.sf.freecol.client.control" -> "net.sf.freecol.client.gui.panel"
+    "net.sf.freecol.client.gui" -> "net.sf.freecol.client"
+    "net.sf.freecol.client.gui" -> "net.sf.freecol.client.control"
+    "net.sf.freecol.client.gui" -> "net.sf.freecol.client.gui"
+    "net.sf.freecol.client.gui" -> "net.sf.freecol.client.gui.action"
+    "net.sf.freecol.client.gui" -> "net.sf.freecol.client.gui.animation"
+    "net.sf.freecol.client.gui" -> "net.sf.freecol.client.gui.dialog"
+    "net.sf.freecol.client.gui" -> "net.sf.freecol.client.gui.images"
+    "net.sf.freecol.client.gui" -> "net.sf.freecol.client.gui.mapviewer"
+    "net.sf.freecol.client.gui" -> "net.sf.freecol.client.gui.menu"
+    "net.sf.freecol.client.gui" -> "net.sf.freecol.client.gui.panel"
+    "net.sf.freecol.client.gui" -> "net.sf.freecol.client.gui.panel.colopedia"
+    "net.sf.freecol.client.gui" -> "net.sf.freecol.client.gui.panel.report"
+    "net.sf.freecol.client.gui" -> "net.sf.freecol.client.gui.plaf"
+    "net.sf.freecol.client.gui" -> "net.sf.freecol.client.gui.video"
+    "net.sf.freecol.client.gui.action" -> "net.sf.freecol.client"
+    "net.sf.freecol.client.gui.action" -> "net.sf.freecol.client.control"
+    "net.sf.freecol.client.gui.action" -> "net.sf.freecol.client.gui"
+    "net.sf.freecol.client.gui.action" -> "net.sf.freecol.client.gui.action"
+    "net.sf.freecol.client.gui.action" -> "net.sf.freecol.client.gui.dialog"
+    "net.sf.freecol.client.gui.action" -> "net.sf.freecol.client.gui.panel"
+    "net.sf.freecol.client.gui.animation" -> "net.sf.freecol.client"
+    "net.sf.freecol.client.gui.animation" -> "net.sf.freecol.client.gui"
+    "net.sf.freecol.client.gui.dialog" -> "net.sf.freecol.client"
+    "net.sf.freecol.client.gui.dialog" -> "net.sf.freecol.client.control"
+    "net.sf.freecol.client.gui.dialog" -> "net.sf.freecol.client.gui"
+    "net.sf.freecol.client.gui.dialog" -> "net.sf.freecol.client.gui.dialog"
+    "net.sf.freecol.client.gui.dialog" -> "net.sf.freecol.client.gui.label"
+    "net.sf.freecol.client.gui.dialog" -> "net.sf.freecol.client.gui.option"
+    "net.sf.freecol.client.gui.dialog" -> "net.sf.freecol.client.gui.panel"
+    "net.sf.freecol.client.gui.dialog" -> "net.sf.freecol.client.gui.panel.colopedia"
+    "net.sf.freecol.client.gui.dialog" -> "net.sf.freecol.client.gui.plaf"
+    "net.sf.freecol.client.gui.label" -> "net.sf.freecol.client"
+    "net.sf.freecol.client.gui.label" -> "net.sf.freecol.client.control"
+    "net.sf.freecol.client.gui.label" -> "net.sf.freecol.client.gui"
+    "net.sf.freecol.client.gui.label" -> "net.sf.freecol.client.gui.panel"
+    "net.sf.freecol.client.gui.label" -> "net.sf.freecol.client.gui.panel.report"
+    "net.sf.freecol.client.gui.mapviewer" -> "net.sf.freecol.client"
+    "net.sf.freecol.client.gui.mapviewer" -> "net.sf.freecol.client.control"
+    "net.sf.freecol.client.gui.mapviewer" -> "net.sf.freecol.client.gui"
+    "net.sf.freecol.client.gui.menu" -> "net.sf.freecol.client"
+    "net.sf.freecol.client.gui.menu" -> "net.sf.freecol.client.gui"
+    "net.sf.freecol.client.gui.menu" -> "net.sf.freecol.client.gui.action"
+    "net.sf.freecol.client.gui.menu" -> "net.sf.freecol.client.gui.panel"
+    "net.sf.freecol.client.gui.option" -> "net.sf.freecol.client.gui"
+    "net.sf.freecol.client.gui.option" -> "net.sf.freecol.client.gui.action"
+    "net.sf.freecol.client.gui.option" -> "net.sf.freecol.client.gui.panel"
+    "net.sf.freecol.client.gui.option" -> "net.sf.freecol.client.gui.plaf"
+    "net.sf.freecol.client.gui.panel" -> "net.sf.freecol.client"
+    "net.sf.freecol.client.gui.panel" -> "net.sf.freecol.client.control"
+    "net.sf.freecol.client.gui.panel" -> "net.sf.freecol.client.gui"
+    "net.sf.freecol.client.gui.panel" -> "net.sf.freecol.client.gui.action"
+    "net.sf.freecol.client.gui.panel" -> "net.sf.freecol.client.gui.label"
+    "net.sf.freecol.client.gui.panel" -> "net.sf.freecol.client.gui.panel"
+    "net.sf.freecol.client.gui.panel" -> "net.sf.freecol.client.gui.plaf"
+    "net.sf.freecol.client.gui.panel" -> "net.sf.freecol.client.gui.tooltip"
+    "net.sf.freecol.client.gui.panel.colopedia" -> "net.sf.freecol.client"
+    "net.sf.freecol.client.gui.panel.colopedia" -> "net.sf.freecol.client.gui"
+    "net.sf.freecol.client.gui.panel.colopedia" -> "net.sf.freecol.client.gui.action"
+    "net.sf.freecol.client.gui.panel.colopedia" -> "net.sf.freecol.client.gui.panel"
+    "net.sf.freecol.client.gui.panel.report" -> "net.sf.freecol.client"
+    "net.sf.freecol.client.gui.panel.report" -> "net.sf.freecol.client.gui"
+    "net.sf.freecol.client.gui.panel.report" -> "net.sf.freecol.client.gui.label"
+    "net.sf.freecol.client.gui.panel.report" -> "net.sf.freecol.client.gui.panel"
+    "net.sf.freecol.client.gui.plaf" -> "net.sf.freecol.client.gui"
+    "net.sf.freecol.client.gui.plaf" -> "net.sf.freecol.client.gui.panel"
+    "net.sf.freecol.client.gui.tooltip" -> "net.sf.freecol.client"
+    "net.sf.freecol.client.gui.tooltip" -> "net.sf.freecol.client.gui"
+    "net.sf.freecol.client.gui.tooltip" -> "net.sf.freecol.client.gui.label"
+    "net.sf.freecol.client.gui.tooltip" -> "net.sf.freecol.client.gui.panel"
+    "net.sf.freecol.client.gui.video" -> "net.sf.freecol.client.gui.panel"
+}
+----

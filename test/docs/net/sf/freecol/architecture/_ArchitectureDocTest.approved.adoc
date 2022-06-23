@@ -1,0 +1,12 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+
+= Architecture doc test
+
+The goal of this page, is to document some information about project architecture.
+
+include::_ArchitectureDocTest.server.approved.adoc[leveloffset=+1]
+
+include::_ArchitectureDocTest.client.approved.adoc[leveloffset=+1]
+
+include::_ArchitectureDocTest.common.approved.adoc[leveloffset=+1]

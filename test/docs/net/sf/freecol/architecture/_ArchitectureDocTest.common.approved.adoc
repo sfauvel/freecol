@@ -1,0 +1,126 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+
+[#net_sf_freecol_architecture_architecturedoctest_common]
+= Common
+
+The graph below shows dependencies between packages in the project.
+
+[graphviz]
+----
+digraph g {
+    rankdir=TD;
+    node [margin=0.1 fontcolor=black fontsize=16 width=0.5 shape=rect style=filled fillcolor="#0fd289"]
+    subgraph cluster_ALL {
+        bgcolor="#05fdCC";
+        "net.sf.freecol.common"
+    }
+    subgraph cluster_debug {
+        bgcolor="#05fdCC";
+        "net.sf.freecol.common.debug"
+    }
+    subgraph cluster_metaserver {
+        bgcolor="#05fdCC";
+        "net.sf.freecol.common.metaserver"
+    }
+    subgraph cluster_util {
+        bgcolor="#05fdCC";
+        "net.sf.freecol.common.util"
+    }
+    subgraph cluster_io {
+        bgcolor="#05fdCC";
+        "net.sf.freecol.common.io"
+        "net.sf.freecol.common.io.sza"
+    }
+    subgraph cluster_sound {
+        bgcolor="#05fdCC";
+        "net.sf.freecol.common.sound"
+    }
+    subgraph cluster_resources {
+        bgcolor="#05fdCC";
+        "net.sf.freecol.common.resources"
+    }
+    subgraph cluster_logging {
+        bgcolor="#05fdCC";
+        "net.sf.freecol.common.logging"
+    }
+    subgraph cluster_networking {
+        bgcolor="#05fdCC";
+        "net.sf.freecol.common.networking"
+    }
+    subgraph cluster_model {
+        bgcolor="#05fdCC";
+        "net.sf.freecol.common.model"
+        "net.sf.freecol.common.model.mission"
+        "net.sf.freecol.common.model.pathfinding"
+    }
+    subgraph cluster_i18n {
+        bgcolor="#05fdCC";
+        "net.sf.freecol.common.i18n"
+    }
+    subgraph cluster_option {
+        bgcolor="#05fdCC";
+        "net.sf.freecol.common.option"
+    }
+    
+    "net.sf.freecol.common.debug" -> "net.sf.freecol.common.i18n"
+    "net.sf.freecol.common.debug" -> "net.sf.freecol.common.io"
+    "net.sf.freecol.common.debug" -> "net.sf.freecol.common.model"
+    "net.sf.freecol.common.debug" -> "net.sf.freecol.common.option"
+    "net.sf.freecol.common.debug" -> "net.sf.freecol.common.util"
+    "net.sf.freecol.common.i18n" -> "net.sf.freecol.common"
+    "net.sf.freecol.common.i18n" -> "net.sf.freecol.common.i18n"
+    "net.sf.freecol.common.i18n" -> "net.sf.freecol.common.io"
+    "net.sf.freecol.common.i18n" -> "net.sf.freecol.common.model"
+    "net.sf.freecol.common.i18n" -> "net.sf.freecol.common.util"
+    "net.sf.freecol.common.io" -> "net.sf.freecol.common"
+    "net.sf.freecol.common.io" -> "net.sf.freecol.common.debug"
+    "net.sf.freecol.common.io" -> "net.sf.freecol.common.i18n"
+    "net.sf.freecol.common.io" -> "net.sf.freecol.common.model"
+    "net.sf.freecol.common.io" -> "net.sf.freecol.common.resources"
+    "net.sf.freecol.common.io" -> "net.sf.freecol.common.util"
+    "net.sf.freecol.common.io.sza" -> "net.sf.freecol.common.util"
+    "net.sf.freecol.common.logging" -> "net.sf.freecol.common"
+    "net.sf.freecol.common.logging" -> "net.sf.freecol.common.debug"
+    "net.sf.freecol.common.logging" -> "net.sf.freecol.common.util"
+    "net.sf.freecol.common.metaserver" -> "net.sf.freecol.common"
+    "net.sf.freecol.common.metaserver" -> "net.sf.freecol.common.networking"
+    "net.sf.freecol.common.metaserver" -> "net.sf.freecol.common.util"
+    "net.sf.freecol.common.model" -> "net.sf.freecol.common"
+    "net.sf.freecol.common.model" -> "net.sf.freecol.common.debug"
+    "net.sf.freecol.common.model" -> "net.sf.freecol.common.i18n"
+    "net.sf.freecol.common.model" -> "net.sf.freecol.common.io"
+    "net.sf.freecol.common.model" -> "net.sf.freecol.common.model"
+    "net.sf.freecol.common.model" -> "net.sf.freecol.common.model.pathfinding"
+    "net.sf.freecol.common.model" -> "net.sf.freecol.common.networking"
+    "net.sf.freecol.common.model" -> "net.sf.freecol.common.option"
+    "net.sf.freecol.common.model" -> "net.sf.freecol.common.util"
+    "net.sf.freecol.common.model.mission" -> "net.sf.freecol.common.io"
+    "net.sf.freecol.common.model.mission" -> "net.sf.freecol.common.model"
+    "net.sf.freecol.common.model.mission" -> "net.sf.freecol.common.util"
+    "net.sf.freecol.common.model.pathfinding" -> "net.sf.freecol.common.model"
+    "net.sf.freecol.common.model.pathfinding" -> "net.sf.freecol.common.util"
+    "net.sf.freecol.common.networking" -> "net.sf.freecol.common"
+    "net.sf.freecol.common.networking" -> "net.sf.freecol.common.debug"
+    "net.sf.freecol.common.networking" -> "net.sf.freecol.common.io"
+    "net.sf.freecol.common.networking" -> "net.sf.freecol.common.metaserver"
+    "net.sf.freecol.common.networking" -> "net.sf.freecol.common.model"
+    "net.sf.freecol.common.networking" -> "net.sf.freecol.common.networking"
+    "net.sf.freecol.common.networking" -> "net.sf.freecol.common.option"
+    "net.sf.freecol.common.networking" -> "net.sf.freecol.common.util"
+    "net.sf.freecol.common.option" -> "net.sf.freecol.common"
+    "net.sf.freecol.common.option" -> "net.sf.freecol.common.i18n"
+    "net.sf.freecol.common.option" -> "net.sf.freecol.common.io"
+    "net.sf.freecol.common.option" -> "net.sf.freecol.common.model"
+    "net.sf.freecol.common.option" -> "net.sf.freecol.common.option"
+    "net.sf.freecol.common.option" -> "net.sf.freecol.common.util"
+    "net.sf.freecol.common.resources" -> "net.sf.freecol.common.io.sza"
+    "net.sf.freecol.common.resources" -> "net.sf.freecol.common.sound"
+    "net.sf.freecol.common.resources" -> "net.sf.freecol.common.util"
+    "net.sf.freecol.common.sound" -> "net.sf.freecol.common.option"
+    "net.sf.freecol.common.sound" -> "net.sf.freecol.common.util"
+    "net.sf.freecol.common.util" -> "net.sf.freecol.common.debug"
+    "net.sf.freecol.common.util" -> "net.sf.freecol.common.model"
+    "net.sf.freecol.common.util" -> "net.sf.freecol.common.util"
+}
+----

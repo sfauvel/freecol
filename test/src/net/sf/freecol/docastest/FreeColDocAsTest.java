@@ -3,6 +3,7 @@ package net.sf.freecol.docastest;
 import net.sf.freecol.common.io.FreeColTcFile;
 import net.sf.freecol.common.model.*;
 import net.sf.freecol.util.test.FreeColTestCase;
+import org.junit.Before;
 import org.junit.Test;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 import org.sfvl.doctesting.utils.Config;
@@ -17,6 +18,11 @@ public class FreeColDocAsTest extends DocAsTest {
 
     public static final Path IMAGE_PATH = Config.DOC_PATH.resolve("images");
     FreeColTestCase testCase = new FreeColTestCase();
+
+    @Before
+    public void initGame() {
+        getGame();
+    }
 
     public static Specification spec() {
         return FreeColTestCase.spec();
