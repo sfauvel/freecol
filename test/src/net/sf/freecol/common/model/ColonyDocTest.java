@@ -150,15 +150,25 @@ public class ColonyDocTest extends FreeColDocAsTest {
                 .collect(Collectors.joining("\n"));
     }
 
+    public class ColonyPrinter {
+
+        public String print(Colony colony) {
+            return String.join("\n",
+                    "====",
+                    "Name : " + colony.getName(),
+                    "",
+                    "Current building : " + includeImage(colony.getCurrentlyBuilding()),
+                    "===="
+                    );
+        }
+
+    }
     private String displayColony(Colony colony) {
+        final ColonyPrinter printer = new ColonyPrinter();
         return String.join("\n",
                 ".Standard colony",
                 "[%collapsible]",
-                "====",
-                "Name : " + colony.getName(),
-                "",
-                "Current building : " + includeImage(colony.getCurrentlyBuilding()),
-                "====");
+                printer.print(colony));
     }
 
 
