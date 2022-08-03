@@ -14,6 +14,7 @@ import net.sf.freecol.server.FreeColServer;
 import net.sf.freecol.util.test.FreeColTestCase;
 
 import java.io.File;
+import java.net.InetAddress;
 import java.util.List;
 
 class MockFreeColClient implements FreeColClient {
@@ -268,12 +269,18 @@ class MockFreeColClient implements FreeColClient {
     }
 
     @Override
-    public FreeColServer startServer(boolean b, boolean b1, Specification spec, int i) {
+    public FreeColServer startServer(boolean publicServer,
+                                     boolean singlePlayer, Specification spec,
+                                     InetAddress address,
+                                     int port) {
         return null;
     }
 
     @Override
-    public FreeColServer startServer(boolean publicServer, boolean singlePlayer, File file, int port, String serverName) {
+    public FreeColServer startServer(boolean publicServer,
+                                     boolean singlePlayer,
+                                     File saveFile, InetAddress address,
+                                     int port, String name) {
         return null;
     }
 

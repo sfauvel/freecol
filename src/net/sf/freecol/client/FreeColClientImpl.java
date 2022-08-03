@@ -23,6 +23,7 @@ import java.awt.Dimension;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -155,15 +156,15 @@ public final class FreeColClientImpl implements FreeColClient {
                          final Specification spec) {
         String quitName = FreeCol.CLIENT_THREAD + "Quit Game";
         Runtime.getRuntime().addShutdownHook(new Thread(quitName) {
-                /**
-                 * {@inheritDoc}
-                 */
-                @Override
-                public void run() {
-                    stopServer();
-                }
-            });
-        
+            /**
+             * {@inheritDoc}
+             */
+            @Override
+            public void run() {
+                stopServer();
+            }
+        });
+
         if (FreeCol.getHeadless() && savedGame == null && spec == null) {
             FreeCol.fatal(logger, Messages.message("client.headlessRequires"));
         }
@@ -183,9 +184,9 @@ public final class FreeColClientImpl implements FreeColClient {
         }
         if (baseData == null) {
             FreeCol.fatal(logger,
-                Messages.message(StringTemplate.template("client.baseData")
-                    .addName("%dir%", baseDirectory.getName()))
-                + ((ioeMessage == null) ? "" : "\n" + ioeMessage));
+                    Messages.message(StringTemplate.template("client.baseData")
+                            .addName("%dir%", baseDirectory.getName()))
+                            + ((ioeMessage == null) ? "" : "\n" + ioeMessage));
         }
 
         this.serverAPI = new UserServerAPI();
@@ -210,10 +211,10 @@ public final class FreeColClientImpl implements FreeColClient {
         // Not so easy, since the ActionManager also creates tile
         // improvement actions, which depend on the specification.
         // However, this step could probably be delayed.
-        ResourceManager.addMapping("base", baseData.getResourceMapping());
-        
-        FreeColTcFile tcData = FreeColTcFile.getFreeColTcFile("classic");
-        ResourceManager.addMapping("tc", tcData.getResourceMapping());
+        ResourceManager.setBaseData(baseData);
+
+        final FreeColTcFile tcData = FreeColTcFile.getFreeColTcFile(FreeCol.getTc());
+        ResourceManager.setTcData(tcData);
 
         actionManager = new ActionManager(this);
         actionManager.initializeActions(inGameController, connectController);
@@ -224,18 +225,15 @@ public final class FreeColClientImpl implements FreeColClient {
         this.clientOptions.fixClientOptions();
 
         // Reset the mod resources as a result of the client option update.
-        for (FreeColModFile f : this.clientOptions.getActiveMods()) {
-            ResourceManager.addMapping("mod " + f.getId(),
-                                       f.getResourceMapping());
-        }
-        
+        ResourceManager.setMods(this.clientOptions.getActiveMods());
+
         /*
          * All mods are loaded, so the GUI can safely be created.
          */
 
         gui = (FreeCol.getHeadless()) ? new GUI(this)
                 : new SwingGUI(this);
-        
+
         // Swing system and look-and-feel initialization.
         if (!FreeCol.getHeadless()) {
             try {
@@ -245,10 +243,10 @@ public final class FreeColClientImpl implements FreeColClient {
                         Messages.message("client.laf") + "\n" + e.getMessage());
             }
         }
-        
+
         // Initialize Sound (depends on client options)
         this.soundController = new SoundController(this, sound);
-        
+
         /*
          * Please do NOT move preloading before mods are loaded -- as that
          * might cause some images to be loaded from base and other images
@@ -257,12 +255,12 @@ public final class FreeColClientImpl implements FreeColClient {
         ResourceManager.startPreloading(() -> {
             /*
              * We can allow the GUI to be displayed while the preloading is running.
-             * 
+             *
              * In that case we need to add that preloading gets aborted before
              * ResourceManager.addMapping is called (which is now performed when
-             * loading a game). 
+             * loading a game).
              */
-    
+
             /*
              * Run later on the EDT so that we ensure pending GUI actions have
              * completed.
@@ -274,10 +272,10 @@ public final class FreeColClientImpl implements FreeColClient {
                 }
                 // Start the GUI (headless-safe)
                 gui.startGUI(windowSize);
-        
+
                 // Update the actions with the running GUI, resources may have changed.
                 if (this.actionManager != null) updateActions();
-                
+
                 startFirstTaskInGui(userMsg, showOpeningVideo, savedGame, spec);
             });
         });
@@ -829,21 +827,24 @@ public final class FreeColClientImpl implements FreeColClient {
      * @param publicServer If true, add to the meta-server.
      * @param singlePlayer True if this is a single player game.
      * @param spec The {@code Specification} to use in this game.
-     * @param port The TCP port to use for the public socket.
+     * @param address The address to use for the public socket.
+     * @param port The TCP port to use for the public socket. If null, try
+     *      ports until
      * @return A new {@code FreeColServer} or null on error.
      */
     public FreeColServer startServer(boolean publicServer,
                                      boolean singlePlayer, Specification spec,
+                                     InetAddress address,
                                      int port) {
         final FreeColServer fcs;
         try {
-            fcs = new FreeColServer(publicServer, singlePlayer, spec,
-                                    port, null);
+            fcs = new FreeColServer(publicServer, singlePlayer, spec, address, port, null);
+            if (!fcs.registerWithMetaServer()) {
+                fcs.shutdown();
+                return failToMain(null, "server.noRouteToServer");
+            }
         } catch (IOException ioe) {
             return failToMain(ioe, "server.initialize");
-        }
-        if (publicServer && !fcs.getPublicServer()) {
-            return failToMain(null, "server.noRouteToServer");
         }
 
         setFreeColServer(fcs);
@@ -857,13 +858,15 @@ public final class FreeColClientImpl implements FreeColClient {
      * @param publicServer If true, add to the meta-server.
      * @param singlePlayer True if this is a single player game.
      * @param saveFile The saved game {@code File}.
+     * @param address The TCP address to use for the public socket.
      * @param port The TCP port to use for the public socket.
      * @param name An optional name for the server.
      * @return A new {@code FreeColServer}, or null on error.
      */
     public FreeColServer startServer(boolean publicServer,
                                      boolean singlePlayer,
-                                     File saveFile, int port, String name) {
+                                     File saveFile, InetAddress address,
+                                     int port, String name) {
         final FreeColSavegameFile fsg;
         try {
             fsg = new FreeColSavegameFile(saveFile);
@@ -874,7 +877,11 @@ public final class FreeColClientImpl implements FreeColClient {
         }
         final FreeColServer fcs;
         try {
-            fcs = new FreeColServer(fsg, (Specification)null, port, name);
+            fcs = new FreeColServer(fsg, (Specification)null, address, port, name);
+            fcs.setPublicServer(publicServer);
+            if (!fcs.registerWithMetaServer()) {
+                return failToMain(null, "server.noRouteToServer");
+            }
         } catch (XMLStreamException xse) {
             return failToMain(xse, FreeCol.badFile("error.couldNotLoad", saveFile));
         } catch (Exception ex) {
@@ -884,7 +891,7 @@ public final class FreeColClientImpl implements FreeColClient {
         setFreeColServer(fcs);
         setSinglePlayer(singlePlayer);
         this.inGameController.setGameConnected();
-        ResourceManager.addMapping("game", fsg.getResourceMapping());
+        ResourceManager.setSavegameFile(fsg);
         return fcs;
     }
     

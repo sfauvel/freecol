@@ -52,7 +52,7 @@ public class FreeColDocAsTest extends DocAsTest {
 
     private static class FreeColDocWriter extends DocWriter<AsciidocFormatter> {
 
-        FreeColTcFile tcData = FreeColTcFile.getFreeColTcFile("classic");
+        FreeColTcFile tcData = FreeColTcFile.getFreeColTcFile("rules/classic");
         private final ClassDocumentation classDocumentation = new ClassDocumentation(
                 getFormatter(),
                 o -> Paths.get(o.filename()),
@@ -81,7 +81,7 @@ public class FreeColDocAsTest extends DocAsTest {
 
         private String getResourcesPath() {
             final DocPath docPath = new DocPath(this.getClass());
-            FreeColTcFile tcData = FreeColTcFile.getFreeColTcFile("classic");
+            FreeColTcFile tcData = FreeColTcFile.getFreeColTcFile("rules/classic");
             final Path relativizedPath = Config.DOC_PATH.relativize(Paths.get("."))
                     .resolve(tcData.getPath());
             return "ifndef::RESOURCES_PATH[:RESOURCES_PATH: {" + Config.DOC_PATH_TAG + "}/" + relativizedPath + "]";

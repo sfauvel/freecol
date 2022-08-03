@@ -36,7 +36,7 @@ public class FreeColGuiDocAsTest extends FreeColDocAsTest {
         assertTrue(baseDirectory.exists() && baseDirectory.isDirectory());
         FreeColDataFile baseData = new FreeColDataFile(baseDirectory);
         final ResourceMapping resourceMapping = baseData.getResourceMapping();
-        ResourceManager.addMapping("test", resourceMapping);
+//        ResourceManager.addMapping("test", resourceMapping);
     }
 
 }

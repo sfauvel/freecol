@@ -1,0 +1,91 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+
+[#net_sf_freecol_server_model_serverindiansettlementdoctest_testpricing]
+= TestPricing
+
+Inidans give a price when you sell them something. We describe how this price is computed.
+Indians count in camp: 4
+
+The top price for the camp: 13
+
+Wanted goods: 
+* NULL
+* NULL
+* NULL
+
+Should initially value military goods highly.
+But once there are enough for all the braves, the price should fall
+below half of the high price.
+
+[%autowidth]
+.Price for model.goods.horses
+
+|====
+|Amount in camp|Price for 1 unit
+
+|0|13
+|50|13
+|100|0
+|====
+
+
+Farmed goods should be much cheaper.
+It should be below half of the high price.
+
+[%autowidth]
+.Price for model.goods.grain
+
+|====
+|Good|Amount in camp|Price for 100 unit
+
+|model.goods.grain|0|48
+|====
+
+
+Rum is more interesting but the price falls with amount present.
+
+[%autowidth]
+.Price for model.goods.rum
+
+|====
+|Good|Amount in camp|Unit buy|Price for x unit
+
+|model.goods.rum|0|1|13
+|model.goods.rum|100|1|0
+|model.goods.rum|100|99|0
+|model.goods.rum|200|1|0
+|====
+
+
+On plains cotton can be grown, so cloth should be cheaper than coats.
+Cloth (245) cheaper than coats (650)
+
+On plains cotton can be grown, so cloth should be cheaper than coats.
+
+[%autowidth]
+.Prices
+
+|====
+|Unit buy|model.goods.cloth count|Price for model.goods.cloth|model.goods.coats count|Price for model.goods.coats
+
+|50|0|245|0|650
+|50|20|120|20|500
+|1|120|0|120|0
+|====
+
+
+Check that wanted goods at least increases the price.
+
+[%autowidth]
+.Prices
+
+|====
+|Wanted position|Price to buy 50 units
+
+|None|650
+|3|715
+|2|812
+|1|975
+|====
+

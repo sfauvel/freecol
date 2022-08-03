@@ -1,0 +1,6 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+
+= Server indian settlement doc test
+
+include::_ServerIndianSettlementDocTest.testPricing.approved.adoc[leveloffset=+1]

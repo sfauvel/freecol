@@ -96,14 +96,15 @@ public class ColonyDocTest extends FreeColDocAsTest {
 
     private FreeColFormatter formatter = new FreeColFormatter();
 
-    FreeColTcFile tcData = FreeColTcFile.getFreeColTcFile("classic");
+    FreeColTcFile tcData = FreeColTcFile.getFreeColTcFile("rules/classic");
     Properties prop = null;
 
     private String getProperty(String key) {
         if (prop == null) {
             prop = new Properties();
             try {
-                prop.load(new FileInputStream(tcData.getPath() + "/resources.properties"));
+//                prop.load(new FileInputStream(tcData.getPath() + "/../default/resources.properties"));
+                prop.load(new FileInputStream("data/default/resources.properties"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
