@@ -1,0 +1,928 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+
+[#net_sf_freecol_common_model_colonyproductiondoctest_testgetpotentialproduction]
+= TestGetPotentialProduction
+
+With a colony on model.tile.plains
+
+Zero potential production of cotton in town hall: 0
+
+Basic potential production of bells in town hall: 1
+
+Unit potential production of bells in town hall: 3
+
+Zero potential production of bells on center tile: 0
+
+Basic potential production of cotton on center tile: 2
+
+Zero unit potential production of cotton on center tile: 0
+
+|====
+| Location | Type | Unit | Potential production 
+
+| townHall
+| cotton
+| 
+| 0
+
+| townHall
+| bells
+| 
+| 1
+
+| townHall
+| cotton
+| freeColonist
+| 0
+
+| townHall
+| cotton
+| expertFarmer
+| 0
+
+| townHall
+| cotton
+| expertFisherman
+| 0
+
+| townHall
+| cotton
+| expertFurTrapper
+| 0
+
+| townHall
+| cotton
+| expertSilverMiner
+| 0
+
+| townHall
+| cotton
+| expertLumberJack
+| 0
+
+| townHall
+| cotton
+| expertOreMiner
+| 0
+
+| townHall
+| cotton
+| masterSugarPlanter
+| 0
+
+| townHall
+| cotton
+| masterCottonPlanter
+| 0
+
+| townHall
+| cotton
+| masterTobaccoPlanter
+| 0
+
+| townHall
+| cotton
+| firebrandPreacher
+| 0
+
+| townHall
+| cotton
+| elderStatesman
+| 0
+
+| townHall
+| cotton
+| masterCarpenter
+| 0
+
+| townHall
+| cotton
+| masterDistiller
+| 0
+
+| townHall
+| cotton
+| masterWeaver
+| 0
+
+| townHall
+| cotton
+| masterTobacconist
+| 0
+
+| townHall
+| cotton
+| masterFurTrader
+| 0
+
+| townHall
+| cotton
+| masterBlacksmith
+| 0
+
+| townHall
+| cotton
+| masterGunsmith
+| 0
+
+| townHall
+| cotton
+| seasonedScout
+| 0
+
+| townHall
+| cotton
+| hardyPioneer
+| 0
+
+| townHall
+| cotton
+| veteranSoldier
+| 0
+
+| townHall
+| cotton
+| jesuitMissionary
+| 0
+
+| townHall
+| cotton
+| indenturedServant
+| 0
+
+| townHall
+| cotton
+| pettyCriminal
+| 0
+
+| townHall
+| cotton
+| indianConvert
+| 0
+
+| townHall
+| cotton
+| brave
+| 0
+
+| townHall
+| cotton
+| colonialRegular
+| 0
+
+| townHall
+| cotton
+| kingsRegular
+| 0
+
+| townHall
+| cotton
+| caravel
+| 0
+
+| townHall
+| cotton
+| frigate
+| 0
+
+| townHall
+| cotton
+| galleon
+| 0
+
+| townHall
+| cotton
+| manOWar
+| 0
+
+| townHall
+| cotton
+| merchantman
+| 0
+
+| townHall
+| cotton
+| privateer
+| 0
+
+| townHall
+| cotton
+| artillery
+| 0
+
+| townHall
+| cotton
+| damagedArtillery
+| 0
+
+| townHall
+| cotton
+| treasureTrain
+| 0
+
+| townHall
+| cotton
+| wagonTrain
+| 0
+
+| townHall
+| cotton
+| revenger
+| 0
+
+| townHall
+| cotton
+| flyingDutchman
+| 0
+
+| townHall
+| cotton
+| undead
+| 0
+
+| townHall
+| bells
+| freeColonist
+| 3
+
+| townHall
+| bells
+| expertFarmer
+| 3
+
+| townHall
+| bells
+| expertFisherman
+| 3
+
+| townHall
+| bells
+| expertFurTrapper
+| 3
+
+| townHall
+| bells
+| expertSilverMiner
+| 3
+
+| townHall
+| bells
+| expertLumberJack
+| 3
+
+| townHall
+| bells
+| expertOreMiner
+| 3
+
+| townHall
+| bells
+| masterSugarPlanter
+| 3
+
+| townHall
+| bells
+| masterCottonPlanter
+| 3
+
+| townHall
+| bells
+| masterTobaccoPlanter
+| 3
+
+| townHall
+| bells
+| firebrandPreacher
+| 3
+
+| townHall
+| bells
+| elderStatesman
+| 6
+
+| townHall
+| bells
+| masterCarpenter
+| 3
+
+| townHall
+| bells
+| masterDistiller
+| 3
+
+| townHall
+| bells
+| masterWeaver
+| 3
+
+| townHall
+| bells
+| masterTobacconist
+| 3
+
+| townHall
+| bells
+| masterFurTrader
+| 3
+
+| townHall
+| bells
+| masterBlacksmith
+| 3
+
+| townHall
+| bells
+| masterGunsmith
+| 3
+
+| townHall
+| bells
+| seasonedScout
+| 3
+
+| townHall
+| bells
+| hardyPioneer
+| 3
+
+| townHall
+| bells
+| veteranSoldier
+| 3
+
+| townHall
+| bells
+| jesuitMissionary
+| 3
+
+| townHall
+| bells
+| indenturedServant
+| 2
+
+| townHall
+| bells
+| pettyCriminal
+| 1
+
+| townHall
+| bells
+| indianConvert
+| 1
+
+| townHall
+| bells
+| brave
+| 3
+
+| townHall
+| bells
+| colonialRegular
+| 3
+
+| townHall
+| bells
+| kingsRegular
+| 3
+
+| townHall
+| bells
+| caravel
+| 3
+
+| townHall
+| bells
+| frigate
+| 3
+
+| townHall
+| bells
+| galleon
+| 3
+
+| townHall
+| bells
+| manOWar
+| 3
+
+| townHall
+| bells
+| merchantman
+| 3
+
+| townHall
+| bells
+| privateer
+| 3
+
+| townHall
+| bells
+| artillery
+| 3
+
+| townHall
+| bells
+| damagedArtillery
+| 3
+
+| townHall
+| bells
+| treasureTrain
+| 3
+
+| townHall
+| bells
+| wagonTrain
+| 3
+
+| townHall
+| bells
+| revenger
+| 3
+
+| townHall
+| bells
+| flyingDutchman
+| 3
+
+| townHall
+| bells
+| undead
+| 3
+
+| Colony tile
+| cotton
+| freeColonist
+| 0
+
+| Colony tile
+| cotton
+| expertFarmer
+| 0
+
+| Colony tile
+| cotton
+| expertFisherman
+| 0
+
+| Colony tile
+| cotton
+| expertFurTrapper
+| 0
+
+| Colony tile
+| cotton
+| expertSilverMiner
+| 0
+
+| Colony tile
+| cotton
+| expertLumberJack
+| 0
+
+| Colony tile
+| cotton
+| expertOreMiner
+| 0
+
+| Colony tile
+| cotton
+| masterSugarPlanter
+| 0
+
+| Colony tile
+| cotton
+| masterCottonPlanter
+| 0
+
+| Colony tile
+| cotton
+| masterTobaccoPlanter
+| 0
+
+| Colony tile
+| cotton
+| firebrandPreacher
+| 0
+
+| Colony tile
+| cotton
+| elderStatesman
+| 0
+
+| Colony tile
+| cotton
+| masterCarpenter
+| 0
+
+| Colony tile
+| cotton
+| masterDistiller
+| 0
+
+| Colony tile
+| cotton
+| masterWeaver
+| 0
+
+| Colony tile
+| cotton
+| masterTobacconist
+| 0
+
+| Colony tile
+| cotton
+| masterFurTrader
+| 0
+
+| Colony tile
+| cotton
+| masterBlacksmith
+| 0
+
+| Colony tile
+| cotton
+| masterGunsmith
+| 0
+
+| Colony tile
+| cotton
+| seasonedScout
+| 0
+
+| Colony tile
+| cotton
+| hardyPioneer
+| 0
+
+| Colony tile
+| cotton
+| veteranSoldier
+| 0
+
+| Colony tile
+| cotton
+| jesuitMissionary
+| 0
+
+| Colony tile
+| cotton
+| indenturedServant
+| 0
+
+| Colony tile
+| cotton
+| pettyCriminal
+| 0
+
+| Colony tile
+| cotton
+| indianConvert
+| 0
+
+| Colony tile
+| cotton
+| brave
+| 0
+
+| Colony tile
+| cotton
+| colonialRegular
+| 0
+
+| Colony tile
+| cotton
+| kingsRegular
+| 0
+
+| Colony tile
+| cotton
+| caravel
+| 0
+
+| Colony tile
+| cotton
+| frigate
+| 0
+
+| Colony tile
+| cotton
+| galleon
+| 0
+
+| Colony tile
+| cotton
+| manOWar
+| 0
+
+| Colony tile
+| cotton
+| merchantman
+| 0
+
+| Colony tile
+| cotton
+| privateer
+| 0
+
+| Colony tile
+| cotton
+| artillery
+| 0
+
+| Colony tile
+| cotton
+| damagedArtillery
+| 0
+
+| Colony tile
+| cotton
+| treasureTrain
+| 0
+
+| Colony tile
+| cotton
+| wagonTrain
+| 0
+
+| Colony tile
+| cotton
+| revenger
+| 0
+
+| Colony tile
+| cotton
+| flyingDutchman
+| 0
+
+| Colony tile
+| cotton
+| undead
+| 0
+
+| Colony tile
+| bells
+| freeColonist
+| 0
+
+| Colony tile
+| bells
+| expertFarmer
+| 0
+
+| Colony tile
+| bells
+| expertFisherman
+| 0
+
+| Colony tile
+| bells
+| expertFurTrapper
+| 0
+
+| Colony tile
+| bells
+| expertSilverMiner
+| 0
+
+| Colony tile
+| bells
+| expertLumberJack
+| 0
+
+| Colony tile
+| bells
+| expertOreMiner
+| 0
+
+| Colony tile
+| bells
+| masterSugarPlanter
+| 0
+
+| Colony tile
+| bells
+| masterCottonPlanter
+| 0
+
+| Colony tile
+| bells
+| masterTobaccoPlanter
+| 0
+
+| Colony tile
+| bells
+| firebrandPreacher
+| 0
+
+| Colony tile
+| bells
+| elderStatesman
+| 0
+
+| Colony tile
+| bells
+| masterCarpenter
+| 0
+
+| Colony tile
+| bells
+| masterDistiller
+| 0
+
+| Colony tile
+| bells
+| masterWeaver
+| 0
+
+| Colony tile
+| bells
+| masterTobacconist
+| 0
+
+| Colony tile
+| bells
+| masterFurTrader
+| 0
+
+| Colony tile
+| bells
+| masterBlacksmith
+| 0
+
+| Colony tile
+| bells
+| masterGunsmith
+| 0
+
+| Colony tile
+| bells
+| seasonedScout
+| 0
+
+| Colony tile
+| bells
+| hardyPioneer
+| 0
+
+| Colony tile
+| bells
+| veteranSoldier
+| 0
+
+| Colony tile
+| bells
+| jesuitMissionary
+| 0
+
+| Colony tile
+| bells
+| indenturedServant
+| 0
+
+| Colony tile
+| bells
+| pettyCriminal
+| 0
+
+| Colony tile
+| bells
+| indianConvert
+| 0
+
+| Colony tile
+| bells
+| brave
+| 0
+
+| Colony tile
+| bells
+| colonialRegular
+| 0
+
+| Colony tile
+| bells
+| kingsRegular
+| 0
+
+| Colony tile
+| bells
+| caravel
+| 0
+
+| Colony tile
+| bells
+| frigate
+| 0
+
+| Colony tile
+| bells
+| galleon
+| 0
+
+| Colony tile
+| bells
+| manOWar
+| 0
+
+| Colony tile
+| bells
+| merchantman
+| 0
+
+| Colony tile
+| bells
+| privateer
+| 0
+
+| Colony tile
+| bells
+| artillery
+| 0
+
+| Colony tile
+| bells
+| damagedArtillery
+| 0
+
+| Colony tile
+| bells
+| treasureTrain
+| 0
+
+| Colony tile
+| bells
+| wagonTrain
+| 0
+
+| Colony tile
+| bells
+| revenger
+| 0
+
+| Colony tile
+| bells
+| flyingDutchman
+| 0
+
+| Colony tile
+| bells
+| undead
+| 0
+|====
+
+|====
+| Location | Type | Potential production | Unit 
+
+| townHall
+| cotton
+| 0
+a| [%collapsible]
+.freeColonist, expertFarmer, ...
+====
+expertFisherman, expertFurTrapper, expertSilverMiner, expertLumberJack, expertOreMiner, masterSugarPlanter, masterCottonPlanter, masterTobaccoPlanter, firebrandPreacher, elderStatesman, masterCarpenter, masterDistiller, masterWeaver, masterTobacconist, masterFurTrader, masterBlacksmith, masterGunsmith, seasonedScout, hardyPioneer, veteranSoldier, jesuitMissionary, indenturedServant, pettyCriminal, indianConvert, brave, colonialRegular, kingsRegular, caravel, frigate, galleon, manOWar, merchantman, privateer, artillery, damagedArtillery, treasureTrain, wagonTrain, revenger, flyingDutchman, undead
+====
+
+| townHall
+| bells
+| 1
+a| pettyCriminal, indianConvert
+
+| townHall
+| bells
+| 2
+a| indenturedServant
+
+| townHall
+| bells
+| 3
+a| [%collapsible]
+.freeColonist, expertFarmer, ...
+====
+expertFisherman, expertFurTrapper, expertSilverMiner, expertLumberJack, expertOreMiner, masterSugarPlanter, masterCottonPlanter, masterTobaccoPlanter, firebrandPreacher, masterCarpenter, masterDistiller, masterWeaver, masterTobacconist, masterFurTrader, masterBlacksmith, masterGunsmith, seasonedScout, hardyPioneer, veteranSoldier, jesuitMissionary, brave, colonialRegular, kingsRegular, caravel, frigate, galleon, manOWar, merchantman, privateer, artillery, damagedArtillery, treasureTrain, wagonTrain, revenger, flyingDutchman, undead
+====
+
+| townHall
+| bells
+| 6
+a| elderStatesman
+
+| Colony tile
+| cotton
+| 0
+a| [%collapsible]
+.freeColonist, expertFarmer, ...
+====
+expertFisherman, expertFurTrapper, expertSilverMiner, expertLumberJack, expertOreMiner, masterSugarPlanter, masterCottonPlanter, masterTobaccoPlanter, firebrandPreacher, elderStatesman, masterCarpenter, masterDistiller, masterWeaver, masterTobacconist, masterFurTrader, masterBlacksmith, masterGunsmith, seasonedScout, hardyPioneer, veteranSoldier, jesuitMissionary, indenturedServant, pettyCriminal, indianConvert, brave, colonialRegular, kingsRegular, caravel, frigate, galleon, manOWar, merchantman, privateer, artillery, damagedArtillery, treasureTrain, wagonTrain, revenger, flyingDutchman, undead
+====
+
+| Colony tile
+| bells
+| 0
+a| [%collapsible]
+.freeColonist, expertFarmer, ...
+====
+expertFisherman, expertFurTrapper, expertSilverMiner, expertLumberJack, expertOreMiner, masterSugarPlanter, masterCottonPlanter, masterTobaccoPlanter, firebrandPreacher, elderStatesman, masterCarpenter, masterDistiller, masterWeaver, masterTobacconist, masterFurTrader, masterBlacksmith, masterGunsmith, seasonedScout, hardyPioneer, veteranSoldier, jesuitMissionary, indenturedServant, pettyCriminal, indianConvert, brave, colonialRegular, kingsRegular, caravel, frigate, galleon, manOWar, merchantman, privateer, artillery, damagedArtillery, treasureTrain, wagonTrain, revenger, flyingDutchman, undead
+====
+|====

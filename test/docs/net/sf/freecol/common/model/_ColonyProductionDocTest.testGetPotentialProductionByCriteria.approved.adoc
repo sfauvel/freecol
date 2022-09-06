@@ -1,0 +1,60 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+
+[#net_sf_freecol_common_model_colonyproductiondoctest_testgetpotentialproductionbycriteria]
+= TestGetPotentialProductionByCriteria
+
+|====
+| Location | Type | goodGovernmentLimit / veryGoodGovernmentLimit | Unit 
+
+| townHall
+| cotton
+| 0 / 0
+a| [%collapsible]
+.freeColonist, expertFarmer, ...
+====
+expertFisherman, expertFurTrapper, expertSilverMiner, expertLumberJack, expertOreMiner, masterSugarPlanter, masterCottonPlanter, masterTobaccoPlanter, firebrandPreacher, elderStatesman, masterCarpenter, masterDistiller, masterWeaver, masterTobacconist, masterFurTrader, masterBlacksmith, masterGunsmith, seasonedScout, hardyPioneer, veteranSoldier, jesuitMissionary, indenturedServant, pettyCriminal, indianConvert, brave, colonialRegular, kingsRegular, caravel, frigate, galleon, manOWar, merchantman, privateer, artillery, damagedArtillery, treasureTrain, wagonTrain, revenger, flyingDutchman, undead
+====
+
+| townHall
+| bells
+| 1 / 2
+a| pettyCriminal, indianConvert
+
+| townHall
+| bells
+| 6 / 8
+a| elderStatesman
+
+| townHall
+| bells
+| 2 / 3
+a| indenturedServant
+
+| townHall
+| bells
+| 3 / 4
+a| [%collapsible]
+.freeColonist, expertFarmer, ...
+====
+expertFisherman, expertFurTrapper, expertSilverMiner, expertLumberJack, expertOreMiner, masterSugarPlanter, masterCottonPlanter, masterTobaccoPlanter, firebrandPreacher, masterCarpenter, masterDistiller, masterWeaver, masterTobacconist, masterFurTrader, masterBlacksmith, masterGunsmith, seasonedScout, hardyPioneer, veteranSoldier, jesuitMissionary, brave, colonialRegular, kingsRegular, caravel, frigate, galleon, manOWar, merchantman, privateer, artillery, damagedArtillery, treasureTrain, wagonTrain, revenger, flyingDutchman, undead
+====
+
+| Colony tile
+| cotton
+| 0 / 0
+a| [%collapsible]
+.freeColonist, expertFarmer, ...
+====
+expertFisherman, expertFurTrapper, expertSilverMiner, expertLumberJack, expertOreMiner, masterSugarPlanter, masterCottonPlanter, masterTobaccoPlanter, firebrandPreacher, elderStatesman, masterCarpenter, masterDistiller, masterWeaver, masterTobacconist, masterFurTrader, masterBlacksmith, masterGunsmith, seasonedScout, hardyPioneer, veteranSoldier, jesuitMissionary, indenturedServant, pettyCriminal, indianConvert, brave, colonialRegular, kingsRegular, caravel, frigate, galleon, manOWar, merchantman, privateer, artillery, damagedArtillery, treasureTrain, wagonTrain, revenger, flyingDutchman, undead
+====
+
+| Colony tile
+| bells
+| 0 / 0
+a| [%collapsible]
+.freeColonist, expertFarmer, ...
+====
+expertFisherman, expertFurTrapper, expertSilverMiner, expertLumberJack, expertOreMiner, masterSugarPlanter, masterCottonPlanter, masterTobaccoPlanter, firebrandPreacher, elderStatesman, masterCarpenter, masterDistiller, masterWeaver, masterTobacconist, masterFurTrader, masterBlacksmith, masterGunsmith, seasonedScout, hardyPioneer, veteranSoldier, jesuitMissionary, indenturedServant, pettyCriminal, indianConvert, brave, colonialRegular, kingsRegular, caravel, frigate, galleon, manOWar, merchantman, privateer, artillery, damagedArtillery, treasureTrain, wagonTrain, revenger, flyingDutchman, undead
+====
+|====

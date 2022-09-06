@@ -1,0 +1,8 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+
+= Colony production doc test
+
+include::_ColonyProductionDocTest.testGetPotentialProduction.approved.adoc[leveloffset=+1]
+
+include::_ColonyProductionDocTest.testGetPotentialProductionByCriteria.approved.adoc[leveloffset=+1]
