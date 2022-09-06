@@ -1,0 +1,336 @@
+townHall cotton freeColonist 50 0
+townHall cotton freeColonist 100 0
+townHall cotton expertFarmer 50 0
+townHall cotton expertFarmer 100 0
+townHall cotton expertFisherman 50 0
+townHall cotton expertFisherman 100 0
+townHall cotton expertFurTrapper 50 0
+townHall cotton expertFurTrapper 100 0
+townHall cotton expertSilverMiner 50 0
+townHall cotton expertSilverMiner 100 0
+townHall cotton expertLumberJack 50 0
+townHall cotton expertLumberJack 100 0
+townHall cotton expertOreMiner 50 0
+townHall cotton expertOreMiner 100 0
+townHall cotton masterSugarPlanter 50 0
+townHall cotton masterSugarPlanter 100 0
+townHall cotton masterCottonPlanter 50 0
+townHall cotton masterCottonPlanter 100 0
+townHall cotton masterTobaccoPlanter 50 0
+townHall cotton masterTobaccoPlanter 100 0
+townHall cotton firebrandPreacher 50 0
+townHall cotton firebrandPreacher 100 0
+townHall cotton elderStatesman 50 0
+townHall cotton elderStatesman 100 0
+townHall cotton masterCarpenter 50 0
+townHall cotton masterCarpenter 100 0
+townHall cotton masterDistiller 50 0
+townHall cotton masterDistiller 100 0
+townHall cotton masterWeaver 50 0
+townHall cotton masterWeaver 100 0
+townHall cotton masterTobacconist 50 0
+townHall cotton masterTobacconist 100 0
+townHall cotton masterFurTrader 50 0
+townHall cotton masterFurTrader 100 0
+townHall cotton masterBlacksmith 50 0
+townHall cotton masterBlacksmith 100 0
+townHall cotton masterGunsmith 50 0
+townHall cotton masterGunsmith 100 0
+townHall cotton seasonedScout 50 0
+townHall cotton seasonedScout 100 0
+townHall cotton hardyPioneer 50 0
+townHall cotton hardyPioneer 100 0
+townHall cotton veteranSoldier 50 0
+townHall cotton veteranSoldier 100 0
+townHall cotton jesuitMissionary 50 0
+townHall cotton jesuitMissionary 100 0
+townHall cotton indenturedServant 50 0
+townHall cotton indenturedServant 100 0
+townHall cotton pettyCriminal 50 0
+townHall cotton pettyCriminal 100 0
+townHall cotton indianConvert 50 0
+townHall cotton indianConvert 100 0
+townHall cotton brave 50 0
+townHall cotton brave 100 0
+townHall cotton colonialRegular 50 0
+townHall cotton colonialRegular 100 0
+townHall cotton kingsRegular 50 0
+townHall cotton kingsRegular 100 0
+townHall cotton caravel 50 0
+townHall cotton caravel 100 0
+townHall cotton frigate 50 0
+townHall cotton frigate 100 0
+townHall cotton galleon 50 0
+townHall cotton galleon 100 0
+townHall cotton manOWar 50 0
+townHall cotton manOWar 100 0
+townHall cotton merchantman 50 0
+townHall cotton merchantman 100 0
+townHall cotton privateer 50 0
+townHall cotton privateer 100 0
+townHall cotton artillery 50 0
+townHall cotton artillery 100 0
+townHall cotton damagedArtillery 50 0
+townHall cotton damagedArtillery 100 0
+townHall cotton treasureTrain 50 0
+townHall cotton treasureTrain 100 0
+townHall cotton wagonTrain 50 0
+townHall cotton wagonTrain 100 0
+townHall cotton revenger 50 0
+townHall cotton revenger 100 0
+townHall cotton flyingDutchman 50 0
+townHall cotton flyingDutchman 100 0
+townHall cotton undead 50 0
+townHall cotton undead 100 0
+townHall bells freeColonist 50 3
+townHall bells freeColonist 100 4
+townHall bells expertFarmer 50 3
+townHall bells expertFarmer 100 4
+townHall bells expertFisherman 50 3
+townHall bells expertFisherman 100 4
+townHall bells expertFurTrapper 50 3
+townHall bells expertFurTrapper 100 4
+townHall bells expertSilverMiner 50 3
+townHall bells expertSilverMiner 100 4
+townHall bells expertLumberJack 50 3
+townHall bells expertLumberJack 100 4
+townHall bells expertOreMiner 50 3
+townHall bells expertOreMiner 100 4
+townHall bells masterSugarPlanter 50 3
+townHall bells masterSugarPlanter 100 4
+townHall bells masterCottonPlanter 50 3
+townHall bells masterCottonPlanter 100 4
+townHall bells masterTobaccoPlanter 50 3
+townHall bells masterTobaccoPlanter 100 4
+townHall bells firebrandPreacher 50 3
+townHall bells firebrandPreacher 100 4
+townHall bells elderStatesman 50 6
+townHall bells elderStatesman 100 8
+townHall bells masterCarpenter 50 3
+townHall bells masterCarpenter 100 4
+townHall bells masterDistiller 50 3
+townHall bells masterDistiller 100 4
+townHall bells masterWeaver 50 3
+townHall bells masterWeaver 100 4
+townHall bells masterTobacconist 50 3
+townHall bells masterTobacconist 100 4
+townHall bells masterFurTrader 50 3
+townHall bells masterFurTrader 100 4
+townHall bells masterBlacksmith 50 3
+townHall bells masterBlacksmith 100 4
+townHall bells masterGunsmith 50 3
+townHall bells masterGunsmith 100 4
+townHall bells seasonedScout 50 3
+townHall bells seasonedScout 100 4
+townHall bells hardyPioneer 50 3
+townHall bells hardyPioneer 100 4
+townHall bells veteranSoldier 50 3
+townHall bells veteranSoldier 100 4
+townHall bells jesuitMissionary 50 3
+townHall bells jesuitMissionary 100 4
+townHall bells indenturedServant 50 2
+townHall bells indenturedServant 100 3
+townHall bells pettyCriminal 50 1
+townHall bells pettyCriminal 100 2
+townHall bells indianConvert 50 1
+townHall bells indianConvert 100 2
+townHall bells brave 50 3
+townHall bells brave 100 4
+townHall bells colonialRegular 50 3
+townHall bells colonialRegular 100 4
+townHall bells kingsRegular 50 3
+townHall bells kingsRegular 100 4
+townHall bells caravel 50 3
+townHall bells caravel 100 4
+townHall bells frigate 50 3
+townHall bells frigate 100 4
+townHall bells galleon 50 3
+townHall bells galleon 100 4
+townHall bells manOWar 50 3
+townHall bells manOWar 100 4
+townHall bells merchantman 50 3
+townHall bells merchantman 100 4
+townHall bells privateer 50 3
+townHall bells privateer 100 4
+townHall bells artillery 50 3
+townHall bells artillery 100 4
+townHall bells damagedArtillery 50 3
+townHall bells damagedArtillery 100 4
+townHall bells treasureTrain 50 3
+townHall bells treasureTrain 100 4
+townHall bells wagonTrain 50 3
+townHall bells wagonTrain 100 4
+townHall bells revenger 50 3
+townHall bells revenger 100 4
+townHall bells flyingDutchman 50 3
+townHall bells flyingDutchman 100 4
+townHall bells undead 50 3
+townHall bells undead 100 4
+Colony tile cotton freeColonist 50 0
+Colony tile cotton freeColonist 100 0
+Colony tile cotton expertFarmer 50 0
+Colony tile cotton expertFarmer 100 0
+Colony tile cotton expertFisherman 50 0
+Colony tile cotton expertFisherman 100 0
+Colony tile cotton expertFurTrapper 50 0
+Colony tile cotton expertFurTrapper 100 0
+Colony tile cotton expertSilverMiner 50 0
+Colony tile cotton expertSilverMiner 100 0
+Colony tile cotton expertLumberJack 50 0
+Colony tile cotton expertLumberJack 100 0
+Colony tile cotton expertOreMiner 50 0
+Colony tile cotton expertOreMiner 100 0
+Colony tile cotton masterSugarPlanter 50 0
+Colony tile cotton masterSugarPlanter 100 0
+Colony tile cotton masterCottonPlanter 50 0
+Colony tile cotton masterCottonPlanter 100 0
+Colony tile cotton masterTobaccoPlanter 50 0
+Colony tile cotton masterTobaccoPlanter 100 0
+Colony tile cotton firebrandPreacher 50 0
+Colony tile cotton firebrandPreacher 100 0
+Colony tile cotton elderStatesman 50 0
+Colony tile cotton elderStatesman 100 0
+Colony tile cotton masterCarpenter 50 0
+Colony tile cotton masterCarpenter 100 0
+Colony tile cotton masterDistiller 50 0
+Colony tile cotton masterDistiller 100 0
+Colony tile cotton masterWeaver 50 0
+Colony tile cotton masterWeaver 100 0
+Colony tile cotton masterTobacconist 50 0
+Colony tile cotton masterTobacconist 100 0
+Colony tile cotton masterFurTrader 50 0
+Colony tile cotton masterFurTrader 100 0
+Colony tile cotton masterBlacksmith 50 0
+Colony tile cotton masterBlacksmith 100 0
+Colony tile cotton masterGunsmith 50 0
+Colony tile cotton masterGunsmith 100 0
+Colony tile cotton seasonedScout 50 0
+Colony tile cotton seasonedScout 100 0
+Colony tile cotton hardyPioneer 50 0
+Colony tile cotton hardyPioneer 100 0
+Colony tile cotton veteranSoldier 50 0
+Colony tile cotton veteranSoldier 100 0
+Colony tile cotton jesuitMissionary 50 0
+Colony tile cotton jesuitMissionary 100 0
+Colony tile cotton indenturedServant 50 0
+Colony tile cotton indenturedServant 100 0
+Colony tile cotton pettyCriminal 50 0
+Colony tile cotton pettyCriminal 100 0
+Colony tile cotton indianConvert 50 0
+Colony tile cotton indianConvert 100 0
+Colony tile cotton brave 50 0
+Colony tile cotton brave 100 0
+Colony tile cotton colonialRegular 50 0
+Colony tile cotton colonialRegular 100 0
+Colony tile cotton kingsRegular 50 0
+Colony tile cotton kingsRegular 100 0
+Colony tile cotton caravel 50 0
+Colony tile cotton caravel 100 0
+Colony tile cotton frigate 50 0
+Colony tile cotton frigate 100 0
+Colony tile cotton galleon 50 0
+Colony tile cotton galleon 100 0
+Colony tile cotton manOWar 50 0
+Colony tile cotton manOWar 100 0
+Colony tile cotton merchantman 50 0
+Colony tile cotton merchantman 100 0
+Colony tile cotton privateer 50 0
+Colony tile cotton privateer 100 0
+Colony tile cotton artillery 50 0
+Colony tile cotton artillery 100 0
+Colony tile cotton damagedArtillery 50 0
+Colony tile cotton damagedArtillery 100 0
+Colony tile cotton treasureTrain 50 0
+Colony tile cotton treasureTrain 100 0
+Colony tile cotton wagonTrain 50 0
+Colony tile cotton wagonTrain 100 0
+Colony tile cotton revenger 50 0
+Colony tile cotton revenger 100 0
+Colony tile cotton flyingDutchman 50 0
+Colony tile cotton flyingDutchman 100 0
+Colony tile cotton undead 50 0
+Colony tile cotton undead 100 0
+Colony tile bells freeColonist 50 0
+Colony tile bells freeColonist 100 0
+Colony tile bells expertFarmer 50 0
+Colony tile bells expertFarmer 100 0
+Colony tile bells expertFisherman 50 0
+Colony tile bells expertFisherman 100 0
+Colony tile bells expertFurTrapper 50 0
+Colony tile bells expertFurTrapper 100 0
+Colony tile bells expertSilverMiner 50 0
+Colony tile bells expertSilverMiner 100 0
+Colony tile bells expertLumberJack 50 0
+Colony tile bells expertLumberJack 100 0
+Colony tile bells expertOreMiner 50 0
+Colony tile bells expertOreMiner 100 0
+Colony tile bells masterSugarPlanter 50 0
+Colony tile bells masterSugarPlanter 100 0
+Colony tile bells masterCottonPlanter 50 0
+Colony tile bells masterCottonPlanter 100 0
+Colony tile bells masterTobaccoPlanter 50 0
+Colony tile bells masterTobaccoPlanter 100 0
+Colony tile bells firebrandPreacher 50 0
+Colony tile bells firebrandPreacher 100 0
+Colony tile bells elderStatesman 50 0
+Colony tile bells elderStatesman 100 0
+Colony tile bells masterCarpenter 50 0
+Colony tile bells masterCarpenter 100 0
+Colony tile bells masterDistiller 50 0
+Colony tile bells masterDistiller 100 0
+Colony tile bells masterWeaver 50 0
+Colony tile bells masterWeaver 100 0
+Colony tile bells masterTobacconist 50 0
+Colony tile bells masterTobacconist 100 0
+Colony tile bells masterFurTrader 50 0
+Colony tile bells masterFurTrader 100 0
+Colony tile bells masterBlacksmith 50 0
+Colony tile bells masterBlacksmith 100 0
+Colony tile bells masterGunsmith 50 0
+Colony tile bells masterGunsmith 100 0
+Colony tile bells seasonedScout 50 0
+Colony tile bells seasonedScout 100 0
+Colony tile bells hardyPioneer 50 0
+Colony tile bells hardyPioneer 100 0
+Colony tile bells veteranSoldier 50 0
+Colony tile bells veteranSoldier 100 0
+Colony tile bells jesuitMissionary 50 0
+Colony tile bells jesuitMissionary 100 0
+Colony tile bells indenturedServant 50 0
+Colony tile bells indenturedServant 100 0
+Colony tile bells pettyCriminal 50 0
+Colony tile bells pettyCriminal 100 0
+Colony tile bells indianConvert 50 0
+Colony tile bells indianConvert 100 0
+Colony tile bells brave 50 0
+Colony tile bells brave 100 0
+Colony tile bells colonialRegular 50 0
+Colony tile bells colonialRegular 100 0
+Colony tile bells kingsRegular 50 0
+Colony tile bells kingsRegular 100 0
+Colony tile bells caravel 50 0
+Colony tile bells caravel 100 0
+Colony tile bells frigate 50 0
+Colony tile bells frigate 100 0
+Colony tile bells galleon 50 0
+Colony tile bells galleon 100 0
+Colony tile bells manOWar 50 0
+Colony tile bells manOWar 100 0
+Colony tile bells merchantman 50 0
+Colony tile bells merchantman 100 0
+Colony tile bells privateer 50 0
+Colony tile bells privateer 100 0
+Colony tile bells artillery 50 0
+Colony tile bells artillery 100 0
+Colony tile bells damagedArtillery 50 0
+Colony tile bells damagedArtillery 100 0
+Colony tile bells treasureTrain 50 0
+Colony tile bells treasureTrain 100 0
+Colony tile bells wagonTrain 50 0
+Colony tile bells wagonTrain 100 0
+Colony tile bells revenger 50 0
+Colony tile bells revenger 100 0
+Colony tile bells flyingDutchman 50 0
+Colony tile bells flyingDutchman 100 0
+Colony tile bells undead 50 0
+Colony tile bells undead 100 0
