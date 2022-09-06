@@ -68,7 +68,7 @@ public final class SoundPlayer {
         private static final int WAIT_TIMEOUT = 100; // 100ms
 
         /** A buffer to hold data to be written to the mixer. */
-        private final byte[] data = new byte[8192];
+        private final byte[] data = new byte[16384];
 
         /** A playlist of files queued to be played. */
         private final List<File> playList = new ArrayList<>();
@@ -128,6 +128,8 @@ public final class SoundPlayer {
          * @exception IOException if unable to read or write the sound data.
          */
         private boolean playSound(File sound) throws IOException {
+            setVolume(volumeOption.getValue());
+            
             boolean ret = false;
             PropertyChangeListener volumeListener = null;
             try (AudioInputStream in = getAudioInputStream(sound)) {
@@ -142,7 +144,6 @@ public final class SoundPlayer {
                 };
                 volumeOption.addPropertyChangeListener(volumeListener);
                 changeVolume(line, getVolume());
-                
                 try {
                     this.playDone = false;
                     int rd;

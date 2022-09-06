@@ -30,6 +30,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.logging.Logger;
 
+import javax.swing.AbstractAction;
 import javax.swing.AbstractButton;
 import javax.swing.Action;
 import javax.swing.InputMap;
@@ -63,6 +64,7 @@ public abstract class FreeColPanel extends MigPanel implements ActionListener {
     protected static final String CANCEL = "CANCEL";
     protected static final String OK = "OK";
     protected static final String HELP = "HELP";
+    protected static final String ESCAPE = "ESCAPE";
 
     // Create some constants that can be used for layout contraints
     protected static final String SPAN_SPLIT_2 = "span, split 2";
@@ -75,7 +77,8 @@ public abstract class FreeColPanel extends MigPanel implements ActionListener {
 
     protected boolean editable = true;
 
-    protected JButton okButton = Utility.localizedButton("ok").withButtonStyle(ButtonStyle.IMPORTANT);
+    protected JButton okButton = Utility.localizedButton("ok")
+        .withButtonStyle(ButtonStyle.IMPORTANT);
 
 
     /**
@@ -104,8 +107,17 @@ public abstract class FreeColPanel extends MigPanel implements ActionListener {
 
         okButton.setActionCommand(OK);
         okButton.addActionListener(this);
-        
-        setCancelComponent(okButton);
+
+        // Default to ESCAPE removing the panel
+        InputMap inputMap = getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0, true),
+                     ESCAPE);
+        setEscapeAction(new AbstractAction() {
+                @Override
+                public void actionPerformed(ActionEvent ae) {
+                    getGUI().removeComponent(FreeColPanel.this);
+                }
+            });
     }
 
 
@@ -218,23 +230,6 @@ public abstract class FreeColPanel extends MigPanel implements ActionListener {
     }
 
     /**
-     * Make the given button the CANCEL button.
-     *
-     * @param cancelButton an {@code AbstractButton} value
-     */
-    public final void setCancelComponent(AbstractButton cancelButton) {
-        if (cancelButton == null) throw new NullPointerException();
-
-        InputMap inputMap
-            = getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
-        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0, true),
-                     "release");
-
-        Action cancelAction = cancelButton.getAction();
-        getActionMap().put("release", cancelAction);
-    }
-
-    /**
      * Add a routine to be called when this panel closes.
      * Triggered by Canvas.notifyClose.
      *
@@ -258,6 +253,15 @@ public abstract class FreeColPanel extends MigPanel implements ActionListener {
                 });
         }
         return this;
+    }
+
+    /**
+     * Set the action in response to the escape key.
+     *
+     * @param aa The {@code AbstractAction} to take.
+     */
+    public void setEscapeAction(AbstractAction aa) {
+        getActionMap().put(ESCAPE, aa);
     }
 
     /**

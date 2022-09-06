@@ -62,8 +62,8 @@ public class RebelToolTip extends JToolTip {
         final Specification spec = colony.getSpecification();
         final List<GoodsType> libertyGoods = spec.getLibertyGoodsTypeList();
         final int population = colony.getUnitCount();
-        final int solPercent = colony.getSoL();
-        final int rebels = Colony.calculateRebels(population, solPercent);
+        final int solPercent = colony.getSonsOfLiberty();
+        final int rebelCount = Colony.calculateRebelCount(population, solPercent);
         final Turn turn = colony.getGame().getTurn();
         
         setLayout(new BorderLayout());
@@ -73,7 +73,7 @@ public class RebelToolTip extends JToolTip {
                 .template("rebelToolTip.rebelLabel")
                 .addName("%number%", "")));
 
-        content.add(new JLabel(Integer.toString(rebels)));
+        content.add(new JLabel(Integer.toString(rebelCount)));
 
         content.add(new JLabel(solPercent + "%"));
 
@@ -81,9 +81,9 @@ public class RebelToolTip extends JToolTip {
                 .template("rebelToolTip.royalistLabel")
                 .addName("%number%", "")));
 
-        content.add(new JLabel(Integer.toString(population - rebels)));
+        content.add(new JLabel(Integer.toString(population - rebelCount)));
 
-        content.add(new JLabel(colony.getTory() + "%"));
+        content.add(new JLabel((100 - solPercent) + "%"));
 
         int libertyProduction = 0;
         for (GoodsType goodsType : libertyGoods) {
@@ -103,7 +103,7 @@ public class RebelToolTip extends JToolTip {
             });
 
         boolean capped = spec.getBoolean(GameOptions.BELL_ACCUMULATION_CAPPED)
-                && colony.getSoL() >= 100;
+                && colony.getSonsOfLiberty() >= 100;
         final int liberty = colony.getLiberty();
         final int modulo = liberty % Colony.LIBERTY_PER_REBEL;
         FreeColProgressBar progress
@@ -112,25 +112,12 @@ public class RebelToolTip extends JToolTip {
                                      ((capped) ? 0 : libertyProduction));
         content.add(progress, "span 3, alignx center, height 20:");
 
-        double turnsNext = -1.0;
-        double turns100 = -1.0;
-        double turns50 = -1.0;
+        int turnsNext = -1, turns50 = -1, turns100 = -1;
         if (libertyProduction > 0 && !capped) {
-            int requiredLiberty = Colony.LIBERTY_PER_REBEL - modulo;
-
-            turnsNext = (1 + requiredLiberty) / (double) libertyProduction;
-
-            requiredLiberty = Colony.LIBERTY_PER_REBEL * colony.getUnitCount();
-            if (liberty < requiredLiberty) {
-                turns100 = (1 + requiredLiberty - liberty)
-                        / (double) libertyProduction;
-            }
-
-            requiredLiberty /= 2;
-            if (liberty < requiredLiberty) {
-                turns50 = (1 + requiredLiberty - liberty)
-                        / (double) libertyProduction;
-            }
+            List<Integer> bonus = colony.rebelHelper(libertyProduction);
+            turnsNext = bonus.get(0);
+            turns50 = bonus.get(1);
+            turns100 = bonus.get(2);
         }
 
         final String na = Messages.message("notApplicable");
