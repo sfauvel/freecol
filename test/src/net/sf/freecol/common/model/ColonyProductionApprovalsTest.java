@@ -22,7 +22,9 @@ package net.sf.freecol.common.model;
 import net.sf.freecol.common.option.GameOptions;
 import net.sf.freecol.util.test.FreeColTestCase;
 import org.approvaltests.Approvals;
-
+import org.approvaltests.core.Options;
+import org.approvaltests.namer.ApprovalNamer;
+import org.junit.Test;
 
 import java.util.Map;
 import java.util.*;
@@ -108,6 +110,88 @@ public class ColonyProductionApprovalsTest extends FreeColTestCase {
         }
 
         Approvals.verify(buffer.toString());
+    }
+
+    @Test
+    public void testGetPotentialProductionInReadableTable() {
+        Game game = getGame();
+        FreeColTestCase.MapBuilder builder = new FreeColTestCase.MapBuilder(getGame());
+        game.changeMap(builder.build());
+
+        Colony colony = getStandardColony(1);
+        ColonyTile colonyTile = colony.getColonyTile(colony.getTile());
+        Building townHall = colony.getBuilding(townHallType);
+
+        final List<String> governement_limits = Arrays.asList(GameOptions.GOOD_GOVERNMENT_LIMIT, GameOptions.VERY_GOOD_GOVERNMENT_LIMIT);
+
+        writeln("|====");
+        writeln("| Location | Type | " + governement_limits.stream()
+                        .map(s -> s.substring(s.lastIndexOf('.') + 1))
+                        .collect(Collectors.joining(" / ")) + " | Unit ",
+                "");
+        for (WorkLocation building : Arrays.asList(townHall, colonyTile)) {
+
+            for (GoodsType goodsType : Arrays.asList(cottonType, bellsType)) {
+                final Map<String, List<UnitType>> units_keys = new HashMap<>();
+
+                Map<String, Map<String, Map.Entry<Integer, List<UnitType>>>> collectByUnitsForLimit = new HashMap<>();
+                for (String governement_limit : governement_limits) {
+                    setLiberty(game, colony, governement_limit);
+
+                    final Map<Integer, List<UnitType>> collect = spec().getUnitTypeList().stream()
+                            .collect(Collectors.groupingBy(unitType -> building.getPotentialProduction(goodsType, unitType)));
+
+                    final Map<String, Map.Entry<Integer, List<UnitType>>> collectByUnits = collect.entrySet().stream()
+                            .collect(Collectors.toMap(
+                                    e -> e.getValue().stream().map(UnitType::getSuffix).collect(Collectors.joining(",")),
+                                    e -> e));
+
+                    units_keys.putAll(collectByUnits.entrySet().stream().collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue().getValue())));
+                    collectByUnitsForLimit.put(governement_limit, collectByUnits);
+                }
+                for (String units_key : units_keys.keySet()) {
+                    List<String> datas = new ArrayList<>();
+                    for (String governement_limit : governement_limits) {
+                        final Map<String, Map.Entry<Integer, List<UnitType>>> collectByUnits = collectByUnitsForLimit.get(governement_limit);
+                        datas.add(Optional.ofNullable(collectByUnits.get(units_key)).map(e -> e.getKey().toString()).orElse(""));
+                    }
+
+                    writeln("| " + ((building instanceof Building) ? ((Building) building).getType().getSuffix() : "Colony tile"));
+                    writeln("| " + goodsType.getSuffix());
+                    writeln("| " + datas.stream().collect(Collectors.joining(" / ")));
+                    writeln("a| " + Optional.ofNullable(units_keys.get(units_key)).map(e -> writeUnitCell(e)).orElse(""));
+                }
+
+            }
+        }
+
+        writeln("|====");
+
+        final Options options = new Options().forFile().withExtension(".adoc");
+        Approvals.verify(buffer.toString(), options);
+    }
+
+    private String writeUnitCell(List<UnitType> units) {
+        int NB_BEFORE_COLLAPSE = 2;
+        if (units.size() > NB_BEFORE_COLLAPSE) {
+            return
+                    "[%collapsible]\n" +
+                            "." + units.stream()
+                            .limit(NB_BEFORE_COLLAPSE)
+                            .map(UnitType::getSuffix)
+                            .collect(Collectors.joining(", ", "", ", ...")) + "\n" +
+                            "====\n" +
+                            units.stream()
+                                    .skip(NB_BEFORE_COLLAPSE)
+                                    .map(UnitType::getSuffix)
+                                    .collect(Collectors.joining(", ")) +
+                            "\n" +
+                            "====";
+        } else {
+            return units.stream()
+                    .map(UnitType::getSuffix)
+                    .collect(Collectors.joining(", "));
+        }
     }
 
     private int setLiberty(Game game, Colony colony, String governementLimit) {
