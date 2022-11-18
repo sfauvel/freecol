@@ -64,6 +64,10 @@ public class DocAsTest {
         docWriter.write(lines);
     }
 
+    protected void writeln(String... lines) {
+        docWriter.write(getFormatter().paragraph(lines));
+    }
+
     protected AsciidocFormatter getFormatter() {
         return docWriter.getFormatter();
     }

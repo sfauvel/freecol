@@ -1,0 +1,22 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+
+= Server indian settlement food doc test
+
+include::_ServerIndianSettlementFoodDocTest.testFoodConsumption.approved.adoc[leveloffset=+1]
+
+include::_ServerIndianSettlementFoodDocTest.testFoodConsumption_1.approved.adoc[leveloffset=+1]
+
+include::_ServerIndianSettlementFoodDocTest.testFoodConsumption_2.approved.adoc[leveloffset=+1]
+
+include::_ServerIndianSettlementFoodDocTest.testFoodConsumption_3.approved.adoc[leveloffset=+1]
+
+include::_ServerIndianSettlementFoodDocTest.testFoodConsumption_4.approved.adoc[leveloffset=+1]
+
+include::_ServerIndianSettlementFoodDocTest.testFoodConsumption_5.approved.adoc[leveloffset=+1]
+
+include::_ServerIndianSettlementFoodDocTest.testFoodConsumption_6.approved.adoc[leveloffset=+1]
+
+include::_ServerIndianSettlementFoodDocTest.testFoodConsumption_7.approved.adoc[leveloffset=+1]
+
+include::_ServerIndianSettlementFoodDocTest.testFoodConsumption_8.approved.adoc[leveloffset=+1]

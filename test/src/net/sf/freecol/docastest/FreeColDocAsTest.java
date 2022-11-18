@@ -29,7 +29,8 @@ public class FreeColDocAsTest extends DocAsTest {
     }
 
     public Game getGame() {
-        return FreeColTestCase.getGame();
+//        return FreeColTestCase.getGame();
+        return FreeColTestCase.getStandardGame();
     }
 
     public Game getStandardGame() {
@@ -41,6 +42,21 @@ public class FreeColDocAsTest extends DocAsTest {
 
     public Colony getStandardColony(int numberOfSetllers) {
         return testCase.getStandardColony(numberOfSetllers);
+    }
+
+    /**
+     * Creates a standardized map on which all fields have the plains type.
+     *
+     * Uses the getGame() method to access the currently running game.
+     *
+     * Does not call Game.setMap(Map) with the returned map. The map
+     * is unexplored.
+     *
+     * @return The map created as described above.
+     */
+    public Map getTestMap() {
+        FreeColTestCase.MapBuilder builder = new FreeColTestCase.MapBuilder(getGame());
+        return builder.build();
     }
 
     public Map getTestMap(boolean explored) {

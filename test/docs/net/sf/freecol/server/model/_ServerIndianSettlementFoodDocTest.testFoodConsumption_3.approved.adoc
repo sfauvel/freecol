@@ -1,0 +1,27 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+
+[#net_sf_freecol_server_model_serverindiansettlementfooddoctest_testfoodconsumption_3]
+= TestFoodConsumption 3
+
+Mise en forme
+
+UnitCount:1
+
+GoodsCount for *food*: 0
+
+[%autowidth]
+
+|====
+|Produced|Consumed|Remaining
+
+|10|2|8
+|====
+
+
+new turn
+
+GoodsCount for *food*: 8
+
+
+
