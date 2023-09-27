@@ -1,8 +1,10 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
-ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/default]
 
 [#net_sf_freecol_server_model_serverindiansettlementfooddoctest_testfoodconsumption_2]
 = TestFoodConsumption 2
+
+Ecriture de l'équivalent de chaque assertion.
 
 UnitCount:1
 
@@ -11,6 +13,8 @@ GoodsCount for model.goods.food: 0
 foodProduced:10
 
 foodConsumed:2
+
+foodProduced > foodConsumed
 
 new turn
 

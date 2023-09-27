@@ -1,5 +1,5 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
-ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/default]
 
 [#net_sf_freecol_common_model_colonydoctest_testbuildqueueacceptsunitdoubles_original]
 = TestBuildQueueAcceptsUnitDoubles Original
@@ -22,3 +22,5 @@ ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
                      3, colony.getBuildQueue().size());
     
 ----
+
+

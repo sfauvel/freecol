@@ -1,5 +1,5 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
-ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/default]
 
 [#net_sf_freecol_common_model_colonydoctest_testbuildqueueacceptsunitdoubles_basic]
 = TestBuildQueueAcceptsUnitDoubles Basic
@@ -17,3 +17,4 @@ a| 2
 a| model.unit.wagonTrain
 a| 3
 |====
+

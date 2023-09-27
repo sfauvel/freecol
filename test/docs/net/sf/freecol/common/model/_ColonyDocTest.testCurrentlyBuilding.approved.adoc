@@ -1,5 +1,5 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
-ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/default]
 
 [#net_sf_freecol_common_model_colonydoctest_testcurrentlybuilding]
 = TestCurrentlyBuilding
@@ -7,3 +7,4 @@ ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
 Initial currently building: *model.building.warehouse* +
 When setting building with *model.building.church* +
 The new currently building is: *model.building.church*
+

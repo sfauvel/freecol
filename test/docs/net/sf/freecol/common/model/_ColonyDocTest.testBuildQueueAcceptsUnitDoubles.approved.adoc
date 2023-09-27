@@ -1,5 +1,5 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
-ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/default]
 
 [#net_sf_freecol_common_model_colonydoctest_testbuildqueueacceptsunitdoubles]
 = TestBuildQueueAcceptsUnitDoubles
@@ -26,3 +26,4 @@ a| image:{RESOURCES_PATH}/resources/images/units/wagon/wagonTrain.png[title="mod
 image:{RESOURCES_PATH}/resources/images/units/wagon/wagonTrain.png[title="model.unit.wagonTrain"]
 image:{RESOURCES_PATH}/resources/images/buildings/warehouse.png[title="model.building.warehouse"]
 |====
+

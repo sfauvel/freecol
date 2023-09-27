@@ -1,5 +1,5 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
-ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/default]
 
 [#net_sf_freecol_common_model_buildingdoctest_testcanbuildnext]
 = TestCanBuildNext
@@ -16,3 +16,4 @@ canBuildNext: yes +
 | not null | no
 | NULL | no
 |====
+

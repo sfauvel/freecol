@@ -1,10 +1,10 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
-ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/default]
 
 [#net_sf_freecol_server_model_serverindiansettlementfooddoctest_testfoodconsumption_4]
 = TestFoodConsumption 4
 
-Suppression des assertions
+Suppression des assertions.
 
 UnitCount:1
 
