@@ -1,0 +1,12 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/default]
+
+= Market doc test
+
+include::_MarketDocTest.testInitialMarket.approved.adoc[leveloffset=+1]
+
+include::_MarketDocTest.testEuropeMarketPricing.approved.adoc[leveloffset=+1]
+
+include::_MarketDocTest.testSerialization.approved.adoc[leveloffset=+1]
+
+include::_MarketDocTest.testTransactionListeners.approved.adoc[leveloffset=+1]
