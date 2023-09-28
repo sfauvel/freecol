@@ -1,0 +1,19 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/default]
+
+[#net_sf_freecol_docastest_sampledoctest_display_a_image]
+= Display a image
+
+If you want to display the image of an element, use the following code
+
+[source,java,indent=0]
+----
+        final BuildingType churchType = spec().getBuildingType("model.building.church");
+        write(includeImage(churchType));
+
+        final GoodsType musketsType = spec().getGoodsType("model.goods.muskets");
+        write(includeImage(musketsType));
+
+----
+image:{RESOURCES_PATH}/resources/images/buildings/church.png[title="model.building.church"]image:{RESOURCES_PATH}/resources/images/goods/muskets.png[title="model.goods.muskets"]
+

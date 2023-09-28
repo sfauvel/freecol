@@ -1,12 +1,12 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
-ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/default]
 
 [#net_sf_freecol_client_gui_mappathtest_testmapfindcomplexepath]
 = TestMapFindComplexePath
 
 
 image:{ROOT_PATH}/images/findComplexePath.jpg[]
-// Checksum findComplexePath.jpg=2148693345
+// Checksum findComplexePath.jpg=3046674001
 
 [%autowidth, options=header]
 |====
@@ -28,3 +28,4 @@ image:{ROOT_PATH}/images/findComplexePath.jpg[]
 | 4 / 7 | 1500 | 14 | S
 | 4 / 8 | 1600 | 15 | SW
 |====
+

@@ -1,5 +1,5 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
-ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/default]
 
 [#net_sf_freecol_common_model_mapdoctest_testshortestpathobstructed]
 = TestShortestPathObstructed
@@ -7,7 +7,7 @@ ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
 
 .Path from 1x11 to 3x7
 image:{ROOT_PATH}/images/testShortestPathObstructed.jpg[]
-// Checksum testShortestPathObstructed.jpg=3199590319
+// Checksum testShortestPathObstructed.jpg=2785467969
 
 [%autowidth, options=header]
 |====
@@ -86,3 +86,4 @@ image:{ROOT_PATH}/images/testShortestPathObstructed.jpg[]
 ----
 
 ====
+

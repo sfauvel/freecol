@@ -1,12 +1,12 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
-ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/default]
 
 [#net_sf_freecol_client_gui_mappathtest_testcomposedgoaldeciders]
 = TestComposedGoalDeciders
 
 
 image:{ROOT_PATH}/images/goalDeciderShouldFindColony.jpg[]
-// Checksum goalDeciderShouldFindColony.jpg=3933851260
+// Checksum goalDeciderShouldFindColony.jpg=3084736889
 
 [%autowidth, options=header]
 |====
@@ -15,7 +15,7 @@ image:{ROOT_PATH}/images/goalDeciderShouldFindColony.jpg[]
 | 9 / 2 | 100 | 0 | NW
 |====
 image:{ROOT_PATH}/images/goalDeciderShouldStillFindColony.jpg[]
-// Checksum goalDeciderShouldStillFindColony.jpg=3933851260
+// Checksum goalDeciderShouldStillFindColony.jpg=3084736889
 
 [%autowidth, options=header]
 |====
@@ -24,7 +24,7 @@ image:{ROOT_PATH}/images/goalDeciderShouldStillFindColony.jpg[]
 | 9 / 2 | 100 | 0 | NW
 |====
 image:{ROOT_PATH}/images/goalDeciderShouldFindNatives.jpg[]
-// Checksum goalDeciderShouldFindNatives.jpg=643551719
+// Checksum goalDeciderShouldFindNatives.jpg=3961870149
 
 [%autowidth, options=header]
 |====
@@ -34,8 +34,8 @@ image:{ROOT_PATH}/images/goalDeciderShouldFindNatives.jpg[]
 | 8 / 4 | 200 | 1 | SW
 | 9 / 4 | 2147483647 | 1073741823 | E
 |====
-image:{ROOT_PATH}/images/goalDeciderShouldFindColony.jpg[]
-// Checksum goalDeciderShouldFindColony.jpg=643551719
+image:{ROOT_PATH}/images/goalDeciderShouldFindColony2.jpg[]
+// Checksum goalDeciderShouldFindColony2.jpg=3961870149
 
 [%autowidth, options=header]
 |====
@@ -45,3 +45,4 @@ image:{ROOT_PATH}/images/goalDeciderShouldFindColony.jpg[]
 | 8 / 4 | 200 | 1 | SW
 | 9 / 4 | 2147483647 | 1073741823 | E
 |====
+

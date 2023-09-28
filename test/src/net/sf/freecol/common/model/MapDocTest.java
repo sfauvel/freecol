@@ -785,7 +785,7 @@ public class MapDocTest extends FreeColGuiDocAsTest {
             write("", "",
                     String.format("Path start at %s", path.getTile()));
 
-            final DocGenerator.ImageFile imageFile = imageGenerator.generateImageWith(getGame().getMap(), path, "colonistCanFindTheTrivialPAth.jpg");
+            final DocGenerator.ImageFile imageFile = imageGenerator.generateImageWith(getGame().getMap(), path, "colonistCanFindTheTrivialPath1.jpg");
             write("", "",
                     imageFile.imageWithChecksum(),
                     "", pathToTable(path));
@@ -815,7 +815,7 @@ public class MapDocTest extends FreeColGuiDocAsTest {
             write("", "",
                     String.format("Path start as %s and end at %s", path.getTile(), path.getLastNode().getTile()));
 
-            final DocGenerator.ImageFile imageFile = imageGenerator.generateImageWith(getGame().getMap(), path, "colonistCanFindTheTrivialPAth.jpg");
+            final DocGenerator.ImageFile imageFile = imageGenerator.generateImageWith(getGame().getMap(), path, "colonistCanFindTheTrivialPath2.jpg");
             write("", "",
                     imageFile.imageWithChecksum(),
                     "", pathToTable(path));

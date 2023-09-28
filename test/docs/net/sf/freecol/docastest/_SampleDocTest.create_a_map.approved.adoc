@@ -1,0 +1,29 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/default]
+
+[#net_sf_freecol_docastest_sampledoctest_create_a_map]
+= Create a map
+
+
+The `MapBuilder` is a tool to create a map.
+You can specify width and height in the constructor.
+Because of the hexagonal representation, for the same value, it seems to have more tile in width than there is in heght.
+
+You can indicates the default tile type and select another type for specific tiles.
+
+[source,java,indent=0]
+----
+        final Map map = new FreeColTestCase.MapBuilder(getGame(), 5, 6)
+                .setBaseTileType(RESOURCES.prairie)
+                .setTileType(2, 2, RESOURCES.mountains)
+                .setTileType(2, 1, RESOURCES.mountains)
+                .setTileType(2, 3, RESOURCES.mountains)
+                .setTileType(3, 2, RESOURCES.mountains)
+                .build();
+        getGame().changeMap(map);
+
+----
+
+image:{ROOT_PATH}/images/net.sf.freecol.docastest.SampleDocTest.create_a_map.jpg[]
+// Checksum net.sf.freecol.docastest.SampleDocTest.create_a_map.jpg=4285019568
+

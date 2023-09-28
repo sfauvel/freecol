@@ -1,12 +1,12 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
-ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/default]
 
 [#net_sf_freecol_client_gui_mappathtest_testmapfindpathwithobstacle]
 = TestMapFindPathWithObstacle
 
 
 image:{ROOT_PATH}/images/findPathWithObstacle.jpg[]
-// Checksum findPathWithObstacle.jpg=2496984519
+// Checksum findPathWithObstacle.jpg=3060358578
 
 [%autowidth, options=header]
 |====
@@ -20,3 +20,4 @@ image:{ROOT_PATH}/images/findPathWithObstacle.jpg[]
 | 3 / 7 | 700 | 6 | SE
 | 4 / 8 | 800 | 7 | SE
 |====
+

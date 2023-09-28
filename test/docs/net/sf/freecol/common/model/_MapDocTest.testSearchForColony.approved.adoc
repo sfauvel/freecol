@@ -1,5 +1,5 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
-ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/default]
 
 [#net_sf_freecol_common_model_mapdoctest_testsearchforcolony]
 = TestSearchForColony
@@ -9,7 +9,7 @@ The path from 15x5 to 15x5 is
 
 
 image:{ROOT_PATH}/images/testSearchForColony.jpg[]
-// Checksum testSearchForColony.jpg=490647197
+// Checksum testSearchForColony.jpg=2927736925
 
 [%autowidth, options=header]
 |====
@@ -24,3 +24,4 @@ image:{ROOT_PATH}/images/testSearchForColony.jpg[]
 | 10 / 9 | 185 | 1 | W
 | 9 / 9 | 2147483647 | 1073741823 | W
 |====
+

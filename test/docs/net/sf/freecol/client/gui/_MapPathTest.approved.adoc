@@ -1,5 +1,5 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
-ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/default]
 
 = Map path test
 
@@ -8,3 +8,5 @@ include::_MapPathTest.testMapFindPath.approved.adoc[leveloffset=+1]
 include::_MapPathTest.testMapFindPathWithObstacle.approved.adoc[leveloffset=+1]
 
 include::_MapPathTest.testMapFindComplexePath.approved.adoc[leveloffset=+1]
+
+include::_MapPathTest.testComposedGoalDeciders.approved.adoc[leveloffset=+1]

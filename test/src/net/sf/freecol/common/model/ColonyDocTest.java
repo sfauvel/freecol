@@ -94,35 +94,6 @@ public class ColonyDocTest extends FreeColDocAsTest {
     private static final UnitType braveType
             = spec().getUnitType("model.unit.brave");
 
-    private FreeColFormatter formatter = new FreeColFormatter();
-
-    FreeColTcFile tcData = FreeColTcFile.getFreeColTcFile("rules/classic");
-    Properties prop = null;
-
-    private String getProperty(String key) {
-        if (prop == null) {
-            prop = new Properties();
-            try {
-//                prop.load(new FileInputStream(tcData.getPath() + "/../default/resources.properties"));
-                prop.load(new FileInputStream("data/default/resources.properties"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return prop.getProperty(key);
-    }
-
-
-    public String getImage(BuildableType buildable) {
-        String folder = buildable instanceof BuildingType ? "buildingicon" : "unit";
-        return Paths.get("{RESOURCES_PATH}").resolve(getProperty("image." + folder + "." + buildable.getId())).toString();
-    }
-
-    public String includeImage(BuildableType building) {
-        return formatter.image(getImage(building), building.getId());
-    }
-
-
     private String formatAfterSettingBuildingTypeImage(Colony colony, List<BuildableType> buildingToSet) {
         return formatAfterSettingBuildingType(colony, buildingToSet,
                 this::includeImage,
@@ -194,7 +165,7 @@ public class ColonyDocTest extends FreeColDocAsTest {
     public void testBuildQueueDoesNotAcceptBuildingDoubles_Original() {
         final String code = CodeExtractor.extractMethodBody(MethodReference.getMethod(ColonyTest::testBuildQueueDoesNotAcceptBuildingDoubles));
 
-        write(formatter.sourceCode(code));
+        write(getFormatter().sourceCode(code));
     }
 
     @Test
@@ -248,7 +219,7 @@ public class ColonyDocTest extends FreeColDocAsTest {
     public void testBuildQueueAcceptsUnitDoubles_Original() {
         final String code = CodeExtractor.extractMethodBody(MethodReference.getMethod(ColonyTest::testBuildQueueAcceptsUnitDoubles));
 
-        write(formatter.sourceCode(code));
+        write(getFormatter().sourceCode(code));
     }
 
     @Test

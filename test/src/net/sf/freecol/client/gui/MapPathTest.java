@@ -1,9 +1,11 @@
 package net.sf.freecol.client.gui;
 
 import net.sf.freecol.client.ClientOptions;
+import net.sf.freecol.common.io.FreeColTcFile;
 import net.sf.freecol.common.model.*;
 import net.sf.freecol.common.model.pathfinding.GoalDecider;
 import net.sf.freecol.common.model.pathfinding.GoalDeciders;
+import net.sf.freecol.common.resources.ResourceManager;
 import net.sf.freecol.common.util.LogBuilder;
 import net.sf.freecol.docastest.gui.DocGenerator;
 import net.sf.freecol.docastest.gui.FreeColGuiDocAsTest;
@@ -256,7 +258,7 @@ public class MapPathTest extends FreeColGuiDocAsTest {
         {
             gd = GoalDeciders.getComposedGoalDecider(false, nativeGD, colonyGD);
             path = unit.search(unitTile, gd, null, 1, null);
-            final DocGenerator.ImageFile imageFile = imageGenerator.generateImageWith(getGame().getMap(), path, "goalDeciderShouldFindColony.jpg");
+            final DocGenerator.ImageFile imageFile = imageGenerator.generateImageWith(getGame().getMap(), path, "goalDeciderShouldFindColony2.jpg");
 
             write("", imageFile.imageWithChecksum(),
                     "", pathToTable(path));

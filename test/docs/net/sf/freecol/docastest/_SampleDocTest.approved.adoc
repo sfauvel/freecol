@@ -1,0 +1,10 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/default]
+
+= Sample doc test
+
+include::_SampleDocTest.create_a_map.approved.adoc[leveloffset=+1]
+
+include::_SampleDocTest.display_a_map.approved.adoc[leveloffset=+1]
+
+include::_SampleDocTest.display_a_image.approved.adoc[leveloffset=+1]

@@ -1,24 +1,39 @@
 package net.sf.freecol.docastest;
 
+import net.sf.freecol.client.gui.ImageLibrary;
 import net.sf.freecol.common.io.FreeColTcFile;
 import net.sf.freecol.common.model.*;
+import net.sf.freecol.common.resources.ImageResource;
+import net.sf.freecol.common.resources.ResourceManager;
 import net.sf.freecol.util.test.FreeColTestCase;
 import org.junit.Before;
 import org.junit.Test;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
+import org.sfvl.docformatter.Formatter;
 import org.sfvl.doctesting.utils.Config;
 import org.sfvl.doctesting.utils.DocPath;
 import org.sfvl.doctesting.writer.ClassDocumentation;
 import org.sfvl.doctesting.writer.DocWriter;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.net.URI;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Properties;
 
 public class FreeColDocAsTest extends DocAsTest {
 
     public static final Path IMAGE_PATH = Config.DOC_PATH.resolve("images");
     FreeColTestCase testCase = new FreeColTestCase();
+    private FreeColTcFile tcData = null;
 
+    public FreeColDocAsTest() {
+        super(new FreeColDocWriter(new FreeColFormatter()));
+        tcData = FreeColTcFile.getFreeColTcFile("default");
+        ResourceManager.setTcData(tcData);
+        ResourceManager.prepare();
+    }
     @Before
     public void initGame() {
         getGame();
@@ -28,13 +43,18 @@ public class FreeColDocAsTest extends DocAsTest {
         return FreeColTestCase.spec();
     }
 
+    Game game = null;
     public Game getGame() {
 //        return FreeColTestCase.getGame();
-        return FreeColTestCase.getStandardGame();
+        if (game == null) {
+            game = FreeColTestCase.getStandardGame();
+        }
+        return game;
     }
 
     public Game getStandardGame() {
-        return testCase.getStandardGame();
+        return getGame();
+//        return testCase.getStandardGame();
     }
     public Colony getStandardColony() {
         return testCase.getStandardColony();
@@ -55,7 +75,11 @@ public class FreeColDocAsTest extends DocAsTest {
      * @return The map created as described above.
      */
     public Map getTestMap() {
-        FreeColTestCase.MapBuilder builder = new FreeColTestCase.MapBuilder(getGame());
+        return getTestMap(getGame());
+    }
+
+    public static Map getTestMap(Game game) {
+        FreeColTestCase.MapBuilder builder = new FreeColTestCase.MapBuilder(game);
         return builder.build();
     }
 
@@ -78,6 +102,10 @@ public class FreeColDocAsTest extends DocAsTest {
 
         public FreeColDocWriter() {
             super(new AsciidocFormatter());
+        }
+
+        public FreeColDocWriter(AsciidocFormatter formatter) {
+            super(formatter);
         }
 
 
@@ -104,8 +132,41 @@ public class FreeColDocAsTest extends DocAsTest {
         }
     }
 
-    public FreeColDocAsTest() {
-        super(new FreeColDocWriter());
+    private Properties prop = null;
+    protected String getProperty(String key) {
+        if (prop == null) {
+            prop = new Properties();
+            try {
+//                prop.load(new FileInputStream(tcData.getPath() + "/../default/resources.properties"));
+                prop.load(new FileInputStream("data/default/resources.properties"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return prop.getProperty(key);
     }
+
+    public String getImage(FreeColSpecObjectType buildable) {
+        String folder = buildable instanceof BuildingType ? "buildingicon" : "unit";
+        ImageResource imageResource = null;
+        if (buildable instanceof BuildingType) {
+            final String buildingTypeKey = ImageLibrary.getBuildingTypeKey((BuildingType) buildable);
+            imageResource = ResourceManager.getImageResource(buildingTypeKey, true);
+        } else if (buildable instanceof GoodsType) {
+            folder = "icon";
+            imageResource = ResourceManager.getImageResource("image." + folder + "." + buildable.getId(), true);
+        } else {
+            imageResource = ResourceManager.getImageResource("image." + folder + "." + buildable.getId(), true);
+        }
+
+        final Path imagePath = Paths.get(imageResource.getResourceLocator().getPath());
+        final Path relativizeToTcData = Paths.get(tcData.getPath()).toAbsolutePath().relativize(imagePath);
+        return Paths.get("{RESOURCES_PATH}").resolve(relativizeToTcData).toString();
+    }
+
+    public String includeImage(FreeColSpecObjectType building) {
+        return getFormatter().image(getImage(building), building.getId());
+    }
+
 
 }

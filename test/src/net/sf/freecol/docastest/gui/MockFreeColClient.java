@@ -8,6 +8,7 @@ import net.sf.freecol.client.gui.ImageLibrary;
 import net.sf.freecol.client.gui.action.ActionManager;
 import net.sf.freecol.common.model.*;
 import net.sf.freecol.common.networking.ServerAPI;
+import net.sf.freecol.common.option.BooleanOption;
 import net.sf.freecol.common.option.IntegerOption;
 import net.sf.freecol.common.resources.ImageCache;
 import net.sf.freecol.server.FreeColServer;
@@ -32,7 +33,7 @@ class MockFreeColClient implements FreeColClient {
         final Nation newNation = new Nation("model.nation.spanishREF", game.getSpecification());
         myPlayer.setNation(newNation);
         myPlayer.changePlayerType(Player.PlayerType.ROYAL);
-      //  myPlayer.setSpecification(game.getSpecification());
+        //myPlayer.setSpecification(game.getSpecification());
     }
 
     {
@@ -60,6 +61,11 @@ class MockFreeColClient implements FreeColClient {
         final IntegerOption integerOption = new IntegerOption(new Specification());
         integerOption.setId(ClientOptions.DISPLAY_COLONY_LABELS);
         options.add(integerOption);
+    }
+    {
+        final BooleanOption booleanOption = new BooleanOption(new Specification());
+        booleanOption.setId(ClientOptions.USE_TERRAIN_ANIMATIONS);
+        options.add(booleanOption);
     }
     @Override
     public Player getMyPlayer() {

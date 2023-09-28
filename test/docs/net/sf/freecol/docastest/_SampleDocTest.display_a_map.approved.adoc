@@ -1,0 +1,37 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/default]
+
+[#net_sf_freecol_docastest_sampledoctest_display_a_map]
+= Display a map
+
+
+It's possible to generate an image of the map using the `imageGenerator`
+
+[source,java,indent=0]
+----
+        getGame().changeMap(new FreeColTestCase.MapBuilder(getGame(), 2, 3).build());
+
+        final DocGenerator.ImageFile imageFile =
+                imageGenerator.generateImageWith(
+                        getGame().getMap(),
+                        null,
+                        getFullTestName() + ".jpg");
+
+        final String text_to_write = imageFile.imageWithChecksum();
+
+----
+
+You need to give a unique name for the image so that it will not overwritten by another test.
+The `getFullTestName` method generates a name with the full path of the class following by the method name.
+It helps you to create a unique name
+
+From the `ImageFile` generated, you can extract the text to insert in your document with  `imageWithChecksum` method
+It add the link to the image and a checksum in comment to ensure that the image is always the same.
+
+[source,java,indent=0]
+----
+image:{ROOT_PATH}/images/net.sf.freecol.docastest.SampleDocTest.display_a_map.jpg[]
+// Checksum net.sf.freecol.docastest.SampleDocTest.display_a_map.jpg=2403336758
+----
+
+

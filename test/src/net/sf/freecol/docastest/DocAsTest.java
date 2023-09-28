@@ -33,6 +33,10 @@ public class DocAsTest {
     @Rule
     public TestName testName = new TestName();
 
+    protected String getFullTestName() {
+        return getClass().getName() + "." + testName.getMethodName();
+    }
+
     private static Class<?> testClass;
 
     static DocWriter<AsciidocFormatter> docWriter;

@@ -799,7 +799,7 @@ public final class ImageLibrary {
 
     // BuildingType/Building/Buildable handling
 
-    private static String getBuildingTypeKey(BuildingType buildingType) {
+    public static String getBuildingTypeKey(BuildingType buildingType) {
         return "image.buildingicon." + buildingType.getId();
     }
     

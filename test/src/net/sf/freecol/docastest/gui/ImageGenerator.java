@@ -108,10 +108,15 @@ public class ImageGenerator {
     }
 
     public DocGenerator.ImageFile generateImageWith(Map map, int nbTileToTranslateX, int nbTileToTranslateY, PathNode path, String imageName) throws InterruptedException {
-        final java.util.List<DrawTiles> drawers = Arrays.asList(
-                new DrawTiles(this::drawer, map.getTileList(ALL_TILE)),
-                new DrawTiles(this::drawerPath, pathToTiles(path))
-        );
+//        final java.util.List<DrawTiles> drawers = Arrays.asList(
+//                new DrawTiles(this::drawer, map.getTileList(ALL_TILE)),
+//                new DrawTiles(this::drawerPath, pathToTiles(path))
+//        );
+        final java.util.List<DrawTiles> drawers = new ArrayList<>();
+        drawers.add(new DrawTiles(this::drawer, map.getTileList(ALL_TILE)));
+        if (path != null) {
+            drawers.add(new DrawTiles(this::drawerPath, pathToTiles(path)));
+        }
         return generateImageWith(drawers, imageName, nbTileToTranslateX, nbTileToTranslateY);
     }
 
@@ -137,7 +142,7 @@ public class ImageGenerator {
                 drawTiles.tiles.forEach(tile -> display(g2d, tile, drawTiles.drawer));
             }
             g2d.translate(nbTileToTranslateX *tileSize.width, nbTileToTranslateY *tileSize.height+20);
-        }, maxX + 1, (maxY + 2) / 2);
+        }, maxX + 1, maxY + 1/*(maxY + 2) / 2*/);
 
         final DocGenerator.ImageFile imageFile = DocGenerator.takeScreenshot(panel, imagePath.resolve(imageName));
         windows.closeWindows();
@@ -197,8 +202,22 @@ public class ImageGenerator {
 
             }
         };
-        jPanel.setPreferredSize(new Dimension(nbTileWidth * tileSize.width + tileSize.width / 2, nbTileHeight * tileSize.height + 20));
-
+        System.out.println("nbTileHeight:" + nbTileHeight);
+        System.out.println("nbTileHeight / 2.0:" + (nbTileHeight / 2.0));
+        System.out.println("nbTileHeight / 2.0:" + (int)Math.ceil(nbTileHeight / 2.0));
+        System.out.println("tileSize.height:" + tileSize.height);
+        System.out.println((int)Math.ceil(nbTileHeight / 2.0) * tileSize.height);
+        jPanel.setPreferredSize(new Dimension(
+                nbTileWidth * tileSize.width + tileSize.width / 2,
+                (nbTileHeight + 1) * (tileSize.height / 2) + (20*2) /*+ 20*/));
+//                (int)Math.ceil(nbTileHeight / 2.0) * tileSize.height + (20*2) /*+ 20*/));
+//                nbTileHeight * tileSize.height + (int)Math.ceil(tileSize.height / 2.0) /*20*/));
+/**
+        1 => 2 demi
+            2 => 3 demi
+ 3 => 4
+ 4 => 5
+ */
         windows.displayInFrame(jPanel);
         return jPanel;
     }
