@@ -147,18 +147,17 @@ public class FreeColDocAsTest extends DocAsTest {
     }
 
     public String getImage(FreeColSpecObjectType buildable) {
-        String folder = buildable instanceof BuildingType ? "buildingicon" : "unit";
-        ImageResource imageResource = null;
+        String folder = null;
         if (buildable instanceof BuildingType) {
-            final String buildingTypeKey = ImageLibrary.getBuildingTypeKey((BuildingType) buildable);
-            imageResource = ResourceManager.getImageResource(buildingTypeKey, true);
+            folder = "buildingicon";
         } else if (buildable instanceof GoodsType) {
             folder = "icon";
-            imageResource = ResourceManager.getImageResource("image." + folder + "." + buildable.getId(), true);
         } else {
-            imageResource = ResourceManager.getImageResource("image." + folder + "." + buildable.getId(), true);
+            folder = "unit";
         }
+        final String image_id = "image." + folder + "." + buildable.getId();
 
+        ImageResource imageResource = ResourceManager.getImageResource(image_id, true);
         final Path imagePath = Paths.get(imageResource.getResourceLocator().getPath());
         final Path relativizeToTcData = Paths.get(tcData.getPath()).toAbsolutePath().relativize(imagePath);
         return Paths.get("{RESOURCES_PATH}").resolve(relativizeToTcData).toString();

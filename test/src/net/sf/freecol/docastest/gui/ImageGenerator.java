@@ -138,7 +138,7 @@ public class ImageGenerator {
                 drawTiles.tiles.forEach(tile -> display(g2d, tile, drawTiles.drawer));
             }
             g2d.translate(nbTileToTranslateX *tileSize.width, nbTileToTranslateY *tileSize.height+20);
-        }, maxX + 1, maxY + 1/*(maxY + 2) / 2*/);
+        }, maxX + 1, maxY + 1);
 
         final DocGenerator.ImageFile imageFile = DocGenerator.takeScreenshot(panel, imagePath.resolve(imageName));
         windows.closeWindows();
