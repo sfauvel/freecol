@@ -108,10 +108,6 @@ public class ImageGenerator {
     }
 
     public DocGenerator.ImageFile generateImageWith(Map map, int nbTileToTranslateX, int nbTileToTranslateY, PathNode path, String imageName) throws InterruptedException {
-//        final java.util.List<DrawTiles> drawers = Arrays.asList(
-//                new DrawTiles(this::drawer, map.getTileList(ALL_TILE)),
-//                new DrawTiles(this::drawerPath, pathToTiles(path))
-//        );
         final java.util.List<DrawTiles> drawers = new ArrayList<>();
         drawers.add(new DrawTiles(this::drawer, map.getTileList(ALL_TILE)));
         if (path != null) {

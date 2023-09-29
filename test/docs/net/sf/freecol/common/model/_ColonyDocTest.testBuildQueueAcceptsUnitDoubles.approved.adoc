@@ -15,12 +15,15 @@ Current building : image:{RESOURCES_PATH}/resources/images/buildings/warehouse.p
 ====
 
 |====
-| Building asked | Queue size
+| Initial queue | Building asked | New queue
 
+a| image:{RESOURCES_PATH}/resources/images/buildings/warehouse.png[title="model.building.warehouse"]
 a| image:{RESOURCES_PATH}/resources/images/units/wagon/wagonTrain.png[title="model.unit.wagonTrain"]
 a| image:{RESOURCES_PATH}/resources/images/units/wagon/wagonTrain.png[title="model.unit.wagonTrain"]
 image:{RESOURCES_PATH}/resources/images/buildings/warehouse.png[title="model.building.warehouse"]
 
+a| image:{RESOURCES_PATH}/resources/images/units/wagon/wagonTrain.png[title="model.unit.wagonTrain"]
+image:{RESOURCES_PATH}/resources/images/buildings/warehouse.png[title="model.building.warehouse"]
 a| image:{RESOURCES_PATH}/resources/images/units/wagon/wagonTrain.png[title="model.unit.wagonTrain"]
 a| image:{RESOURCES_PATH}/resources/images/units/wagon/wagonTrain.png[title="model.unit.wagonTrain"]
 image:{RESOURCES_PATH}/resources/images/units/wagon/wagonTrain.png[title="model.unit.wagonTrain"]

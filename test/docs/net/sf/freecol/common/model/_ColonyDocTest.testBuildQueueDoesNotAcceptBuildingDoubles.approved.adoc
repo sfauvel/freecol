@@ -16,18 +16,23 @@ Current building : image:{RESOURCES_PATH}/resources/images/buildings/warehouse.p
 ====
 
 |====
-| Building asked | Queue size
+| Initial queue | Building asked | New queue
 
 a| image:{RESOURCES_PATH}/resources/images/buildings/warehouse.png[title="model.building.warehouse"]
 a| image:{RESOURCES_PATH}/resources/images/buildings/warehouse.png[title="model.building.warehouse"]
+a| image:{RESOURCES_PATH}/resources/images/buildings/warehouse.png[title="model.building.warehouse"]
 
 a| image:{RESOURCES_PATH}/resources/images/buildings/warehouse.png[title="model.building.warehouse"]
 a| image:{RESOURCES_PATH}/resources/images/buildings/warehouse.png[title="model.building.warehouse"]
+a| image:{RESOURCES_PATH}/resources/images/buildings/warehouse.png[title="model.building.warehouse"]
 
+a| image:{RESOURCES_PATH}/resources/images/buildings/warehouse.png[title="model.building.warehouse"]
 a| image:{RESOURCES_PATH}/resources/images/buildings/church.png[title="model.building.church"]
 a| image:{RESOURCES_PATH}/resources/images/buildings/church.png[title="model.building.church"]
 image:{RESOURCES_PATH}/resources/images/buildings/warehouse.png[title="model.building.warehouse"]
 
+a| image:{RESOURCES_PATH}/resources/images/buildings/church.png[title="model.building.church"]
+image:{RESOURCES_PATH}/resources/images/buildings/warehouse.png[title="model.building.warehouse"]
 a| image:{RESOURCES_PATH}/resources/images/buildings/warehouse.png[title="model.building.warehouse"]
 a| image:{RESOURCES_PATH}/resources/images/buildings/warehouse.png[title="model.building.warehouse"]
 image:{RESOURCES_PATH}/resources/images/buildings/church.png[title="model.building.church"]

@@ -9,11 +9,13 @@ Build queue is incremented when building an other item.
 Initial currently building: *model.building.warehouse* +
 
 |====
-| Building asked | Queue size
+| Initial queue | Building asked | New queue
 
+a| 1
 a| model.unit.wagonTrain
 a| 2
 
+a| 2
 a| model.unit.wagonTrain
 a| 3
 |====

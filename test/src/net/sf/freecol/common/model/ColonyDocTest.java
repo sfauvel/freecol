@@ -108,11 +108,13 @@ public class ColonyDocTest extends FreeColDocAsTest {
 
     private String formatAfterSettingBuildingType(Colony colony, List<BuildableType> buildingToSet,
                                                   Function<BuildableType, String> key, Function<Colony, String> queue) {
+
         final String table = buildingToSet.stream()
                 .map(type -> {
+                    final String queue_before = queue.apply(colony);
                     colony.setCurrentlyBuilding(type);
-                    return String.format("a| %s\na| %s", key.apply(type), queue.apply(colony));
-                }).collect(Collectors.joining("\n\n", "|====\n| Building asked | Queue size\n\n", "\n|===="));
+                    return String.format("a| %s\na| %s\na| %s", queue_before, key.apply(type), queue.apply(colony));
+                }).collect(Collectors.joining("\n\n", "|====\n| Initial queue | Building asked | New queue\n\n", "\n|===="));
         return table;
     }
 
