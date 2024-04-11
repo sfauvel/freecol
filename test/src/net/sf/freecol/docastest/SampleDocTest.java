@@ -1,12 +1,15 @@
 package net.sf.freecol.docastest;
 
 import net.sf.freecol.common.model.*;
+import net.sf.freecol.docastest.ModelObjects.building;
+import net.sf.freecol.docastest.ModelObjects.goods;
+import net.sf.freecol.docastest.ModelObjects.role;
 import net.sf.freecol.docastest.gui.DocGenerator;
 import net.sf.freecol.docastest.gui.FreeColGuiDocAsTest;
+import net.sf.freecol.server.model.ServerUnit;
 import net.sf.freecol.util.test.FreeColTestCase;
 import org.junit.Before;
 import org.junit.Test;
-import org.sfvl.codeextraction.ClassFinder;
 import org.sfvl.codeextraction.CodeExtractor;
 import org.sfvl.codeextraction.MethodReference;
 
@@ -78,19 +81,44 @@ public class SampleDocTest extends FreeColGuiDocAsTest {
                 getFormatter().sourceCode(text_to_write)
         );
     }
+
     @Test
-    public void display_a_image() throws InterruptedException, IOException {
+    public void display_an_image() throws InterruptedException, IOException {
 
         write("If you want to display the image of an element, use the following code",
                 getFormatter().sourceCode(CodeExtractor.extractPartOfCurrentMethod()));
-        // >>>
-        final BuildingType churchType = spec().getBuildingType("model.building.church");
-        write(includeImage(churchType));
 
-        final GoodsType musketsType = spec().getGoodsType("model.goods.muskets");
-        write(includeImage(musketsType));
+        //        //        final String defaultIndianPlayer = "model.nation.tupi";
+        //        //        final Player indianPlayer = getGame().getPlayerByNationId(defaultIndianPlayer);
+                final Player player = new Player(getGame(), "me");
+                final ServerUnit serverUnit = new ServerUnit(getGame(), null, player, ModelObjects.unit.brave) {
+//                    @Override
+//                    public Role getAutomaticRole() {
+//                        // AuomaticRole depend on the colony or settlement where the unit is.
+//                        // We mocked it to simplify the test.
+////                        return ModelObjects.role.nativeDragoon;
+//                        return ModelObjects.role.dragoon;
+//                    }
+                };
+        final ServerUnit serverUnit2 = new ServerUnit(getGame(), null, player, ModelObjects.unit.brave) {
+                    @Override
+                    public Role getAutomaticRole() {
+                        // AuomaticRole depend on the colony or settlement where the unit is.
+                        // We mocked it to simplify the test.
+//                        return ModelObjects.role.nativeDragoon;
+                        return ModelObjects.role.nativeDragoon;
+                    }
+        };
+                final Role automaticRole = serverUnit.getAutomaticRole();
+        // >>>
+        write(
+                includeImage(building.church),
+                includeImage(goods.muskets),
+                includeImage(serverUnit)
+        );
         // <<<
     }
+
     private String pathToTable(PathNode path) {
         return toTable(imageGenerator.pathToList(path.getFirstNode()),
                 toTableLine("Position", "Cost", "Turns", "Direction"),
@@ -119,4 +147,3 @@ public class SampleDocTest extends FreeColGuiDocAsTest {
         return unit;
     }
 }
-

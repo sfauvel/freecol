@@ -1,0 +1,29 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/default]
+
+[#net_sf_freecol_common_model_indiansettlementdoctest_testautomaticequipbraves]
+= TestAutomaticEquipBraves
+
+Un Brave dans un campement devient un dragon lorsqu'il  y a des chevaux et des mousquets
+
+[%collapsible]
+.Camp
+=====
+
+image:{RESOURCES_PATH}/resources/images/units/civilian/brave.png[title="model.unit.brave"]
+image:{RESOURCES_PATH}/resources/images/units/civilian/brave.png[title="model.unit.brave"]
+
+
+=====
+
+
+Alors il n'a pas de rôle
+
+Un image:{RESOURCES_PATH}/resources/images/units/civilian/brave.png[title="model.unit.brave"] dans un campement devient un image:{RESOURCES_PATH}/resources/images/units/civilian/brave.png[title="unit:777"] lorsqu'il y a rien
+
+Un image:{RESOURCES_PATH}/resources/images/units/civilian/brave.png[title="model.unit.brave"] dans un campement devient un image:{RESOURCES_PATH}/resources/images/units/armedBrave/brave.png[title="unit:777"] lorsqu'il y a 100 image:{RESOURCES_PATH}/resources/images/goods/muskets.png[title="model.goods.muskets"]
+
+image:{RESOURCES_PATH}/resources/images/units/civilian/brave.png[title="unit:785"] image:{RESOURCES_PATH}/resources/images/units/civilian/brave.png[title="unit:787"] dans un campement devient image:{RESOURCES_PATH}/resources/images/units/nativeDragoon/brave.png[title="unit:785"] image:{RESOURCES_PATH}/resources/images/units/nativeDragoon/brave.png[title="unit:787"] lorsqu'il y a 25 image:{RESOURCES_PATH}/resources/images/goods/horses.png[title="model.goods.horses"] et 25 image:{RESOURCES_PATH}/resources/images/goods/muskets.png[title="model.goods.muskets"]
+
+
+

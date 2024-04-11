@@ -20,9 +20,13 @@
 package net.sf.freecol.common.model;
 
 import net.sf.freecol.docastest.FreeColDocAsTest;
+import net.sf.freecol.docastest.ModelObjects;
 import net.sf.freecol.docastest.gui.FreeColGuiDocAsTest;
 import net.sf.freecol.util.test.FreeColTestCase;
 import org.junit.Test;
+
+import java.util.HashMap;
+import java.util.stream.Collectors;
 
 import static org.junit.Assert.*;
 
@@ -44,21 +48,83 @@ public class IndianSettlementDocTest extends FreeColGuiDocAsTest {
         Game game = getStandardGame();
         Map map = getTestMap(game);
         game.changeMap(map);
-
+        {
         FreeColTestCase.IndianSettlementBuilder builder
-            = new FreeColTestCase.IndianSettlementBuilder(game);
-        IndianSettlement camp = builder.initialBravesInCamp(1).build();
+                = new FreeColTestCase.IndianSettlementBuilder(game);
+        IndianSettlement camp = builder.initialBravesInCamp(2).build();
 
         Unit indianBrave = camp.getUnitList().get(0);
 
-        assertNull("No auto-equip, no muskets",
-                   indianBrave.getAutomaticRole());
+        writeln("Un Brave dans un campement devient un dragon lorsqu'il  y a des chevaux et des mousquets");
+        writeln("[%collapsible]\n.Camp\n=====");
+        writeln(camp.getUnits()
+                .map(unit -> includeImage(unit.getType()))
+                .collect(Collectors.joining("\n")));
+        writeln("\n=====\n");
+
+        writeln(formatRole(indianBrave));
+        {
+            final String goods = camp.getGoodsList().isEmpty()
+                    ? "rien"
+                    : camp.getGoodsList().stream()
+                        .map(good -> good.getAmount() + " " + includeImage(good.getType()))
+                        .collect(Collectors.joining(" et "));
+
+            writeln("Un " + includeImage(indianBrave.getType()) + " dans un campement devient un " + includeImage(indianBrave) + " lorsqu'il y a " + goods);
+        }
+//        addGoods(camp, musketsType, 100);
         camp.addGoods(musketsType, 100);
-        assertEquals("Auto-equip to armed brave, muskets present",
-                     armedBraveRole, indianBrave.getAutomaticRole());
+//        writeln(formatRole(indianBrave));
+//        writeln(includeImage(indianBrave));
+        {
+            final String goods = camp.getGoodsList().stream()
+                    .map(good -> good.getAmount() + " " + includeImage(good.getType()))
+                    .collect(Collectors.joining(" et "));
+
+            writeln("Un " + includeImage(indianBrave.getType()) + " dans un campement devient un " + includeImage(indianBrave) + " lorsqu'il y a " + goods);
+        }
+//        addGoods(camp, horsesType, 100);
         camp.addGoods(horsesType, 100);
-        assertEquals("Auto-equip to native dragoon, horses and muskets present",
-                     nativeDragoonRole, indianBrave.getAutomaticRole());
+//        writeln(formatRole(indianBrave));
+//        writeln(includeImage(indianBrave));
+    }
+        {
+            int nbBraves = 2;
+            HashMap<GoodsType, Integer> goods = new HashMap<GoodsType, Integer>();
+            goods.put(musketsType, 25);
+            goods.put(horsesType, 25);
+
+            FreeColTestCase.IndianSettlementBuilder builder
+                    = new FreeColTestCase.IndianSettlementBuilder(game);
+            IndianSettlement camp = builder.initialBravesInCamp(nbBraves).build();
+
+            final String unitsBefore = camp.getUnitList().stream().map(unit -> includeImage(unit)).collect(Collectors.joining(" "));
+
+            goods.forEach((good, amount) -> camp.addGoods(good, amount));
+            final String goodsImages = camp.getGoodsList().stream()
+                    .map(good -> good.getAmount() + " " + includeImage(good.getType()))
+                    .collect(Collectors.joining(" et "));
+            writeln(unitsBefore
+                    + " dans un campement devient "
+                    + camp.getUnitList().stream().map(unit -> includeImage(unit)).collect(Collectors.joining(" "))
+                    + " lorsqu'il y a "
+                    + goodsImages);
+
+        }
+    }
+
+    private static String formatRole(Unit indianBrave) {
+        if (indianBrave.getAutomaticRole() == null) {
+            return "Alors il n'a pas de rôle";
+        } else {
+            return "Alors le rôle est *" + indianBrave.getAutomaticRole().getRoleSuffix() + "*";
+        }
+    }
+
+    private void addGoods(IndianSettlement camp, GoodsType good, int amount) {
+        writeln("Après avoir ajouté " + amount + " " + includeImage(good));
+
+        camp.addGoods(good, amount);
     }
 
     /*
@@ -89,6 +155,8 @@ public class IndianSettlementDocTest extends FreeColGuiDocAsTest {
         assertTrue("Indian player should own camp tile", campTile.getOwner() == indianPlayer);
         assertTrue("Indian player should own land tile", landTile.getOwner() == indianPlayer);
         assertFalse("Indian player should not own water tile", waterTile.getOwner() == indianPlayer);
+
+        writeln("TODO");
     }
 
     /*
@@ -125,5 +193,7 @@ public class IndianSettlementDocTest extends FreeColGuiDocAsTest {
         assertEquals(wrongQtyHorsesMsg,notEnoughToShare,camp1.getGoodsCount(horsesType));
         assertEquals(wrongQtyMusketsMsg,enoughToShare / 2,camp2.getGoodsCount(musketsType));
         assertEquals(wrongQtyHorsesMsg,none,camp2.getGoodsCount(horsesType));
+
+        writeln("TODO");
     }
 }

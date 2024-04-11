@@ -1,5 +1,5 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
-ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/default]
 
 [#net_sf_freecol_common_model_combatdoctest_colonist_attacked_by_veteran]
 = Colonist attacked by veteran
@@ -71,11 +71,11 @@ armed, canBeCaptured, canBeCaptured: false, canBeEquipped, canRecruitUnit, captu
 |====
 |Modifier|Source|Index|Type|Value
 
-|attackBonus|attackBonus|50|PERCENTAGE|50.0
 |offence|dragoon|30|ADDITIVE|3.0
 |bigMovementPenalty|movementPenalty|50|PERCENTAGE|-66.0
 |offence|baseOffence|10|ADDITIVE|0.0
 |offence|veteranSoldier|40|PERCENTAGE|50.0
+|attackBonus|attackBonus|50|PERCENTAGE|50.0
 |====
 
 
@@ -84,7 +84,9 @@ armed, canBeCaptured, canBeCaptured: false, canBeEquipped, canRecruitUnit, captu
 |====
 |Modifier|Source|Index|Type|Value
 
-|defence|baseDefence|10|ADDITIVE|1.0
-|fortified|fortified|50|PERCENTAGE|50.0
 |defence|hills|50|PERCENTAGE|100.0
+|fortified|fortified|50|PERCENTAGE|50.0
+|defence|baseDefence|10|ADDITIVE|1.0
 |====
+
+

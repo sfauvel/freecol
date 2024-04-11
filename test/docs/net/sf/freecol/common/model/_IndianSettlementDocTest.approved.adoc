@@ -1,0 +1,10 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/default]
+
+= Indian settlement doc test
+
+include::_IndianSettlementDocTest.testAutomaticEquipBraves.approved.adoc[leveloffset=+1]
+
+include::_IndianSettlementDocTest.testSettlementDoesNotOwnWaterTiles.approved.adoc[leveloffset=+1]
+
+include::_IndianSettlementDocTest.testTradeGoodsWithSetlement.approved.adoc[leveloffset=+1]

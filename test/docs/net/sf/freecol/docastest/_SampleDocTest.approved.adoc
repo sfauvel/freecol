@@ -7,4 +7,4 @@ include::_SampleDocTest.create_a_map.approved.adoc[leveloffset=+1]
 
 include::_SampleDocTest.display_a_map.approved.adoc[leveloffset=+1]
 
-include::_SampleDocTest.display_a_image.approved.adoc[leveloffset=+1]
+include::_SampleDocTest.display_an_image.approved.adoc[leveloffset=+1]

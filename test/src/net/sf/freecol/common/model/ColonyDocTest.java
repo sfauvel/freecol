@@ -1,18 +1,18 @@
 /**
  * Copyright (C) 2002-2022  The FreeCol Team
- *
+ * <p>
  * This file is part of FreeCol.
- *
+ * <p>
  * FreeCol is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 2 of the License, or
  * (at your option) any later version.
- *
+ * <p>
  * FreeCol is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License
  * along with FreeCol.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -22,6 +22,8 @@ package net.sf.freecol.common.model;
 import net.sf.freecol.common.io.FreeColTcFile;
 import net.sf.freecol.docastest.FreeColDocAsTest;
 import net.sf.freecol.docastest.FreeColFormatter;
+import net.sf.freecol.docastest.ModelObjects;
+import net.sf.freecol.docastest.ModelObjects.*;
 import net.sf.freecol.util.test.FreeColTestCase;
 import org.junit.Test;
 import org.sfvl.codeextraction.CodeExtractor;
@@ -39,110 +41,71 @@ import java.util.stream.Collectors;
 
 public class ColonyDocTest extends FreeColDocAsTest {
 
-
-
-    private static final BuildingType carpenterHouseType
-            = spec().getBuildingType("model.building.carpenterHouse");
+    private static final BuildingType carpenterHouseType = spec().getBuildingType("model.building.carpenterHouse");
     private static final BuildingType churchType
             = spec().getBuildingType("model.building.church");
-    private static final BuildingType depotType
-            = spec().getBuildingType("model.building.depot");
-    private static final BuildingType lumberMillType
-            = spec().getBuildingType("model.building.lumberMill");
-    private static final BuildingType townHallType
-            = spec().getBuildingType("model.building.townHall");
-    private static final BuildingType warehouseType
-            = spec().getBuildingType("model.building.warehouse");
-    private static final BuildingType warehouseExpansionType
-            = spec().getBuildingType("model.building.warehouseExpansion");
-    private static final BuildingType weaversHouseType
-            = spec().getBuildingType("model.building.weaverHouse");
+//    private static final BuildingType churchType = building.church;
+    private static final BuildingType depotType = spec().getBuildingType("model.building.depot");
+    private static final BuildingType lumberMillType = spec().getBuildingType("model.building.lumberMill");
+    private static final BuildingType townHallType = spec().getBuildingType("model.building.townHall");
+    private static final BuildingType warehouseType = spec().getBuildingType("model.building.warehouse");
+    private static final BuildingType warehouseExpansionType = spec().getBuildingType("model.building.warehouseExpansion");
+    private static final BuildingType weaversHouseType = spec().getBuildingType("model.building.weaverHouse");
 
-    private static final GoodsType bellsGoodsType
-            = spec().getGoodsType("model.goods.bells");
-    private static final GoodsType clothGoodsType
-            = spec().getGoodsType("model.goods.cloth");
-    private static final GoodsType cottonGoodsType
-            = spec().getGoodsType("model.goods.cotton");
-    private static final GoodsType foodGoodsType
-            = spec().getPrimaryFoodType();
-    private static final GoodsType grainGoodsType
-            = spec().getGoodsType("model.goods.grain");
-    private static final GoodsType hammerGoodsType
-            = spec().getGoodsType("model.goods.hammers");
-    private static final GoodsType lumberGoodsType
-            = spec().getGoodsType("model.goods.lumber");
+    private static final GoodsType bellsGoodsType = spec().getGoodsType("model.goods.bells");
+    private static final GoodsType clothGoodsType = spec().getGoodsType("model.goods.cloth");
+    private static final GoodsType cottonGoodsType = spec().getGoodsType("model.goods.cotton");
+    private static final GoodsType foodGoodsType = spec().getPrimaryFoodType();
+    private static final GoodsType grainGoodsType = spec().getGoodsType("model.goods.grain");
+    private static final GoodsType hammerGoodsType = spec().getGoodsType("model.goods.hammers");
+    private static final GoodsType lumberGoodsType = spec().getGoodsType("model.goods.lumber");
 
-    private static final Role soldierRole
-            = spec().getRole("model.role.soldier");
-
+    private static final Role soldierRole = spec().getRole("model.role.soldier");
     private static final TileType arcticTileType
             = spec().getTileType("model.tile.arctic");
-    private static final TileType plainsTileType
-            = spec().getTileType("model.tile.plains");
+//    private static final TileType arcticTileType = ModelObjects.tile.arctic;
+    private static final TileType plainsTileType = spec().getTileType("model.tile.plains");
 
-    private static final UnitType cottonPlanterType
-            = spec().getUnitType("model.unit.masterCottonPlanter");
-    private static final UnitType elderStatesmanType
-            = spec().getUnitType("model.unit.elderStatesman");
-    private static final UnitType freeColonistType
-            = spec().getUnitType("model.unit.freeColonist");
-    private static final UnitType masterWeaverType
-            = spec().getUnitType("model.unit.masterWeaver");
-    private static final UnitType wagonTrainType
-            = spec().getUnitType("model.unit.wagonTrain");
-    private static final UnitType braveType
-            = spec().getUnitType("model.unit.brave");
+    private static final UnitType cottonPlanterType = spec().getUnitType("model.unit.masterCottonPlanter");
+    private static final UnitType elderStatesmanType = spec().getUnitType("model.unit.elderStatesman");
+    private static final UnitType freeColonistType = spec().getUnitType("model.unit.freeColonist");
+    private static final UnitType masterWeaverType = spec().getUnitType("model.unit.masterWeaver");
+    private static final UnitType wagonTrainType = spec().getUnitType("model.unit.wagonTrain");
+    private static final UnitType braveType = spec().getUnitType("model.unit.brave");
 
     private String formatAfterSettingBuildingTypeImage(Colony colony, List<BuildableType> buildingToSet) {
-        return formatAfterSettingBuildingType(colony, buildingToSet,
-                this::includeImage,
-                this::displayQueue);
+        return formatAfterSettingBuildingType(colony, buildingToSet, this::includeImage, this::displayQueue);
     }
 
     private String formatAfterSettingBuildingTypeText(Colony colony, List<BuildableType> buildingToSet) {
-        return formatAfterSettingBuildingType(colony, buildingToSet,
-                type -> type.getId(),
-                c -> Integer.toString(c.getBuildQueue().size()));
+        return formatAfterSettingBuildingType(colony, buildingToSet, type -> type.getId(), c -> Integer.toString(c.getBuildQueue().size()));
     }
 
-    private String formatAfterSettingBuildingType(Colony colony, List<BuildableType> buildingToSet,
-                                                  Function<BuildableType, String> key, Function<Colony, String> queue) {
+    private String formatAfterSettingBuildingType(Colony colony, List<BuildableType> buildingToSet, Function<BuildableType, String> key, Function<Colony, String> queue) {
 
-        final String table = buildingToSet.stream()
-                .map(type -> {
-                    final String queue_before = queue.apply(colony);
-                    colony.setCurrentlyBuilding(type);
-                    return String.format("a| %s\na| %s\na| %s", queue_before, key.apply(type), queue.apply(colony));
-                }).collect(Collectors.joining("\n\n", "|====\n| Initial queue | Building asked | New queue\n\n", "\n|===="));
+        final String table = buildingToSet.stream().map(type -> {
+            final String queue_before = queue.apply(colony);
+            colony.setCurrentlyBuilding(type);
+            return String.format("a| %s\na| %s\na| %s", queue_before, key.apply(type), queue.apply(colony));
+        }).collect(Collectors.joining("\n\n", "|====\n| Initial queue | Building asked | New queue\n\n", "\n|===="));
         return table;
     }
 
     private String displayQueue(Colony colony) {
-        return colony.getBuildQueue().stream()
-                .map(type -> includeImage(type))
-                .collect(Collectors.joining("\n"));
+        return colony.getBuildQueue().stream().map(type -> includeImage(type)).collect(Collectors.joining("\n"));
     }
 
     public class ColonyPrinter {
 
         public String print(Colony colony) {
-            return String.join("\n",
-                    "====",
-                    "Name : " + colony.getName(),
-                    "",
-                    "Current building : " + includeImage(colony.getCurrentlyBuilding()),
-                    "===="
-                    );
+            return String.join("\n", "====", "Name : " + colony.getName(), "", "Current building : " + includeImage(colony.getCurrentlyBuilding()), "====");
         }
 
     }
+
     private String displayColony(Colony colony) {
         final ColonyPrinter printer = new ColonyPrinter();
-        return String.join("\n",
-                ".Standard colony",
-                "[%collapsible]",
-                printer.print(colony));
+        return String.join("\n", ".Standard colony", "[%collapsible]", printer.print(colony));
     }
 
 
@@ -158,8 +121,7 @@ public class ColonyDocTest extends FreeColDocAsTest {
 
         final BuildingType newBuilding = ColonyDocTest.churchType;
         colony.setCurrentlyBuilding(newBuilding);
-        write("When setting building with *" + newBuilding + "* +",
-                "The new currently building is: *" + colony.getCurrentlyBuilding() + "*");
+        write("When setting building with *" + newBuilding + "* +", "The new currently building is: *" + colony.getCurrentlyBuilding() + "*");
 
     }
 
@@ -179,16 +141,9 @@ public class ColonyDocTest extends FreeColDocAsTest {
 
         // We don't need to assert after each action.
         // We can have the same treatment for each value.
-        final List<BuildableType> buildingToSet = Arrays.asList(
-                warehouseType,
-                warehouseType,
-                churchType,
-                warehouseType);
+        final List<BuildableType> buildingToSet = Arrays.asList(warehouseType, warehouseType, churchType, warehouseType);
 
-        write("Build queue does not accept building doubles.",
-                "The queue size is incremented only with a new building.",
-                "",
-                formatAfterSettingBuildingTypeText(colony, buildingToSet));
+        write("Build queue does not accept building doubles.", "The queue size is incremented only with a new building.", "", formatAfterSettingBuildingTypeText(colony, buildingToSet));
     }
 
     @Test
@@ -200,20 +155,9 @@ public class ColonyDocTest extends FreeColDocAsTest {
 
         // We don't need to assert after each action.
         // We can have the same treatment for each value.
-        final List<BuildableType> buildingToSet = Arrays.asList(
-                warehouseType,
-                warehouseType,
-                churchType,
-                warehouseType);
+        final List<BuildableType> buildingToSet = Arrays.asList(warehouseType, warehouseType, churchType, warehouseType);
 
-        write("Build queue does not accept building doubles.",
-                "The queue size is incremented only with a new building.",
-                "",
-                displayColony(colony),
-                "",
-                formatAfterSettingBuildingType(colony, buildingToSet,
-                        type -> includeImage(type),
-                        this::displayQueue));
+        write("Build queue does not accept building doubles.", "The queue size is incremented only with a new building.", "", displayColony(colony), "", formatAfterSettingBuildingType(colony, buildingToSet, type -> includeImage(type), this::displayQueue));
 
     }
 
@@ -231,16 +175,10 @@ public class ColonyDocTest extends FreeColDocAsTest {
 
         Colony colony = getStandardColony();
 
-        final List<BuildableType> buildingToSet = Arrays.asList(
-                wagonTrainType,
-                wagonTrainType);
+        final List<BuildableType> buildingToSet = Arrays.asList(wagonTrainType, wagonTrainType);
 
         // We can reuse table printer.
-        write("Build queue is incremented when building an other item.",
-                "",
-                "Initial currently building: *" + colony.getCurrentlyBuilding() + "* +",
-                "",
-                formatAfterSettingBuildingTypeText(colony, buildingToSet));
+        write("Build queue is incremented when building an other item.", "", "Initial currently building: *" + colony.getCurrentlyBuilding() + "* +", "", formatAfterSettingBuildingTypeText(colony, buildingToSet));
     }
 
     @Test
@@ -250,16 +188,10 @@ public class ColonyDocTest extends FreeColDocAsTest {
 
         Colony colony = getStandardColony();
 
-        final List<BuildableType> buildingToSet = Arrays.asList(
-                wagonTrainType,
-                wagonTrainType);
+        final List<BuildableType> buildingToSet = Arrays.asList(wagonTrainType, wagonTrainType);
 
         // We can reuse table printer.
-        write("Build queue is incremented when building an other item.",
-                "",
-                displayColony(colony),
-                "",
-                formatAfterSettingBuildingTypeImage(colony, buildingToSet));
+        write("Build queue is incremented when building an other item.", "", displayColony(colony), "", formatAfterSettingBuildingTypeImage(colony, buildingToSet));
     }
 //
 //    public void testOccupationWithFood() {

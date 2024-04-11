@@ -1,0 +1,21 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/default]
+
+[#net_sf_freecol_docastest_sampledoctest_display_an_image]
+= Display an image
+
+If you want to display the image of an element, use the following code
+
+[source,java,indent=0]
+----
+        write(
+                includeImage(building.church),
+                includeImage(goods.muskets),
+                includeImage(serverUnit)
+        );
+
+----
+image:{RESOURCES_PATH}/resources/images/buildings/church.png[title="model.building.church"]
+image:{RESOURCES_PATH}/resources/images/goods/muskets.png[title="model.goods.muskets"]
+image:{RESOURCES_PATH}/resources/images/units/civilian/brave.png[title="unit:474"]
+

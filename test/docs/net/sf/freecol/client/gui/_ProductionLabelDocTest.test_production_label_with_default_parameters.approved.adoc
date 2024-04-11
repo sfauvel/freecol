@@ -1,5 +1,5 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
-ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/default]
 
 [#net_sf_freecol_client_gui_productionlabeldoctest_test_production_label_with_default_parameters]
 = Test production label with default parameters
@@ -40,3 +40,4 @@ With amount -5
 image:{ROOT_PATH}/images/ProductionLabelWithDefaultParameters_minus_nine.jpg[]
 // Checksum ProductionLabelWithDefaultParameters_minus_nine.jpg=476943711
 With amount -9
+

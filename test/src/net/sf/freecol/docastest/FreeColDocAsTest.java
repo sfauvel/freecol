@@ -20,7 +20,14 @@ import java.io.IOException;
 import java.net.URI;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Optional;
 import java.util.Properties;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static net.sf.freecol.common.util.CollectionUtils.*;
+import static net.sf.freecol.common.util.CollectionUtils.alwaysTrue;
 
 public class FreeColDocAsTest extends DocAsTest {
 
@@ -157,6 +164,27 @@ public class FreeColDocAsTest extends DocAsTest {
         }
         final String image_id = "image." + folder + "." + buildable.getId();
 
+        try  {
+            getImage(image_id);
+        } catch (Exception e) {
+            System.out.println("FreeColDocAsTest.getImage " + e.getMessage());
+        }
+        return getImage(image_id);
+    }
+
+    public String getImage(Unit unit) {
+
+        final String roleSuffix = Optional.ofNullable(unit.getAutomaticRole())
+                .map(Role::getRoleSuffix)
+                .map(suffix -> "." + suffix)
+                .orElse("");
+        String folder = "unit";
+        final String image_id = "image." + folder + "." + unit.getType() + roleSuffix;
+
+        return getImage(image_id);
+    }
+
+    private String getImage(String image_id) {
         ImageResource imageResource = ResourceManager.getImageResource(image_id, true);
         final Path imagePath = Paths.get(imageResource.getResourceLocator().getPath());
         final Path relativizeToTcData = Paths.get(tcData.getPath()).toAbsolutePath().relativize(imagePath);
@@ -167,5 +195,9 @@ public class FreeColDocAsTest extends DocAsTest {
         return getFormatter().image(getImage(building), building.getId());
     }
 
+    // SEE ImageLibrary.getUnitTypeImageKey
+    public String includeImage(Unit unit) {
 
+        return getFormatter().image(getImage(unit), unit.getId());
+    }
 }
