@@ -1,5 +1,5 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
-ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/default]
 
 [#net_sf_freecol_architecture_architecturedoctest_client]
 = Client
@@ -33,6 +33,7 @@ digraph g {
         "net.sf.freecol.client.gui.animation"
         "net.sf.freecol.client.gui.plaf"
         "net.sf.freecol.client.gui.mapviewer"
+        "net.sf.freecol.client.gui.panel.mapeditor"
         "net.sf.freecol.client.gui.menu"
         "net.sf.freecol.client.gui.images"
         "net.sf.freecol.client.gui.label"
@@ -81,6 +82,7 @@ digraph g {
     "net.sf.freecol.client.gui.dialog" -> "net.sf.freecol.client.gui.panel"
     "net.sf.freecol.client.gui.dialog" -> "net.sf.freecol.client.gui.panel.colopedia"
     "net.sf.freecol.client.gui.dialog" -> "net.sf.freecol.client.gui.plaf"
+    "net.sf.freecol.client.gui.images" -> "net.sf.freecol.client.gui"
     "net.sf.freecol.client.gui.label" -> "net.sf.freecol.client"
     "net.sf.freecol.client.gui.label" -> "net.sf.freecol.client.control"
     "net.sf.freecol.client.gui.label" -> "net.sf.freecol.client.gui"
@@ -103,12 +105,17 @@ digraph g {
     "net.sf.freecol.client.gui.panel" -> "net.sf.freecol.client.gui.action"
     "net.sf.freecol.client.gui.panel" -> "net.sf.freecol.client.gui.label"
     "net.sf.freecol.client.gui.panel" -> "net.sf.freecol.client.gui.panel"
+    "net.sf.freecol.client.gui.panel" -> "net.sf.freecol.client.gui.panel.mapeditor"
     "net.sf.freecol.client.gui.panel" -> "net.sf.freecol.client.gui.plaf"
     "net.sf.freecol.client.gui.panel" -> "net.sf.freecol.client.gui.tooltip"
     "net.sf.freecol.client.gui.panel.colopedia" -> "net.sf.freecol.client"
     "net.sf.freecol.client.gui.panel.colopedia" -> "net.sf.freecol.client.gui"
     "net.sf.freecol.client.gui.panel.colopedia" -> "net.sf.freecol.client.gui.action"
     "net.sf.freecol.client.gui.panel.colopedia" -> "net.sf.freecol.client.gui.panel"
+    "net.sf.freecol.client.gui.panel.mapeditor" -> "net.sf.freecol.client"
+    "net.sf.freecol.client.gui.panel.mapeditor" -> "net.sf.freecol.client.control"
+    "net.sf.freecol.client.gui.panel.mapeditor" -> "net.sf.freecol.client.gui"
+    "net.sf.freecol.client.gui.panel.mapeditor" -> "net.sf.freecol.client.gui.panel"
     "net.sf.freecol.client.gui.panel.report" -> "net.sf.freecol.client"
     "net.sf.freecol.client.gui.panel.report" -> "net.sf.freecol.client.gui"
     "net.sf.freecol.client.gui.panel.report" -> "net.sf.freecol.client.gui.label"
@@ -122,3 +129,5 @@ digraph g {
     "net.sf.freecol.client.gui.video" -> "net.sf.freecol.client.gui.panel"
 }
 ----
+
+

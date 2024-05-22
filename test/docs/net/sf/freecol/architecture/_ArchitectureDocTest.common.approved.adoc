@@ -1,5 +1,5 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
-ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/default]
 
 [#net_sf_freecol_architecture_architecturedoctest_common]
 = Common
@@ -51,6 +51,7 @@ digraph g {
     subgraph cluster_model {
         bgcolor="#05fdCC";
         "net.sf.freecol.common.model"
+        "net.sf.freecol.common.model.production"
         "net.sf.freecol.common.model.mission"
         "net.sf.freecol.common.model.pathfinding"
     }
@@ -63,6 +64,8 @@ digraph g {
         "net.sf.freecol.common.option"
     }
     
+    "net.sf.freecol.common" -> "net.sf.freecol.common.i18n"
+    "net.sf.freecol.common" -> "net.sf.freecol.common.model"
     "net.sf.freecol.common.debug" -> "net.sf.freecol.common.i18n"
     "net.sf.freecol.common.debug" -> "net.sf.freecol.common.io"
     "net.sf.freecol.common.debug" -> "net.sf.freecol.common.model"
@@ -92,6 +95,7 @@ digraph g {
     "net.sf.freecol.common.model" -> "net.sf.freecol.common.io"
     "net.sf.freecol.common.model" -> "net.sf.freecol.common.model"
     "net.sf.freecol.common.model" -> "net.sf.freecol.common.model.pathfinding"
+    "net.sf.freecol.common.model" -> "net.sf.freecol.common.model.production"
     "net.sf.freecol.common.model" -> "net.sf.freecol.common.networking"
     "net.sf.freecol.common.model" -> "net.sf.freecol.common.option"
     "net.sf.freecol.common.model" -> "net.sf.freecol.common.util"
@@ -100,6 +104,9 @@ digraph g {
     "net.sf.freecol.common.model.mission" -> "net.sf.freecol.common.util"
     "net.sf.freecol.common.model.pathfinding" -> "net.sf.freecol.common.model"
     "net.sf.freecol.common.model.pathfinding" -> "net.sf.freecol.common.util"
+    "net.sf.freecol.common.model.production" -> "net.sf.freecol.common.model"
+    "net.sf.freecol.common.model.production" -> "net.sf.freecol.common.option"
+    "net.sf.freecol.common.model.production" -> "net.sf.freecol.common.util"
     "net.sf.freecol.common.networking" -> "net.sf.freecol.common"
     "net.sf.freecol.common.networking" -> "net.sf.freecol.common.debug"
     "net.sf.freecol.common.networking" -> "net.sf.freecol.common.io"
@@ -114,13 +121,18 @@ digraph g {
     "net.sf.freecol.common.option" -> "net.sf.freecol.common.model"
     "net.sf.freecol.common.option" -> "net.sf.freecol.common.option"
     "net.sf.freecol.common.option" -> "net.sf.freecol.common.util"
+    "net.sf.freecol.common.resources" -> "net.sf.freecol.common.io"
     "net.sf.freecol.common.resources" -> "net.sf.freecol.common.io.sza"
+    "net.sf.freecol.common.resources" -> "net.sf.freecol.common.resources"
     "net.sf.freecol.common.resources" -> "net.sf.freecol.common.sound"
     "net.sf.freecol.common.resources" -> "net.sf.freecol.common.util"
     "net.sf.freecol.common.sound" -> "net.sf.freecol.common.option"
     "net.sf.freecol.common.sound" -> "net.sf.freecol.common.util"
     "net.sf.freecol.common.util" -> "net.sf.freecol.common.debug"
     "net.sf.freecol.common.util" -> "net.sf.freecol.common.model"
+    "net.sf.freecol.common.util" -> "net.sf.freecol.common.resources"
     "net.sf.freecol.common.util" -> "net.sf.freecol.common.util"
 }
 ----
+
+

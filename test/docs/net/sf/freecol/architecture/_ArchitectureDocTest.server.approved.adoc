@@ -1,5 +1,5 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
-ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/default]
 
 [#net_sf_freecol_architecture_architecturedoctest_server]
 = Server
@@ -19,6 +19,7 @@ digraph g {
         bgcolor="#05fdCC";
         "net.sf.freecol.server.ai"
         "net.sf.freecol.server.ai.mission"
+        "net.sf.freecol.server.ai.military"
     }
     subgraph cluster_generator {
         bgcolor="#05fdCC";
@@ -43,10 +44,13 @@ digraph g {
     "net.sf.freecol.server" -> "net.sf.freecol.server.model"
     "net.sf.freecol.server" -> "net.sf.freecol.server.networking"
     "net.sf.freecol.server.ai" -> "net.sf.freecol.server"
+    "net.sf.freecol.server.ai" -> "net.sf.freecol.server.ai.military"
     "net.sf.freecol.server.ai" -> "net.sf.freecol.server.ai.mission"
     "net.sf.freecol.server.ai" -> "net.sf.freecol.server.control"
     "net.sf.freecol.server.ai" -> "net.sf.freecol.server.model"
     "net.sf.freecol.server.ai" -> "net.sf.freecol.server.networking"
+    "net.sf.freecol.server.ai.military" -> "net.sf.freecol.server.ai"
+    "net.sf.freecol.server.ai.military" -> "net.sf.freecol.server.ai.mission"
     "net.sf.freecol.server.ai.mission" -> "net.sf.freecol.server.ai"
     "net.sf.freecol.server.control" -> "net.sf.freecol.server"
     "net.sf.freecol.server.control" -> "net.sf.freecol.server.ai"
@@ -57,3 +61,5 @@ digraph g {
     "net.sf.freecol.server.networking" -> "net.sf.freecol.server"
 }
 ----
+
+
