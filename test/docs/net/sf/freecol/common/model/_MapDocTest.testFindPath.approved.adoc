@@ -15,7 +15,7 @@ dutch colony is on the shore.
 
 
 image:{ROOT_PATH}/images/nearestPortShouldBeTheColony.jpg[]
-// Checksum nearestPortShouldBeTheColony.jpg=2517990871
+// Checksum nearestPortShouldBeTheColony.jpg=4100252850
 
 [%autowidth, options=header]
 |====
@@ -36,7 +36,7 @@ image:{ROOT_PATH}/images/nearestPortShouldBeTheColony.jpg[]
 Path start at [tile:524 plains 9,2 New Amsterdam]
 
 image:{ROOT_PATH}/images/colonistCanFindTheTrivialPath1.jpg[]
-// Checksum colonistCanFindTheTrivialPath1.jpg=282291051
+// Checksum colonistCanFindTheTrivialPath1.jpg=2854550138
 
 [%autowidth, options=header]
 |====
@@ -57,7 +57,7 @@ A colonist path from [tile:524 plains 9,2 New Amsterdam] to [tile:528 ocean 13,2
 Path start as [tile:524 plains 9,2 New Amsterdam] and end at [tile:528 ocean 13,2]
 
 image:{ROOT_PATH}/images/colonistCanFindTheTrivialPath2.jpg[]
-// Checksum colonistCanFindTheTrivialPath2.jpg=2517990871
+// Checksum colonistCanFindTheTrivialPath2.jpg=4100252850
 
 [%autowidth, options=header]
 |====
@@ -76,7 +76,7 @@ image:{ROOT_PATH}/images/colonistCanFindTheTrivialPath2.jpg[]
 Path start as [tile:524 plains 9,2 New Amsterdam] and end at [tile:528 ocean 13,2]
 
 image:{ROOT_PATH}/images/givingColonistAccessACarrierMakeTheSeaPathWork.jpg[]
-// Checksum givingColonistAccessACarrierMakeTheSeaPathWork.jpg=3871208996
+// Checksum givingColonistAccessACarrierMakeTheSeaPathWork.jpg=1711008867
 
 [%autowidth, options=header]
 |====
@@ -96,7 +96,7 @@ image:{ROOT_PATH}/images/givingColonistAccessACarrierMakeTheSeaPathWork.jpg[]
 Path start as [tile:524 plains 9,2 New Amsterdam] and end at [tile:528 ocean 13,2]
 
 image:{ROOT_PATH}/images/pathStillWorksIfTheColonistHaToWalkToTheCarrier.jpg[]
-// Checksum pathStillWorksIfTheColonistHaToWalkToTheCarrier.jpg=2517990871
+// Checksum pathStillWorksIfTheColonistHaToWalkToTheCarrier.jpg=4100252850
 
 [%autowidth, options=header]
 |====
@@ -124,7 +124,7 @@ A colonist path from [tile:524 plains 9,2 New Amsterdam] to [tile:528 ocean 13,2
 Path start as [tile:524 plains 9,2 New Amsterdam] and end at [tile:744 plains 9,13]
 
 image:{ROOT_PATH}/images/colonistUsesTheCarrierIfItISQuickerThanWalking.jpg[]
-// Checksum colonistUsesTheCarrierIfItISQuickerThanWalking.jpg=3116579513
+// Checksum colonistUsesTheCarrierIfItISQuickerThanWalking.jpg=3140753487
 
 [%autowidth, options=header]
 |====
@@ -148,7 +148,7 @@ A colonist path from [tile:577 plains 2,5] to [tile:564 plains 9,4] is PathNode 
 Path start as [tile:577 plains 2,5] and end at [tile:564 plains 9,4]
 
 image:{ROOT_PATH}/images/colonistDoesNotUseTheCarrierIfItDoesNotHelp.jpg[]
-// Checksum colonistDoesNotUseTheCarrierIfItDoesNotHelp.jpg=574804472
+// Checksum colonistDoesNotUseTheCarrierIfItDoesNotHelp.jpg=736902192
 
 [%autowidth, options=header]
 |====

@@ -10,6 +10,7 @@ import net.sf.freecol.common.model.*;
 import net.sf.freecol.common.networking.ServerAPI;
 import net.sf.freecol.common.option.BooleanOption;
 import net.sf.freecol.common.option.IntegerOption;
+import net.sf.freecol.common.option.RangeOption;
 import net.sf.freecol.common.resources.ImageCache;
 import net.sf.freecol.server.FreeColServer;
 import net.sf.freecol.util.test.FreeColTestCase;
@@ -66,6 +67,12 @@ class MockFreeColClient implements FreeColClient {
         final BooleanOption booleanOption = new BooleanOption(new Specification());
         booleanOption.setId(ClientOptions.USE_TERRAIN_ANIMATIONS);
         options.add(booleanOption);
+    }
+
+    {
+        final RangeOption option = new RangeOption((new Specification()));
+        option.setId(ClientOptions.GRAPHICS_QUALITY);
+        options.add(option);
     }
     @Override
     public Player getMyPlayer() {

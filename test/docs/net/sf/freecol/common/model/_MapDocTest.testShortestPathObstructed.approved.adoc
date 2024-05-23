@@ -7,7 +7,7 @@ ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/default]
 
 .Path from 1x11 to 3x7
 image:{ROOT_PATH}/images/testShortestPathObstructed.jpg[]
-// Checksum testShortestPathObstructed.jpg=2785467969
+// Checksum testShortestPathObstructed.jpg=314970151
 
 [%autowidth, options=header]
 |====

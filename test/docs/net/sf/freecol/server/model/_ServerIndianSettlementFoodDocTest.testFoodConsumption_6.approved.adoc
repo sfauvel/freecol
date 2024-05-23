@@ -47,15 +47,15 @@ width="700" height="500"     style="background-color:grey">
     <line x1="636" x2="636" y1="440" y2="444"/>
 </svg>
 <polyline style="stroke:blue" class="curve" points="
-60,228
-132,334
-204,334
-276,334
-348,334
-420,334
-492,334
-564,334
-636,334
+60,313
+132,376
+204,376
+276,376
+348,376
+420,376
+492,376
+564,376
+636,376
 "/>
 <polyline style="stroke:red" class="curve" points="
 60,397

@@ -10,7 +10,7 @@ UnitCount:1
 
 GoodsCount for model.goods.food: 0
 
-foodProduced:10
+foodProduced:6
 
 foodConsumed:2
 
@@ -18,9 +18,9 @@ foodProduced > foodConsumed
 
 new turn
 
-foodRemaining: 8
+foodRemaining: 4
 
-GoodsCount for model.goods.food: 8
+GoodsCount for model.goods.food: 4
 
 
 

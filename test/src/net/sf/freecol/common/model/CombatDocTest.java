@@ -23,12 +23,9 @@ import net.sf.freecol.docastest.FreeColDocAsTest;
 import net.sf.freecol.server.model.ServerUnit;
 import org.junit.Test;
 import org.sfvl.codeextraction.CodeExtractor;
-import org.sfvl.codeextraction.MethodReference;
 import org.sfvl.docformatter.asciidoc.AsciidocFormatter;
 
-import java.util.Arrays;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -179,11 +176,14 @@ public class CombatDocTest extends FreeColDocAsTest {
         }
     }
 
+
+
     private String docModifiers(AsciidocFormatter formatter, Set<Modifier> modifiers) {
         final String table = formatter.tableWithHeader(
                 Stream.concat(
                         Stream.of(Arrays.asList("Modifier", "Source", "Index", "Type", "Value")),
                         modifiers.stream()
+                                .sorted(Comparator.comparing(CombatDocTest::keyToSortModifier))
                                 .map(modifier -> Arrays.asList(
                                         modifier.getSuffix(),
                                         modifier.getSource().getSuffix(),
@@ -193,6 +193,10 @@ public class CombatDocTest extends FreeColDocAsTest {
                 ).collect(Collectors.toList())
         );
         return table;
+    }
+
+    private static String keyToSortModifier(Modifier modifier) {
+        return modifier.getSuffix() + "/" + modifier.getSource().getSuffix();
     }
 
     @Test

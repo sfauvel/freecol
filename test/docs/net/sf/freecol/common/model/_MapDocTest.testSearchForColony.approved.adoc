@@ -9,7 +9,7 @@ The path from 15x5 to 15x5 is
 
 
 image:{ROOT_PATH}/images/testSearchForColony.jpg[]
-// Checksum testSearchForColony.jpg=2927736925
+// Checksum testSearchForColony.jpg=3812143631
 
 [%autowidth, options=header]
 |====

@@ -71,11 +71,11 @@ armed, canBeCaptured, canBeCaptured: false, canBeEquipped, canRecruitUnit, captu
 |====
 |Modifier|Source|Index|Type|Value
 
-|offence|dragoon|30|ADDITIVE|3.0
+|attackBonus|attackBonus|50|PERCENTAGE|50.0
 |bigMovementPenalty|movementPenalty|50|PERCENTAGE|-66.0
 |offence|baseOffence|10|ADDITIVE|0.0
+|offence|dragoon|30|ADDITIVE|3.0
 |offence|veteranSoldier|40|PERCENTAGE|50.0
-|attackBonus|attackBonus|50|PERCENTAGE|50.0
 |====
 
 
@@ -84,9 +84,9 @@ armed, canBeCaptured, canBeCaptured: false, canBeEquipped, canRecruitUnit, captu
 |====
 |Modifier|Source|Index|Type|Value
 
+|defence|baseDefence|10|ADDITIVE|1.0
 |defence|hills|50|PERCENTAGE|100.0
 |fortified|fortified|50|PERCENTAGE|50.0
-|defence|baseDefence|10|ADDITIVE|1.0
 |====
 
 

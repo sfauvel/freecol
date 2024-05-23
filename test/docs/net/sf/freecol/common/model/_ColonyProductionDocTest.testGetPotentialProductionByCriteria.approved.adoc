@@ -1,5 +1,5 @@
 ifndef::ROOT_PATH[:ROOT_PATH: ../../../../..]
-ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/rules/classic]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/default]
 
 [#net_sf_freecol_common_model_colonyproductiondoctest_testgetpotentialproductionbycriteria]
 = TestGetPotentialProductionByCriteria
@@ -58,3 +58,4 @@ a| [%collapsible]
 expertFisherman, expertFurTrapper, expertSilverMiner, expertLumberJack, expertOreMiner, masterSugarPlanter, masterCottonPlanter, masterTobaccoPlanter, firebrandPreacher, elderStatesman, masterCarpenter, masterDistiller, masterWeaver, masterTobacconist, masterFurTrader, masterBlacksmith, masterGunsmith, seasonedScout, hardyPioneer, veteranSoldier, jesuitMissionary, indenturedServant, pettyCriminal, indianConvert, brave, colonialRegular, kingsRegular, caravel, frigate, galleon, manOWar, merchantman, privateer, artillery, damagedArtillery, treasureTrain, wagonTrain, revenger, flyingDutchman, undead
 ====
 |====
+

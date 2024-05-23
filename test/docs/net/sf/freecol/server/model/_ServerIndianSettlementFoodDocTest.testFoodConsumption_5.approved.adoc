@@ -8,16 +8,14 @@ Ajouter des images.
 
 UnitCount:1
 
-GoodsCount for 
-image:{ROOT_PATH}/../../data/default/resources/images/goods/food.png[title="food"]
-: 0
+GoodsCount for image:{ROOT_PATH}/../../data/default/resources/images/goods/food.png[title="food"]: 0
 
 [%autowidth]
 
 |====
 |Produced|Consumed|Remaining
 
-|10|2|8
+|6|2|4
 |====
 
 
@@ -25,9 +23,7 @@ foodProduced > foodConsumed
 
 new turn
 
-GoodsCount for 
-image:{ROOT_PATH}/../../data/default/resources/images/goods/food.png[title="food"]
-: 8
+GoodsCount for image:{ROOT_PATH}/../../data/default/resources/images/goods/food.png[title="food"]: 4
 
 
 
