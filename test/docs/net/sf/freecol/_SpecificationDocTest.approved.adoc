@@ -1,0 +1,6 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/default]
+
+= Specification doc test
+
+include::_SpecificationDocTest.buildings.approved.adoc[leveloffset=+1]

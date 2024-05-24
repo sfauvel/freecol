@@ -1,0 +1,68 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../..]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/default]
+
+[#net_sf_freecol_specificationdoctest_buildings]
+= Buildings
+
+We list below all buildings with `default` resources,
+Some of them can be improved to another building.
+
+image:{RESOURCES_PATH}/resources/images/buildings/townhall.png[]
+
+image:{RESOURCES_PATH}/resources/images/buildings/carpenters_house.png[]
+ -> image:{RESOURCES_PATH}/resources/images/buildings/lumber_mill.png[]
+
+image:{RESOURCES_PATH}/resources/images/buildings/blacksmiths_house.png[]
+ -> image:{RESOURCES_PATH}/resources/images/buildings/blacksmiths_shop.png[]
+ -> image:{RESOURCES_PATH}/resources/images/buildings/ironworks.png[]
+
+image:{RESOURCES_PATH}/resources/images/buildings/tobacconists_house.png[]
+ -> image:{RESOURCES_PATH}/resources/images/buildings/tobacconists_shop.png[]
+ -> image:{RESOURCES_PATH}/resources/images/buildings/cigar_factory.png[]
+
+image:{RESOURCES_PATH}/resources/images/buildings/weavers_house.png[]
+ -> image:{RESOURCES_PATH}/resources/images/buildings/weavers_shop.png[]
+ -> image:{RESOURCES_PATH}/resources/images/buildings/textile_mill.png[]
+
+image:{RESOURCES_PATH}/resources/images/buildings/distillers_house.png[]
+ -> image:{RESOURCES_PATH}/resources/images/buildings/rum_distillery.png[]
+ -> image:{RESOURCES_PATH}/resources/images/buildings/rum_factory.png[]
+
+image:{RESOURCES_PATH}/resources/images/buildings/fur_traders_house.png[]
+ -> image:{RESOURCES_PATH}/resources/images/buildings/fur_traders_shop.png[]
+ -> image:{RESOURCES_PATH}/resources/images/buildings/fur_factory.png[]
+
+image:{RESOURCES_PATH}/resources/images/buildings/schoolhouse.png[]
+ -> image:{RESOURCES_PATH}/resources/images/buildings/college.png[]
+ -> image:{RESOURCES_PATH}/resources/images/buildings/university.png[]
+
+image:{RESOURCES_PATH}/resources/images/buildings/armory.png[]
+ -> image:{RESOURCES_PATH}/resources/images/buildings/magazine.png[]
+ -> image:{RESOURCES_PATH}/resources/images/buildings/arsenal.png[]
+
+image:{RESOURCES_PATH}/resources/images/buildings/chapel.png[]
+ -> image:{RESOURCES_PATH}/resources/images/buildings/church.png[]
+ -> image:{RESOURCES_PATH}/resources/images/buildings/cathedral.png[]
+
+image:{RESOURCES_PATH}/resources/images/buildings/stockade.png[]
+ -> image:{RESOURCES_PATH}/resources/images/buildings/fort.png[]
+ -> image:{RESOURCES_PATH}/resources/images/buildings/fortress.png[]
+
+image:{RESOURCES_PATH}/resources/images/buildings/depot.png[]
+ -> image:{RESOURCES_PATH}/resources/images/buildings/warehouse.png[]
+ -> image:{RESOURCES_PATH}/resources/images/buildings/warehouse_expansion.png[]
+
+image:{RESOURCES_PATH}/resources/images/buildings/pasture.png[]
+ -> image:{RESOURCES_PATH}/resources/images/buildings/stable.png[]
+
+image:{RESOURCES_PATH}/resources/images/buildings/docks.png[]
+ -> image:{RESOURCES_PATH}/resources/images/buildings/drydock.png[]
+ -> image:{RESOURCES_PATH}/resources/images/buildings/shipyard.png[]
+
+image:{RESOURCES_PATH}/resources/images/buildings/printing_press.png[]
+ -> image:{RESOURCES_PATH}/resources/images/buildings/newspaper.png[]
+
+image:{RESOURCES_PATH}/resources/images/buildings/custom_house.png[]
+
+
+
