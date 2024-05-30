@@ -1,0 +1,10 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/default]
+
+[#net_sf_freecol_usermanuel_chapter4thenewworlddoctest_introduction]
+= Introduction
+
+At the beginning of the game, you will start with 1 `Vessel` and 2 `Colonists`.
+Your first task will be to discover the New World, which should lie due West, although sailing North West or South West may prove quicker.
+As soon as you have discovered land, you can establish your colonies and produce goods to send home to Europe.
+

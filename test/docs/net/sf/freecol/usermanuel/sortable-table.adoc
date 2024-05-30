@@ -1,0 +1,117 @@
+
+++++
+<style>
+  th, td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .sortable-icon {
+    position: absolute;
+    right: -1px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .asc .sortable-icon::before {
+    content: '↑';
+    color: #8f9091; /* Highlight color for ascending */
+  }
+
+  .desc .sortable-icon::before {
+    content: '↓';
+    color: #8f9091; /* Highlight color for descending */
+  }
+</style>
+
+<script>
+  // Function to parse table cell content and convert to numeric value
+  function parseTableCell(cell) {
+
+    var cellContent = cell.textContent || cell.innerText || cell.innerHTML;
+    console.log("Content:"  + cell.textContent + "/" + cell.innerText  + "/" + cellContent);
+    // Remove commas from the number string
+    var numericValue = parseFloat(cellContent.replace(/,/g, ""));
+    return isNaN(numericValue) ? cellContent.toLowerCase() : numericValue;
+  }
+
+  // Function to sort the table
+  function sortTable(columnIndex, table) {
+    var rows, switching, i, x, y, shouldSwitch;
+    switching = true;
+    var direction = table.getAttribute("data-sort-direction") === "asc" ? "desc" : "asc";
+
+    while (switching) {
+      switching = false;
+      rows = table.getElementsByTagName("tr");
+
+      for (i = 1; i < rows.length - 1; i++) {
+        shouldSwitch = false;
+
+        x = rows[i].getElementsByTagName("td")[columnIndex];
+        y = rows[i + 1].getElementsByTagName("td")[columnIndex];
+
+        // Compare values based on data type
+        x = parseTableCell(x);
+        y = parseTableCell(y);
+
+        if ((direction === 'asc' && x > y) || (direction === 'desc' && x < y)) {
+          shouldSwitch = true;
+          break;
+        }
+      }
+
+      if (shouldSwitch) {
+        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+        switching = true;
+      }
+    }
+
+    // Toggle sort direction and update icon
+    table.setAttribute("data-sort-direction", direction);
+    updateSortIcons(table, columnIndex, direction);
+  }
+
+  // Function to check if a value is numeric
+  function isNumeric(value) {
+    return !isNaN(parseFloat(value)) && isFinite(value);
+  }
+
+  // Function to update sort icons
+  function updateSortIcons(table, columnIndex, direction) {
+    var headers = table.getElementsByTagName("th");
+
+    // Remove existing icons
+    Array.from(headers).forEach(function (header) {
+      header.classList.remove('asc', 'desc');
+    });
+
+    // Add icon to the clicked header
+    headers[columnIndex].classList.add(direction);
+  }
+
+  // Function to make tables sortable
+  function makeTablesSortable() {
+    var tables = document.querySelectorAll("table");
+
+    tables.forEach(function (table) {
+      table.setAttribute("data-sort-direction", "asc");
+
+      var headers = table.getElementsByTagName("th");
+
+      Array.from(headers).forEach(function (header, index) {
+        header.onclick = function () {
+          sortTable(index, table);
+        };
+        header.innerHTML += '<span class="sortable-icon"></span>';
+      });
+    });
+  }
+
+  // Make all tables on the page sortable
+  makeTablesSortable();
+</script>
+++++

@@ -1,0 +1,279 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/default]
+
+[#net_sf_freecol_usermanuel_chapter4thenewworlddoctest_terraintypes]
+= TerrainTypes
+
+:table-caption!: 
+
+There are many different types of terrain in the New World, each with its own peculiar advantages.
+At the beginning of the game you will probably arrive at a High Seas tile (or at the edge of the map).
+High Seas tiles (and the map edge) allow you to sail between Europe and the New World.
+As you approach land, the High Seas will be replaced by Ocean tiles, which produce Fish.
+
+In the New World, you will also discover `Plains`, which produce  a great deal of `Grain`, a lesser amount of `Cotton`, and some `Ore`; `Grassland`, on which `Grain` and `Tobacco` can be cultivated; `Prairie`, which are suitable for growing `Grain` and `Cotton`; `Savannah`, which produces `Grain` and `Sugar`; `Marsh`, where `Grain` and `Tobacco` and `Ore` and `Silver` can be cultivated or mined; `Swamp`, which yields some `Grain` and `Sugar` and `Ore` and `Silver`; `Desert`, which produces `Grain` and `Cotton` and `Ore`; `Tundra`, where `Grain` and `Ore` and `Silver` can be grown or mined
+
+
+.List of production
+* `Plains`: `Grain` and `Cotton` and `Ore`
+* `Grassland`: `Grain` and `Tobacco`
+* `Prairie`: `Grain` and `Cotton`
+* `Savannah`: `Grain` and `Sugar`
+* `Marsh`: `Grain` and `Tobacco` and `Ore` and `Silver`
+* `Swamp`: `Grain` and `Sugar` and `Ore` and `Silver`
+* `Desert`: `Grain` and `Cotton` and `Ore`
+* `Tundra`: `Grain` and `Ore` and `Silver`
+* `Arctic`: 
+
+
+.Production table
+
+
+[%autowidth]
+|====
+^| Tile | a| image:{RESOURCES_PATH}/resources/images/goods/ore.png[title="model.goods.ore"] a| image:{RESOURCES_PATH}/resources/images/goods/tobacco.png[title="model.goods.tobacco"] a| image:{RESOURCES_PATH}/resources/images/goods/cotton.png[title="model.goods.cotton"] a| image:{RESOURCES_PATH}/resources/images/goods/sugar.png[title="model.goods.sugar"] a| image:{RESOURCES_PATH}/resources/images/goods/silver.png[title="model.goods.silver"] a| image:{RESOURCES_PATH}/resources/images/goods/grain.png[title="model.goods.grain"]
+
+a| 
+image:{RESOURCES_PATH}/resources/images/terrain/plains/center0.png[title="plains", width="40px"]
+ a| `Plains`|image:{ROOT_PATH}/images/Chapter4_image_terrain_ore1.jpg[]
+// Checksum Chapter4_image_terrain_ore1.jpg=2893617702
+ |  | image:{ROOT_PATH}/images/Chapter4_image_terrain_cotton2.jpg[]
+// Checksum Chapter4_image_terrain_cotton2.jpg=1681950471
+ |  |  | image:{ROOT_PATH}/images/Chapter4_image_terrain_grain5.jpg[]
+// Checksum Chapter4_image_terrain_grain5.jpg=533741393
+
+a| 
+image:{RESOURCES_PATH}/resources/images/terrain/grassland/center0.png[title="grassland", width="40px"]
+ a| `Grassland`| | image:{ROOT_PATH}/images/Chapter4_image_terrain_tobacco3.jpg[]
+// Checksum Chapter4_image_terrain_tobacco3.jpg=1576454725
+ |  |  |  | image:{ROOT_PATH}/images/Chapter4_image_terrain_grain3.jpg[]
+// Checksum Chapter4_image_terrain_grain3.jpg=2926742808
+
+a| 
+image:{RESOURCES_PATH}/resources/images/terrain/prairie/center0.png[title="prairie", width="40px"]
+ a| `Prairie`| |  | image:{ROOT_PATH}/images/Chapter4_image_terrain_cotton3.jpg[]
+// Checksum Chapter4_image_terrain_cotton3.jpg=4009799821
+ |  |  | image:{ROOT_PATH}/images/Chapter4_image_terrain_grain3.jpg[]
+// Checksum Chapter4_image_terrain_grain3.jpg=2926742808
+
+a| 
+image:{RESOURCES_PATH}/resources/images/terrain/savannah/center0.png[title="savannah", width="40px"]
+ a| `Savannah`| |  |  | image:{ROOT_PATH}/images/Chapter4_image_terrain_sugar3.jpg[]
+// Checksum Chapter4_image_terrain_sugar3.jpg=2985671661
+ |  | image:{ROOT_PATH}/images/Chapter4_image_terrain_grain4.jpg[]
+// Checksum Chapter4_image_terrain_grain4.jpg=477744126
+
+a| 
+image:{RESOURCES_PATH}/resources/images/terrain/marsh/center0.png[title="marsh", width="40px"]
+ a| `Marsh`|image:{ROOT_PATH}/images/Chapter4_image_terrain_ore2.jpg[]
+// Checksum Chapter4_image_terrain_ore2.jpg=609180362
+ | image:{ROOT_PATH}/images/Chapter4_image_terrain_tobacco2.jpg[]
+// Checksum Chapter4_image_terrain_tobacco2.jpg=2885093561
+ |  |  | image:{ROOT_PATH}/images/Chapter4_image_terrain_silver0.jpg[]
+// Checksum Chapter4_image_terrain_silver0.jpg=3767609630
+ | image:{ROOT_PATH}/images/Chapter4_image_terrain_grain3.jpg[]
+// Checksum Chapter4_image_terrain_grain3.jpg=2926742808
+
+a| 
+image:{RESOURCES_PATH}/resources/images/terrain/swamp/center0.png[title="swamp", width="40px"]
+ a| `Swamp`|image:{ROOT_PATH}/images/Chapter4_image_terrain_ore2.jpg[]
+// Checksum Chapter4_image_terrain_ore2.jpg=609180362
+ |  |  | image:{ROOT_PATH}/images/Chapter4_image_terrain_sugar2.jpg[]
+// Checksum Chapter4_image_terrain_sugar2.jpg=1200890385
+ | image:{ROOT_PATH}/images/Chapter4_image_terrain_silver0.jpg[]
+// Checksum Chapter4_image_terrain_silver0.jpg=3767609630
+ | image:{ROOT_PATH}/images/Chapter4_image_terrain_grain3.jpg[]
+// Checksum Chapter4_image_terrain_grain3.jpg=2926742808
+
+a| 
+image:{RESOURCES_PATH}/resources/images/terrain/desert/center0.png[title="desert", width="40px"]
+ a| `Desert`|image:{ROOT_PATH}/images/Chapter4_image_terrain_ore2.jpg[]
+// Checksum Chapter4_image_terrain_ore2.jpg=609180362
+ |  | image:{ROOT_PATH}/images/Chapter4_image_terrain_cotton1.jpg[]
+// Checksum Chapter4_image_terrain_cotton1.jpg=10906042
+ |  |  | image:{ROOT_PATH}/images/Chapter4_image_terrain_grain2.jpg[]
+// Checksum Chapter4_image_terrain_grain2.jpg=3432539560
+
+a| 
+image:{RESOURCES_PATH}/resources/images/terrain/tundra/center0.png[title="tundra", width="40px"]
+ a| `Tundra`|image:{ROOT_PATH}/images/Chapter4_image_terrain_ore2.jpg[]
+// Checksum Chapter4_image_terrain_ore2.jpg=609180362
+ |  |  |  | image:{ROOT_PATH}/images/Chapter4_image_terrain_silver0.jpg[]
+// Checksum Chapter4_image_terrain_silver0.jpg=3767609630
+ | image:{ROOT_PATH}/images/Chapter4_image_terrain_grain3.jpg[]
+// Checksum Chapter4_image_terrain_grain3.jpg=2926742808
+
+a| 
+image:{RESOURCES_PATH}/resources/images/terrain/arctic/center0.png[title="arctic", width="40px"]
+ a| `Arctic`| |  |  |  |  | 
+|====
+
+
+Large parts of the New World are covered in forests, all of which yield varying amounts of Grain, Lumber and Furs
+The Boreal Forest also produces Ore, the Mixed Forest Cotton, the Conifer Forest Tobacco, the Tropical Forest Sugar, the Rain Forest produces small amounts of Ore, Sugar and Tobacco, the Wetland Forest and the Scrub Forest yield some Ore, and the Broadleaf Forest Cotton
+
+.Forest production table
+
+
+[%autowidth]
+|====
+^| Tile | a| image:{RESOURCES_PATH}/resources/images/goods/furs.png[title="model.goods.furs"] a| image:{RESOURCES_PATH}/resources/images/goods/tobacco.png[title="model.goods.tobacco"] a| image:{RESOURCES_PATH}/resources/images/goods/ore.png[title="model.goods.ore"] a| image:{RESOURCES_PATH}/resources/images/goods/cotton.png[title="model.goods.cotton"] a| image:{RESOURCES_PATH}/resources/images/goods/sugar.png[title="model.goods.sugar"] a| image:{RESOURCES_PATH}/resources/images/goods/silver.png[title="model.goods.silver"] a| image:{RESOURCES_PATH}/resources/images/goods/grain.png[title="model.goods.grain"] a| image:{RESOURCES_PATH}/resources/images/goods/lumber.png[title="model.goods.lumber"]
+
+a| 
+image:{RESOURCES_PATH}/resources/images/forest/mixed/mixed.png[title="mixedForest", width="40px"]
+ a| `Mixed Forest`|image:{ROOT_PATH}/images/Chapter4_image_forest_furs3.jpg[]
+// Checksum Chapter4_image_forest_furs3.jpg=2944940329
+ |  |  | image:{ROOT_PATH}/images/Chapter4_image_forest_cotton1.jpg[]
+// Checksum Chapter4_image_forest_cotton1.jpg=10906042
+ |  |  | image:{ROOT_PATH}/images/Chapter4_image_forest_grain3.jpg[]
+// Checksum Chapter4_image_forest_grain3.jpg=2926742808
+ | image:{ROOT_PATH}/images/Chapter4_image_forest_lumber6.jpg[]
+// Checksum Chapter4_image_forest_lumber6.jpg=671488001
+
+a| 
+image:{RESOURCES_PATH}/resources/images/forest/conifer/conifer.png[title="coniferForest", width="40px"]
+ a| `Conifer Forest`|image:{ROOT_PATH}/images/Chapter4_image_forest_furs2.jpg[]
+// Checksum Chapter4_image_forest_furs2.jpg=3587109715
+ | image:{ROOT_PATH}/images/Chapter4_image_forest_tobacco1.jpg[]
+// Checksum Chapter4_image_forest_tobacco1.jpg=6280644
+ |  |  |  |  | image:{ROOT_PATH}/images/Chapter4_image_forest_grain2.jpg[]
+// Checksum Chapter4_image_forest_grain2.jpg=3432539560
+ | image:{ROOT_PATH}/images/Chapter4_image_forest_lumber6.jpg[]
+// Checksum Chapter4_image_forest_lumber6.jpg=671488001
+
+a| 
+image:{RESOURCES_PATH}/resources/images/forest/broadleaf/broadleaf.png[title="broadleafForest", width="40px"]
+ a| `Broadleaf Forest`|image:{ROOT_PATH}/images/Chapter4_image_forest_furs2.jpg[]
+// Checksum Chapter4_image_forest_furs2.jpg=3587109715
+ |  |  | image:{ROOT_PATH}/images/Chapter4_image_forest_cotton1.jpg[]
+// Checksum Chapter4_image_forest_cotton1.jpg=10906042
+ |  |  | image:{ROOT_PATH}/images/Chapter4_image_forest_grain2.jpg[]
+// Checksum Chapter4_image_forest_grain2.jpg=3432539560
+ | image:{ROOT_PATH}/images/Chapter4_image_forest_lumber4.jpg[]
+// Checksum Chapter4_image_forest_lumber4.jpg=2607403104
+
+a| 
+image:{RESOURCES_PATH}/resources/images/forest/tropical/tropical.png[title="tropicalForest", width="40px"]
+ a| `Tropical Forest`|image:{ROOT_PATH}/images/Chapter4_image_forest_furs2.jpg[]
+// Checksum Chapter4_image_forest_furs2.jpg=3587109715
+ |  |  |  | image:{ROOT_PATH}/images/Chapter4_image_forest_sugar1.jpg[]
+// Checksum Chapter4_image_forest_sugar1.jpg=3485809585
+ |  | image:{ROOT_PATH}/images/Chapter4_image_forest_grain3.jpg[]
+// Checksum Chapter4_image_forest_grain3.jpg=2926742808
+ | image:{ROOT_PATH}/images/Chapter4_image_forest_lumber4.jpg[]
+// Checksum Chapter4_image_forest_lumber4.jpg=2607403104
+
+a| 
+image:{RESOURCES_PATH}/resources/images/forest/wetland/wetland.png[title="wetlandForest", width="40px"]
+ a| `Wetland Forest`|image:{ROOT_PATH}/images/Chapter4_image_forest_furs2.jpg[]
+// Checksum Chapter4_image_forest_furs2.jpg=3587109715
+ | image:{ROOT_PATH}/images/Chapter4_image_forest_tobacco1.jpg[]
+// Checksum Chapter4_image_forest_tobacco1.jpg=6280644
+ | image:{ROOT_PATH}/images/Chapter4_image_forest_ore1.jpg[]
+// Checksum Chapter4_image_forest_ore1.jpg=2893617702
+ |  |  | image:{ROOT_PATH}/images/Chapter4_image_forest_silver0.jpg[]
+// Checksum Chapter4_image_forest_silver0.jpg=3767609630
+ | image:{ROOT_PATH}/images/Chapter4_image_forest_grain2.jpg[]
+// Checksum Chapter4_image_forest_grain2.jpg=3432539560
+ | image:{ROOT_PATH}/images/Chapter4_image_forest_lumber4.jpg[]
+// Checksum Chapter4_image_forest_lumber4.jpg=2607403104
+
+a| 
+image:{RESOURCES_PATH}/resources/images/forest/rain/rain.png[title="rainForest", width="40px"]
+ a| `Rain Forest`|image:{ROOT_PATH}/images/Chapter4_image_forest_furs1.jpg[]
+// Checksum Chapter4_image_forest_furs1.jpg=1726201400
+ |  | image:{ROOT_PATH}/images/Chapter4_image_forest_ore1.jpg[]
+// Checksum Chapter4_image_forest_ore1.jpg=2893617702
+ |  | image:{ROOT_PATH}/images/Chapter4_image_forest_sugar1.jpg[]
+// Checksum Chapter4_image_forest_sugar1.jpg=3485809585
+ | image:{ROOT_PATH}/images/Chapter4_image_forest_silver0.jpg[]
+// Checksum Chapter4_image_forest_silver0.jpg=3767609630
+ | image:{ROOT_PATH}/images/Chapter4_image_forest_grain2.jpg[]
+// Checksum Chapter4_image_forest_grain2.jpg=3432539560
+ | image:{ROOT_PATH}/images/Chapter4_image_forest_lumber4.jpg[]
+// Checksum Chapter4_image_forest_lumber4.jpg=2607403104
+
+a| 
+image:{RESOURCES_PATH}/resources/images/forest/scrub/scrub.png[title="scrubForest", width="40px"]
+ a| `Scrub Forest`|image:{ROOT_PATH}/images/Chapter4_image_forest_furs2.jpg[]
+// Checksum Chapter4_image_forest_furs2.jpg=3587109715
+ |  | image:{ROOT_PATH}/images/Chapter4_image_forest_ore1.jpg[]
+// Checksum Chapter4_image_forest_ore1.jpg=2893617702
+ | image:{ROOT_PATH}/images/Chapter4_image_forest_cotton1.jpg[]
+// Checksum Chapter4_image_forest_cotton1.jpg=10906042
+ |  |  | image:{ROOT_PATH}/images/Chapter4_image_forest_grain2.jpg[]
+// Checksum Chapter4_image_forest_grain2.jpg=3432539560
+ | image:{ROOT_PATH}/images/Chapter4_image_forest_lumber2.jpg[]
+// Checksum Chapter4_image_forest_lumber2.jpg=368367600
+
+a| 
+image:{RESOURCES_PATH}/resources/images/forest/boreal/boreal.png[title="borealForest", width="40px"]
+ a| `Boreal Forest`|image:{ROOT_PATH}/images/Chapter4_image_forest_furs3.jpg[]
+// Checksum Chapter4_image_forest_furs3.jpg=2944940329
+ |  | image:{ROOT_PATH}/images/Chapter4_image_forest_ore1.jpg[]
+// Checksum Chapter4_image_forest_ore1.jpg=2893617702
+ |  |  |  | image:{ROOT_PATH}/images/Chapter4_image_forest_grain2.jpg[]
+// Checksum Chapter4_image_forest_grain2.jpg=3432539560
+ | image:{ROOT_PATH}/images/Chapter4_image_forest_lumber4.jpg[]
+// Checksum Chapter4_image_forest_lumber4.jpg=2607403104
+
+|====
+
+
+.Other terrain production table
+
+
+[%autowidth]
+|====
+^| Tile | a| image:{RESOURCES_PATH}/resources/images/goods/ore.png[title="model.goods.ore"] a| image:{RESOURCES_PATH}/resources/images/goods/fish.png[title="model.goods.fish"] a| image:{RESOURCES_PATH}/resources/images/goods/silver.png[title="model.goods.silver"] a| image:{RESOURCES_PATH}/resources/images/goods/grain.png[title="model.goods.grain"]
+
+a| 
+image:{RESOURCES_PATH}/resources/images/terrain/plains/center0.png[title="hills", width="40px"]
+ a| `Hills`|image:{ROOT_PATH}/images/Chapter4_image_other_ore4.jpg[]
+// Checksum Chapter4_image_other_ore4.jpg=4041999609
+ |  |  | image:{ROOT_PATH}/images/Chapter4_image_other_grain2.jpg[]
+// Checksum Chapter4_image_other_grain2.jpg=3432539560
+
+a| 
+image:{RESOURCES_PATH}/resources/images/terrain/plains/center0.png[title="mountains", width="40px"]
+ a| `Mountains`|image:{ROOT_PATH}/images/Chapter4_image_other_ore4.jpg[]
+// Checksum Chapter4_image_other_ore4.jpg=4041999609
+ |  | image:{ROOT_PATH}/images/Chapter4_image_other_silver1.jpg[]
+// Checksum Chapter4_image_other_silver1.jpg=1664632863
+ | 
+a| 
+image:{RESOURCES_PATH}/resources/images/terrain/ocean/center0.png[title="ocean", width="40px"]
+ a| `Ocean`| | image:{ROOT_PATH}/images/Chapter4_image_other_fish2.jpg[]
+// Checksum Chapter4_image_other_fish2.jpg=867812445
+ |  | 
+a| 
+image:{RESOURCES_PATH}/resources/images/terrain/ocean/center0.png[title="lake", width="40px"]
+ a| `Lake`| | image:{ROOT_PATH}/images/Chapter4_image_other_fish2.jpg[]
+// Checksum Chapter4_image_other_fish2.jpg=867812445
+ |  | 
+a| 
+image:{RESOURCES_PATH}/resources/images/terrain/ocean/center0.png[title="highSeas", width="40px"]
+ a| `High Seas`| | image:{ROOT_PATH}/images/Chapter4_image_other_fish2.jpg[]
+// Checksum Chapter4_image_other_fish2.jpg=867812445
+ |  | 
+a| 
+image:{RESOURCES_PATH}/resources/images/terrain/ocean/center0.png[title="greatRiver", width="40px"]
+ a| `Great River`| | image:{ROOT_PATH}/images/Chapter4_image_other_fish2.jpg[]
+// Checksum Chapter4_image_other_fish2.jpg=867812445
+ |  | 
+|====
+
+
+The Hills produce a small amount of Grain, and can be mined for Ore and a lesser amount of Silver
+The Mountains are unsuitable for agriculture, but yield some Ore and Silver
+Arctic tiles are the least useful type of terrain, as they produce nothing at all
+Terrain types that produce no Grain, such as the Mountains and Arctic types, can not support colonies
+
+Clearing or plowing a tile, and building a road require spending 20 tools
+Therefore, these actions can only be carried out by units carrying at least 20 tools
+You can equip your units in your colonies or in Europe
+
+include::sortable-table.adoc[]
+
+
+

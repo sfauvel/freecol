@@ -155,14 +155,25 @@ public class FreeColDocAsTest extends DocAsTest {
 
     public String getImage(FreeColSpecObjectType buildable) {
         String folder = null;
+        String suffix = "";
         if (buildable instanceof BuildingType) {
             folder = "buildingicon";
         } else if (buildable instanceof GoodsType) {
             folder = "icon";
+        } else if (buildable instanceof TileType) {
+            TileType tileType = ((TileType) buildable);
+            if (tileType.isForested()) {
+                folder = "tileforest";
+                //image.tileforest.model.tile.borealForest
+            } else {
+                folder = "tile";
+                suffix = ".center";
+//                image.tile.model.tile.grassland.center
+            }
         } else {
             folder = "unit";
         }
-        final String image_id = "image." + folder + "." + buildable.getId();
+        final String image_id = "image." + folder + "." + buildable.getId() + suffix;
 
         try  {
             getImage(image_id);
@@ -186,6 +197,10 @@ public class FreeColDocAsTest extends DocAsTest {
 
     private String getImage(String image_id) {
         ImageResource imageResource = ResourceManager.getImageResource(image_id, true);
+        if (imageResource == null ) {
+            ResourceManager.getImageResource(image_id, true);
+            System.out.println("No image " + image_id);
+        }
         final Path imagePath = Paths.get(imageResource.getResourceLocator().getPath());
         final Path relativizeToTcData = Paths.get(tcData.getPath()).toAbsolutePath().relativize(imagePath);
         return Paths.get("{RESOURCES_PATH}").resolve(relativizeToTcData).toString();

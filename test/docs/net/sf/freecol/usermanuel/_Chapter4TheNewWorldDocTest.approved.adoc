@@ -1,0 +1,10 @@
+ifndef::ROOT_PATH[:ROOT_PATH: ../../../..]
+ifndef::RESOURCES_PATH[:RESOURCES_PATH: {ROOT_PATH}/../../data/default]
+
+= Chapter 4 - The New World
+
+This class generate something similar to the https://www.freecol.org/docs/FreeCol.html#x1-500004[chapter 4] of the https://www.freecol.org/docs/FreeCol.html[user manual].
+
+include::_Chapter4TheNewWorldDocTest.introduction.approved.adoc[leveloffset=+1]
+
+include::_Chapter4TheNewWorldDocTest.terrainTypes.approved.adoc[leveloffset=+1]
